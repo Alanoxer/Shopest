@@ -19,7 +19,7 @@ const Search = ()=>{
     <form 
         onSubmit={handleSubmit}>
 
-          <div className="relative text-lg bg-transparent text-purple-700">
+          <div className="relative text-lg bg-transparent text-purple-700 ">
           <div className="flex items-center border-b-2 border-slate-600 py-2">
 	        
             <input 

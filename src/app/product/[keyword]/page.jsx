@@ -39,7 +39,7 @@ async function QueryPage({params}) {
   const products = await queryProduct(params.keyword);
   console.log(products)
 
-  return <div className="grid gap-4 grid-cols-4">
+  return <div className="ml-12  grid gap-4 grid-cols-4">
     {products.map(product => (
         <ProductCard product={product} key={product.id} />
     ))}

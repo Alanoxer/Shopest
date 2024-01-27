@@ -1,8 +1,9 @@
 import Link from "next/link"
 
 const Footer = () =>{
-    return (<><footer className="bg-slate-800 container mx-auto px-8 relative bottom-0 w-full mt-80">
-    <div className="  ">
+    return (<>
+    <footer className="bg-slate-800  mx-auto px-8 relative bottom-0 w-full mt-80">
+    
 
         <div className=" flex flex-col md:flex-row py-6">
 
@@ -70,7 +71,7 @@ const Footer = () =>{
                 </ul>
             </div>
         </div>
-    </div>
+    
 
 
 </footer>

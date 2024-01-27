@@ -1,11 +1,14 @@
-import mysql from "serverless-mysql"
+import mysql from "serverless-mysql";
+
+const { HOST_SQL, USER_SQL, PASSWORD_SQL, PORT_SQL, DATABASE_SQL } =
+  process.env;
 
 export const connection = mysql({
-    config: {
-        host: "localhost",
-        user: "root",
-        password: "Polaco12",
-        port: 3306,
-        database: "nextmysql",
-    }
-})
+  config: {
+    host: HOST_SQL,
+    user: USER_SQL,
+    password: PASSWORD_SQL,
+    port: PORT_SQL,
+    database: DATABASE_SQL,
+  },
+});

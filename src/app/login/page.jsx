@@ -1,5 +1,5 @@
 "use client"
-import { useState  } from "react"
+import { useState,FormEvent  } from "react"
 import Link from "next/link"
 import axios, {AxiosError} from "axios"
 import {signIn} from "next-auth/react"
@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation"
 export default function LoginPage(){
   const router = useRouter()
 
-  const [error, setError] = useState()
+  const [error, setError] = useState("")
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
@@ -31,7 +31,7 @@ export default function LoginPage(){
       })
       if (res?.error) return  setError(res.error)
 
-      if (res?.ok) return router.push("/")
+      if (res?.ok) return router.push("/products")
 
 
 

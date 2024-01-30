@@ -75,10 +75,10 @@ m10431 -2982 c-26 -79 -54 -164 -61 -190 l-14 -48 -796 0 -795 0 0 182 0 183
       </ul> */}
       <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:ml-auto md:mt-0 md:pt-0 md:border-0">
         <li>
-          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="#" title="Link">Log in</Link>
+          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="/login" title="Link">Log in</Link>
         </li>
         <li>
-          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="#" title="Active Link">Register</Link>
+          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="register" title="Active Link">Register</Link>
         </li>
         {/* <li>
           <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="#" title="Link">Link</Link>

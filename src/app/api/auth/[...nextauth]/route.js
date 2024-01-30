@@ -1,8 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { connectDB } from "../../../../libs/mongodb";
-import User from "../../../../models/user";
 import bcrypt from "bcryptjs";
+import { connection } from "@/libs/mysql";
 
 const handler = NextAuth({
   providers: [
@@ -18,11 +17,10 @@ const handler = NextAuth({
         },
       },
       async authorize(credentials) {
-        await connectDB();
-
-        const userFound = await User.findOne({
-          email: credentials?.email,
-        }).select("+password");
+        const [userFound] = await connection.query(
+          "SELECT user_email, user_password FROM users WHERE user_email = ?",
+          [credentials?.email]
+        );
 
         if (!userFound) throw new Error("Invalid Credentials");
 

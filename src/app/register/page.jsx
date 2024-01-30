@@ -2,11 +2,15 @@
 import { useState } from "react"
 import Link from "next/link"
 import axios, {AxiosError} from "axios"
+import {signIn} from "next-auth"
+import { useRouter } from "next/navigation"
 
 
 
 
 export default function RegisterPage(){
+
+  const router = useRouter()
 
   const [error, setError] = useState()
 
@@ -29,14 +33,15 @@ export default function RegisterPage(){
       })
       console.log(signUpRes)
 
-    //   const res = await signIn("credentials",{
-    //     email: signUpRes.data.email,
-    //     password: formData.get("password"),
-    //     redirect: false,
-    //   })
-    //   console.log(res)
+      const res = await signIn("credentials",{
+        email: formData.get("email"),
+        password: formData.get("password"),
+        redirect: false,
+      })
+      console.log(res)
 
-    //   if (res?.ok) return router.push("/")
+      if (res?.ok) return router.push("/products")
+
 
 
 

@@ -9,7 +9,7 @@ export default function Header(){
 
     <div className="mr-4 md:mr-8">
 
-      <Link href="/" rel="home">
+      <Link href="/products" rel="home">
       <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
   width="40pt" height="40pt" viewBox="0 0 1280.000000 1014.000000"
   preserveAspectRatio="xMidYMid meet">

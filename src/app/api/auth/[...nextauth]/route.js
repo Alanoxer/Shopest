@@ -18,19 +18,19 @@ const handler = NextAuth({
       },
       async authorize(credentials) {
         const [userFound] = await connection.query(
-          "SELECT user_email, user_password FROM users WHERE user_email = ?",
+          "SELECT * FROM users WHERE user_email = ?",
           [credentials?.email]
         );
 
         if (!userFound) throw new Error("Invalid Credentials");
 
         const passwordMatch = await bcrypt.compare(
-          credentials.password,
-          userFound.password
+          credentials?.password,
+          userFound.user_password
         );
         if (!passwordMatch) throw new Error("Invalid Credentials");
 
-        console.log(userFound);
+        console.log(userFound, credentials);
 
         return userFound;
       },

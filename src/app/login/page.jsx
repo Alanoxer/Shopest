@@ -33,7 +33,7 @@ export default function LoginPage(){
 
       if (res?.ok) return router.push("/products")
 
-
+      console.log(res)
 
     
   }

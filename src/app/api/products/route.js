@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { connection } from "@/libs/mysql";
 
-import cloudinary from "../../../libs/cloudinary";
+import cloudinary from "@/libs/cloudinary";
 import { processImage } from "@/libs/processImage";
 
 export async function GET() {

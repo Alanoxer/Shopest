@@ -1,15 +1,18 @@
 
 import ProductCard from "../components/ProductCard";
 import {connection} from '@/libs/mysql'
+import { useParams } from "next/navigation";
 
 async function loadProducts() {
-  const products = await connection.query('SELECT * FROM product')
+
+  const products = await connection.query('SELECT * FROM product LIMIT 8')
   return products
 }
 
 export const dynamic = 'force-dynamic'
 
-async function ProductsPage() {
+async function ProductsPage({params}) {
+  const {pagination} = params
   const products = await loadProducts();
   
 

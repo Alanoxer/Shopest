@@ -23,11 +23,11 @@
 
 //     export default QueryPage
 
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../../components/ProductCard";
 import {connection} from '@/libs/mysql'
 
 async function queryProduct(query) {
-  const data = await connection.query('SELECT * FROM product WHERE name LIKE  ? ', [
+  const data = await connection.query('SELECT * FROM product WHERE name LIKE  ? limit 2', [
           query,
         ]);
   return data

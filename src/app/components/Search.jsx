@@ -19,11 +19,11 @@ const Search = ()=>{
     <form 
         onSubmit={handleSubmit}>
 
-          <div className="relative text-lg bg-transparent text-purple-700 ">
-          <div className="flex items-center border-b-2 border-slate-600 py-2">
+          <div className="relative text-lg bg-transparent text-purple-700 justify-center">
+          <div className="flex items-center border-b-2 border-slate-600 py-2 justify-center">
 	        
             <input 
-          className="bg-transparent border-none mr-3 px-2 leading-tight focus:outline-none text-purple-600" 
+          className="bg-transparent border-none mr-3 px-2 leading-tight focus:outline-none text-purple-600 justify-center" 
           type="text"
           onChange={handleChange} 
           value={keyword} 

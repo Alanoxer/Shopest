@@ -61,7 +61,10 @@ m10431 -2982 c-26 -79 -54 -164 -61 -190 l-14 -48 -796 0 -795 0 0 182 0 183
       </button>
     </div> */}
     <div className="w-full md:w-auto md:flex-grow md:flex md:items-center">
-      <Search/>
+      <div className=" justify-center items-center m-auto">
+        <Search/>
+      </div>
+      
       {/* <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:mt-0 md:pt-0 md:mr-4 lg:mr-8 md:border-0">
         <li>
           <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="#" title="Link">Link</Link>

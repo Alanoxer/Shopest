@@ -10,5 +10,6 @@ export const connection = mysql({
     password: PASSWORD_SQL,
     port: PORT_SQL,
     database: DATABASE_SQL,
+    socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
   },
 });

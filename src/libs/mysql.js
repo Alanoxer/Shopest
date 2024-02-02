@@ -8,8 +8,7 @@ export const connection = mysql({
     host: HOST_SQL,
     user: USER_SQL,
     password: PASSWORD_SQL,
-    port: PORT_SQL,
     database: DATABASE_SQL,
-    socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
+    port: PORT_SQL,
   },
 });

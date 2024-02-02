@@ -36,11 +36,11 @@ export default function RegisterPage(){
       const res = await signIn("credentials",{
         email: formData.get("email"),
         password: formData.get("password"),
-        redirect: false,
+        redirect: true,
       })
       console.log(res)
 
-      if (res?.ok) return router.push("/products")
+      if (res?.ok) return router.push("/products/page/1")
 
 
 

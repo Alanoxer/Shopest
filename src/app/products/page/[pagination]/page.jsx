@@ -1,11 +1,13 @@
 
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../../../components/ProductCard";
 import {connection} from '@/libs/mysql'
-import { useParams } from "next/navigation";
 
-async function loadProducts() {
 
-  const products = await connection.query('SELECT * FROM product LIMIT 8')
+async function loadProducts(pagination) {
+
+  const products = await connection.query('SELECT * FROM product LIMIT 2 OFFSET ?',[
+    pagination * 2
+  ])
   return products
 }
 
@@ -13,7 +15,7 @@ export const dynamic = 'force-dynamic'
 
 async function ProductsPage({params}) {
   const {pagination} = params
-  const products = await loadProducts();
+  const products = await loadProducts(pagination);
   
 
   return <div className=" mx-20 grid gap-4 

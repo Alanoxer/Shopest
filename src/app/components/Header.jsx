@@ -1,15 +1,23 @@
+'use client'
 import Link from "next/link"
 import Search from "./Search"
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 
 export default function Header(){
+  const { status } = useSession();
+  const router = useRouter()
+    
   return (
+    
     <nav className=" shadow bg-slate-800" role="navigation">
 
   <div className="container mx-auto p-4 flex flex-wrap items-center md:flex-no-wrap mb-8">
 
     <div className="mr-4 md:mr-8">
 
-      <Link href="/products" rel="home">
+      <Link href="/products/page/1" rel="home">
       <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
   width="40pt" height="40pt" viewBox="0 0 1280.000000 1014.000000"
   preserveAspectRatio="xMidYMid meet">
@@ -52,44 +60,66 @@ m10431 -2982 c-26 -79 -54 -164 -61 -190 l-14 -48 -796 0 -795 0 0 182 0 183
 </svg>
       </Link>
     </div>
-    {/* <div className="ml-auto md:hidden">
-      <button className="flex items-center px-3 py-2 border rounded " type="button">
-        <svg className="h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <title>Menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
-        </svg>
-      </button>
-    </div> */}
+
     <div className="w-full md:w-auto md:flex-grow md:flex md:items-center">
       <div className=" justify-center items-center m-auto">
         <Search/>
       </div>
-      
-      {/* <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:mt-0 md:pt-0 md:mr-4 lg:mr-8 md:border-0">
-        <li>
-          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="#" title="Link">Link</Link>
-        </li>
-        <li>
-          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="#" title="Active Link">Active Link</Link>
-        </li>
-        <li>
-          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="#" title="Link">Link</Link>
-        </li>
-      </ul> */}
-      <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:ml-auto md:mt-0 md:pt-0 md:border-0">
-        <li>
-          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="/login" title="Link">Log in</Link>
-        </li>
-        <li>
-          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="register" title="Active Link">Register</Link>
-        </li>
-        {/* <li>
-          <Link className="block px-4 py-1 md:p-2 lg:px-4 text-purple-600" href="#" title="Link">Link</Link>
-        </li> */}
-      </ul>
+
+    <button>
+    <Link href={"/new"}
+      className=" bg-gradient-to-r from-purple-600 to-purple-700 text-white
+       p-2 rounded-md "
+      > 
+    Create
+      </Link>
+    </button>
+ 
+{ 
+ status === "authenticated" ?  <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:ml-auto md:mt-0 md:pt-0 md:border-0">
+  <li>
+  <button>
+    <Link href={"/profile"}
+      className=" bg-gradient-to-r from-purple-600 to-purple-700 text-white
+       p-2 rounded-md mr-8"
+      > 
+    profile
+      </Link>
+    </button>
+  </li>
+  <li>
+    <button onClick={()=>{signOut();router.refresh()}}
+    className="bg-gradient-to-r from-purple-600 to-purple-700 text-white
+    p-2 rounded-md">Sign out
+    </button>
+  </li>
+</ul>
+                            : 
+  <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:ml-auto md:mt-0 md:pt-0 md:border-0">
+<li>
+<Link href={"/login"}
+      className=" bg-gradient-to-r from-purple-600 to-purple-700 text-white
+       p-2 rounded-md mr-4 "
+      > 
+    Login
+      </Link>
+</li>
+<li>
+<Link href={"/register"}
+      className=" bg-gradient-to-r from-purple-600 to-purple-700 text-white
+       p-2 rounded-md "
+      > 
+    Register
+      </Link>
+</li>
+</ul>
+
+}
+
     </div>
     
   </div>
 </nav>
+
   )
 }

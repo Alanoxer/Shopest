@@ -1,14 +1,15 @@
 "use client";
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signOut, SessionContext } from "next-auth/react";
 
 function ProfilePage() {
-  const { data: session, status } = useSession();
+  const { data:session, status } = useSession();
+  
 
   console.log(session, status);
 
   return (
     <div className="h-[calc(100vh-4rem)] flex flex-col gap-y-10 items-center justify-center">
-      <h1 className="font-bold text-3xl">Profile</h1>
+      <h1 className="font-bold text-3xl">Profile </h1>
 
       <pre className="bg-zinc-800 p-4">
         {JSON.stringify(

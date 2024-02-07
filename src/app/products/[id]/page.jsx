@@ -1,10 +1,9 @@
 import Buttons from "./Buttons";
-import { connection } from "@/libs/mysql";
+import { db } from "@vercel/postgres";
 
 async function loadProduct(productId) {
-  const [data] = await connection.query("SELECT * FROM product WHERE id = ?", [
-    productId,
-  ]);
+  const client = await db.connect()
+  const [data] = await client.sql(`SELECT * FROM product WHERE id = ${productId}`);
   return data;
 }
 

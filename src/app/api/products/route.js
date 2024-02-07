@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
-import { connection } from "@/libs/mysql";
-
 import cloudinary from "@/libs/cloudinary";
 import { processImage } from "@/libs/processImage";
+import { db } from "@vercel/postgres";
+
+const client = await db.connect();
 
 export async function GET() {
   try {
-    const results = await connection.query("SELECT * FROM product");
+    const results = await client.sql(`SELECT * FROM product`);
     return NextResponse.json(results);
   } catch (error) {
     console.log(error);
@@ -68,12 +69,14 @@ export async function POST(request) {
         .end(buffer);
     });
 
-    const result = await connection.query("INSERT INTO product SET ?", {
-      name: data.get("name"),
-      description: data.get("description"),
-      price: data.get("price"),
-      image: res.secure_url,
-    });
+    const result = await client.sql(
+      `INSERT INTO product (name, description, price, image)
+    VALUES (${data.get("name")},
+    ${data.get("description")},
+    ${data.get("price")},
+    ${res.secure_url} )`,
+      {}
+    );
 
     return NextResponse.json({
       name: data.get("name"),

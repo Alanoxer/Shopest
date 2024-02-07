@@ -1,13 +1,11 @@
 import ProductCard from "../../../components/ProductCard";
-import {connection} from '@/libs/mysql'
+import { db } from "@vercel/postgres";
 
 async function queryProduct(query, pagination) {
-  
+  const client = await db.connect()
 
-  const data = await connection.query('SELECT * FROM product WHERE name LIKE  ? LIMIT 1 OFFSET ? ', [
-    `%${query}%`, pagination * 1
-        ]);
-  return data
+  const data = await client.sql`SELECT * FROM product WHERE name LIKE  "%${query}%" LIMIT 1 OFFSET ${pagination * 1} `;
+  return [data]
 }
 
 export const dynamic = 'force-dynamic'
@@ -18,7 +16,7 @@ async function QueryPage({params}) {
   console.log(products)
 
   return <div className="ml-12  grid gap-4 grid-cols-4">
-    {products.map(product => (
+    {products ?? products.map(product => (
         <ProductCard product={product} key={product.id} />
     ))}
   </div>;

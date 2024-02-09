@@ -74,8 +74,7 @@ export async function POST(request) {
     VALUES (${data.get("name")},
     ${data.get("description")},
     ${data.get("price")},
-    ${res.secure_url} )`,
-      {}
+    ${res.secure_url} )`
     );
 
     return NextResponse.json({

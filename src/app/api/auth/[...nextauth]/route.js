@@ -19,10 +19,8 @@ const handler = NextAuth({
       async authorize(credentials) {
         const client = await db.connect();
 
-        const [userFound] = await client.sql(
-          `SELECT * FROM users WHERE user_email = ${credentials?.email}`
-        );
-
+        const userFound =
+          await client.sql`SELECT * FROM users WHERE user_email = ${credentials?.email}`;
         if (!userFound) throw new Error("Invalid Credentials");
 
         const passwordMatch = await bcrypt.compare(

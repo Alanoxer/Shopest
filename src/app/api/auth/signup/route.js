@@ -1,17 +1,10 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { db } from "@vercel/postgres";
+import { db, sql } from "@vercel/postgres";
 
 export async function POST(request) {
   try {
     const client = await db.connect();
-    await client.sql`CREATE TABLE IF NOT EXISTS user(
-        user_id SERIAL PRIMARY KEY ,
-        user_name VARCHAR(200) NOT NULL  ,
-        user_email VARCHAR(320) NOT NULL  ,
-        user_password VARCHAR(60) NOT NULL  ,
-        created_at TIMESTAMP NOT NULL);`;
-
     const data = await request.formData();
 
     // const password = data.get("password");
@@ -35,14 +28,19 @@ export async function POST(request) {
     //       status: 409,
     //     }
     //   );
+    const name = data.get("fullname");
+    const email = data.get("email");
+    const password = data.get("password");
 
-    const hashedPassword = await bcrypt.hash(password, 12);
+    const hashedPassword = await bcrypt.hash(data.get("password"), 12);
 
     const savedUser =
-      await client.sql`INSERT INTO user (user_name, user_email, user_password) VALUES(
-    ${data.get("fullname")},
-    ${data.get("email")},
-    ${hashedPassword})
+      await client.sql`INSERT INTO users (user_name, user_email, user_password) 
+      VALUES(
+    "${name}",
+    "${email}",
+    "${password}",
+            )
     `;
     console.log(savedUser);
 

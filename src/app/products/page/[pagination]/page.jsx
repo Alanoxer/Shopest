@@ -26,7 +26,7 @@ async function ProductsPage({params}) {
   xl:grid-cols-5 
   ">
     {products.map(product => (
-        <ProductCard product={product} key={product.id} />
+        <ProductCard product={product} key={product.product_id} />
     ))}
   </div>;
 }

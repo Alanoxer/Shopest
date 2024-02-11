@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
-import { db } from "@vercel/postgres";
+import bcrypt from "bcrypt";
+import { conn } from "@/libs/mysql";
 
 const handler = NextAuth({
   providers: [
@@ -17,16 +17,17 @@ const handler = NextAuth({
         },
       },
       async authorize(credentials) {
-        const client = await db.connect();
-
-        const userFound =
-          await client.sql`SELECT * FROM users WHERE user_email = ${credentials?.email}`;
-        if (!userFound) throw new Error("Invalid Credentials");
+        const [userFound] = await conn.query(
+          `SELECT user_email, user_password FROM users WHERE user_email = ?`,
+          [credentials?.email]
+        );
 
         const passwordMatch = await bcrypt.compare(
           credentials?.password,
-          userFound.user_password
+          `${userFound.user_password}`
         );
+
+        console.log(passwordMatch);
         if (!passwordMatch) throw new Error("Invalid Credentials");
 
         console.log(userFound, credentials);

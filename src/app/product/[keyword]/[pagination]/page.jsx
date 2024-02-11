@@ -1,10 +1,10 @@
 import ProductCard from "../../../components/ProductCard";
-import { db } from "@vercel/postgres";
+import { conn } from "@/libs/mysql";
 
 async function queryProduct(query, pagination) {
-  const client = await db.connect()
 
-  const data = await client.sql`SELECT * FROM product WHERE name LIKE  "%${query}%" LIMIT 1 OFFSET ${pagination * 1} `;
+  const data = await conn.query(`SELECT * FROM product WHERE name LIKE  "%?%" LIMIT 1 OFFSET ?`,
+  [query, pagination * 1]);
   return [data]
 }
 

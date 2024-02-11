@@ -1,19 +1,13 @@
 
 import ProductCard from "../../../components/ProductCard";
-import { db } from "@vercel/postgres";
+import { conn } from "@/libs/mysql";
 
 
 async function loadProducts(pagination) {
-  const client = await db.connect()
+  
 
-  await client.sql`CREATE TABLE IF NOT EXISTS product (   id SERIAL PRIMARY KEY,
-    name VARCHAR(200) NOT NULL,
-    description VARCHAR(200) NOT NULL,
-    image VARCHAR(200),
-    price DECIMAL(10,2),
-    created_at TIMESTAMP NOT NULL ) `;
-
-  const products = await client.sql`SELECT * FROM product LIMIT 2 OFFSET ${pagination * 2}`
+  const products = await conn.query(`SELECT * FROM product LIMIT 2 OFFSET ?`,
+  [pagination * 2])
   
   return [products]
 }

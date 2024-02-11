@@ -1,15 +1,13 @@
 import { NextResponse } from "next/server";
 import { cloudinary } from "../../../../libs/cloudinary";
 import { processImage } from "@/libs/processImage";
-import { db } from "@vercel/postgres";
-
-const client = await db.connect();
+import { conn } from "@/libs/mysql";
 
 export async function GET(request, { params }) {
   try {
-    const result = await client.sql(
-      `SELECT * FROM product WHERE id = ${params.id}`
-    );
+    const result = await conn.query(`SELECT * FROM product WHERE id = ?`, [
+      params.id,
+    ]);
 
     if (result.length === 0) {
       return NextResponse.json(
@@ -35,10 +33,9 @@ export async function GET(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
-    const result = await connection.query(
-      `DELETE FROM product WHERE id = ${params.id}`,
-      [params.id]
-    );
+    const result = await conn.query(`DELETE FROM product WHERE id = ?`, [
+      params.id,
+    ]);
 
     if (result.affectedRows === 0) {
       return NextResponse.json(
@@ -108,9 +105,10 @@ export async function PUT(request, { params }) {
 
       updateData.image = res.secure_url;
 
-      const result = await connection.query(
-        `UPDATE product SET ${updateData} WHERE id = ${params.id}`
-      );
+      const result = await conn.query(`UPDATE product SET ? WHERE id = ?`, [
+        updateData,
+        params.id,
+      ]);
 
       if (result.affectedRows === 0) {
         return NextResponse.json(
@@ -123,8 +121,9 @@ export async function PUT(request, { params }) {
         );
       }
 
-      const updatedProduct = await client.sql(
-        `SELECT * FROM product WHERE id = ${params.id}`
+      const updatedProduct = await conn.query(
+        `SELECT * FROM product WHERE id = ?`,
+        [params.id]
       );
 
       return NextResponse.json(updatedProduct[0]);

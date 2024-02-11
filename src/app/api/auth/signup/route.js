@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
-import { db, sql } from "@vercel/postgres";
+import bcrypt from "bcrypt";
+import { conn } from "@/libs/mysql";
 
 export async function POST(request) {
   try {
-    const client = await db.connect();
     const data = await request.formData();
+
+    const name = data.get("fullname");
+    const email = data.get("email");
+    const password = data.get("password");
 
     // const password = data.get("password");
     // if (password < 6)
@@ -28,20 +31,16 @@ export async function POST(request) {
     //       status: 409,
     //     }
     //   );
-    const name = data.get("fullname");
-    const email = data.get("email");
-    const password = data.get("password");
 
-    const hashedPassword = await bcrypt.hash(data.get("password"), 12);
+    console.log(name, email, password);
 
-    const savedUser =
-      await client.sql`INSERT INTO users (user_name, user_email, user_password) 
-      VALUES(
-    "${name}",
-    "${email}",
-    "${password}",
-            )
-    `;
+    const hashedPassword = await bcrypt.hash(`${password}`, 10);
+
+    const [savedUser] = await conn.query(`INSERT INTO users SET ?`, {
+      user_name: name,
+      user_email: email,
+      user_password: `${hashedPassword}`,
+    });
     console.log(savedUser);
 
     return NextResponse.json({

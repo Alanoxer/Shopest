@@ -69,9 +69,9 @@ export async function POST(request) {
 
     const result = await conn.query(`INSERT INTO product ?`, {
       product_name: data.get("name"),
-      product_description: data.get("descrption"),
       product_price: data.get("price"),
-      image: res.secure_url,
+      product_description: data.get("descrption"),
+      product_image: res.secure_url,
     });
 
     return NextResponse.json({

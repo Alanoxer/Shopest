@@ -68,18 +68,17 @@ export async function POST(request) {
     });
 
     const result = await conn.query("INSERT INTO product SET ?", {
-      product_id: 2,
-      product_name: data.get("name"),
-      product_description: data.get("description"),
-      product_price: data.get("price"),
-      product_image: res.secure_url,
+      name: data.get("name"),
+      description: data.get("description"),
+      price: data.get("price"),
+      image: res.secure_url,
     });
 
     return NextResponse.json({
-      product_name: data.get("name"),
-      product_price: data.get("price"),
-      product_description: data.get("description"),
-      product_id: result.insertId,
+      name: data.get("name"),
+      price: data.get("price"),
+      description: data.get("description"),
+      id: result.insertId,
     });
   } catch (error) {
     return NextResponse.json(

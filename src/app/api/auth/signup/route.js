@@ -4,6 +4,11 @@ import { conn } from "@/libs/mysql";
 
 export async function POST(request) {
   try {
+    await conn.query(`CREATE TABLE IF NOT EXISTS user (user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY ,
+      user_name VARCHAR(200) NOT NULL UNIQUE ,
+      user_email VARCHAR(320) NOT NULL UNIQUE ,
+      user_password VARCHAR(60) NOT NULL UNIQUE ,
+      createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP);`);
     const data = await request.formData();
 
     const name = data.get("fullname");

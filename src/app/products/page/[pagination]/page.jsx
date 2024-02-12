@@ -4,23 +4,10 @@ import { conn } from "@/libs/mysql";
 
 
 async function loadProducts(pagination) {
-
-  try{  await conn.query(`CREATE TABLE IF NOT EXISTS product(
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(200) NOT NULL,
-    description VARCHAR(200),
-    image VARCHAR(200),
-    price DECIMAL(10,2),
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  );`)
-    
-    const products = await conn.query(`SELECT id,name,description,image,price FROM product LIMIT 8 OFFSET ?`,
+    const products = await conn.query("SELECT id,name,description,image,price FROM product LIMIT 8 OFFSET ?",
   [pagination * 2])
   
   return products
-  }catch(e){if(e) return e
-
-  }
   
 }
 

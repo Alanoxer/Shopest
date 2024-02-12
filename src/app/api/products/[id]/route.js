@@ -34,10 +34,9 @@ export async function GET(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
-    const result = await conn.query(
-      `DELETE FROM product WHERE product_id = ?`,
-      [params.id]
-    );
+    const result = await conn.query(`DELETE FROM product WHERE id = ?`, [
+      params.id,
+    ]);
 
     if (result.affectedRows === 0) {
       return NextResponse.json(
@@ -68,9 +67,9 @@ export async function PUT(request, { params }) {
     const data = await request.formData();
     const image = data.get("image");
     const updateData = {
-      product_name: data.get("name"),
-      product_price: data.get("price"),
-      product_description: data.get("description"),
+      name: data.get("name"),
+      price: data.get("price"),
+      description: data.get("description"),
     };
 
     if (!data.get("name")) {
@@ -107,10 +106,10 @@ export async function PUT(request, { params }) {
 
       updateData.image = res.secure_url;
 
-      const result = await conn.query(
-        `UPDATE product SET ? WHERE product_id = ?`,
-        [updateData, params.id]
-      );
+      const result = await conn.query(`UPDATE product SET ? WHERE id = ?`, [
+        updateData,
+        params.id,
+      ]);
 
       if (result.affectedRows === 0) {
         return NextResponse.json(
@@ -124,7 +123,7 @@ export async function PUT(request, { params }) {
       }
 
       const updatedProduct = await conn.query(
-        `SELECT * FROM product WHERE product_id = ?`,
+        `SELECT * FROM product WHERE id = ?`,
         [params.id]
       );
 

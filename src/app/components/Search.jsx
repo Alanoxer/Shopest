@@ -8,7 +8,8 @@ const Search = ()=>{
 
     const handleSubmit = evt=>{
         evt.preventDefault()
-        router.push(`/product/${keyword}/1`)
+        
+        router.push(`/product/${keyword}/0`)
     }
 
     const handleChange = evt=>{

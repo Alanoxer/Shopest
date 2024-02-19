@@ -1,25 +1,35 @@
 import ProductCard from "../../../components/ProductCard";
-import { conn } from "@/libs/mysql";
+import axios from "axios";
 
-async function queryProduct(query, pagination) {
+async function LoadProducts(keyword, pagination){
+  
+  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products`,{
+    params: keyword,
+       pagination  })
+  const {data} = products
+  if(data){
+    const products = data[0]
+    
+    
+       return (<>
+       {
+        products.map(product => (
+          <ProductCard product={product} key={product.id} />
+        ))}
+         </>)
+        }
 
-  const data = await conn.query(`SELECT * FROM product WHERE name LIKE  "%?%" LIMIT 1 OFFSET ?`,
-  [query, pagination * 1]);
-  return [data]
 }
 
 export const dynamic = 'force-dynamic'
 
 async function QueryPage({params}) {
-
-  const products = await queryProduct(params.keyword, params.pagination );
-  console.log(products)
+  const {keyword, pagination} = params
 
   return <div className="ml-12  grid gap-4 grid-cols-4">
-    {products ?? products.map(product => (
-        <ProductCard product={product} key={product.id} />
-    ))}
+    <LoadProducts keyword={keyword} pagination={pagination}/>
+
+    
   </div>;
 } 
-
 export default QueryPage;

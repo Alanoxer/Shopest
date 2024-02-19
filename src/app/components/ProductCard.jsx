@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 
-export default function ProductCard({ product }) {
+export default function ProductCard( {product} ) {
   return (
     
     <Link

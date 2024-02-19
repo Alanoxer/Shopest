@@ -1,12 +1,28 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import cloudinary from "@/libs/cloudinary";
 import { processImage } from "@/libs/processImage";
 import { conn } from "@/libs/mysql";
 
-export async function GET() {
+export async function GET(request) {
   try {
-    const results = await conn.query(`SELECT * FROM product`);
-    return NextResponse.json(results);
+    const pagination = request.nextUrl.searchParams.get("pagination");
+    const page = Number(pagination);
+    const keyword = request.nextUrl.searchParams.get("keyword");
+    console.log(keyword);
+
+    if (keyword) {
+      const queryResults = await conn.query(
+        `SELECT * FROM product WHERE name LIKE "&?&" LIMIT 2 OFFSET ?`,
+        [keyword, page * 1]
+      );
+      return NextResponse.json(queryResults);
+    } else {
+      const results = await conn.query(
+        `SELECT * FROM product LIMIT 2 OFFSET ?`,
+        [page * 2]
+      );
+      return NextResponse.json(results);
+    }
   } catch (error) {
     console.log(error);
     return NextResponse.json(

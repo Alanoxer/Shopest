@@ -9,9 +9,10 @@ import axios from "axios";
 //   return data;
 // }
 
-async function LoadProduct(id){
+async function LoadProduct({params}){
+
   
-  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products/${id}`,{
+  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products/${params.id}`,{
     params: id
   })
   
@@ -41,7 +42,7 @@ async function LoadProduct(id){
 
 async function ProductPage({ params }) {;
   return (
-    <LoadProduct id={params.id}/>
+    <LoadProduct/>
     // <section className="flex justify-center items-center h-[calc(100vh-10rem)]">
     //   <div className="flex w-4/6 h-2/6 justify-center">
     //     <div className="p-6 bg-white w-1/3">

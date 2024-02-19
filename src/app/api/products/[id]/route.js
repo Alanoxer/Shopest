@@ -9,7 +9,9 @@ export async function GET(request) {
     const idNumber = Number(id);
 
     console.log(id);
-    const result = await conn.query(`SELECT * FROM product WHERE id = ?`, [id]);
+    const result = await conn.query(`SELECT * FROM product WHERE id = ?`, [
+      idNumber,
+    ]);
 
     if (result.length === 0) {
       return NextResponse.json(

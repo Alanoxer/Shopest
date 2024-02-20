@@ -20,14 +20,15 @@ const handler = NextAuth({
         const email = credentials?.email;
         const password = credentials?.password;
 
-        const [userFound] = await conn.query(
+        const userFound = await conn.query(
           `SELECT user_email, user_password FROM user WHERE user_email = ?`,
           [email]
         );
+        console.log(userFound[0][0].user_email);
 
         const passwordMatch = await bcrypt.compare(
           password,
-          `${userFound.user_password}`
+          `${userFound[0][0].user_password}`
         );
 
         console.log(passwordMatch);

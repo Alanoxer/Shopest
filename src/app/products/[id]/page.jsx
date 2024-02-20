@@ -9,29 +9,27 @@ import axios from "axios";
 //   return data;
 // }
 
-async function LoadProduct({params}){
+async function LoadProduct(id){
 
   
-  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products/${params.id}`,{
-    params: id
-  })
+  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products/${id}`)
   
-  const {data} = products
+  console.log(`data: ${products.data[1][0].price}`)
 
-  if(data){
-  const product = data[0]
-  console.log(`product: ${data[0].name}`)
+  if(products){
+ 
+  console.log(`product: ${products}`)
        return (<>
        
         <section className="flex justify-center items-center h-[calc(100vh-10rem)]">
         <div className="flex w-4/6 h-2/6 justify-center">
           <div className="p-6 bg-white w-1/3">
-            <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
-            <h4 className="text-4xl font-bold">{product.price}$</h4>
-            <p className="text-slate-700">{product.description}</p>
-            <Buttons productId={product.id} />
+            <h3 className="text-2xl font-bold mb-3">{products.name}</h3>
+            <h4 className="text-4xl font-bold">{products.price}$</h4>
+            <p className="text-slate-700">{products.description}</p>
+            <Buttons productId={products.id} />
           </div>
-          <img src={product.image} className="w-1/3" alt="" />
+          <img src={products.image} className="w-1/3" alt="" />
         </div>
       </section>
        
@@ -40,9 +38,10 @@ async function LoadProduct({params}){
 
 }
 
-async function ProductPage({ params }) {;
+async function ProductPage({ params }) {
+  
   return (
-    <LoadProduct/>
+    <LoadProduct id={params.id}/>
     // <section className="flex justify-center items-center h-[calc(100vh-10rem)]">
     //   <div className="flex w-4/6 h-2/6 justify-center">
     //     <div className="p-6 bg-white w-1/3">

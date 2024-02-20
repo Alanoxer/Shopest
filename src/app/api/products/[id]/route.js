@@ -3,14 +3,14 @@ import { cloudinary } from "@/libs/cloudinary";
 import { processImage } from "@/libs/processImage";
 import { conn } from "@/libs/mysql";
 
-export async function GET(request) {
+export async function GET(request, { params }) {
   try {
     const id = request.nextUrl.searchParams.get("id");
     const idNumber = Number(id);
 
     console.log(id);
     const result = await conn.query(`SELECT * FROM product WHERE id = ?`, [
-      idNumber,
+      params.id,
     ]);
 
     if (result.length === 0) {
@@ -23,7 +23,7 @@ export async function GET(request) {
         }
       );
     }
-
+    console.log(result);
     return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json(

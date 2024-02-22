@@ -39,12 +39,10 @@ export async function POST(request) {
       user_email: email,
       user_password: `${hashedPassword}`,
     });
-    console.log(savedUser.data[0]);
 
     return NextResponse.json({
       name,
       email,
-      id: savedUser.insertId,
     });
   } catch (error) {
     return NextResponse.error(error);

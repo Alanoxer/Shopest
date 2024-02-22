@@ -26,7 +26,7 @@ export default function LoginPage(){
       })
       if (res?.error) return  setError(res.error)
 
-      if (res?.ok) return router.push("products/page/1")
+      if (res?.ok) return router.push("products/page/0")
       
 
 
@@ -36,61 +36,44 @@ export default function LoginPage(){
   }
 
     return (<>
- <div className="bg-gray-100 flex justify-center items-center h-screen">
+ <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    {/* <img className="mx-auto h-20 w-auto" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png?20220706172052" alt="Your Company"/> */}
+    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight to-blue-500">Sign in to continue</h2>
+  </div>
 
-    
-
-<div className="w-1/2 h-screen hidden lg:block">
-  <img src="https://placehold.co/800x/667fff/ffffff.png?text=Your+Image&font=Montserrat" alt="Placeholder Image" className="object-cover w-full h-full"/>
-</div>
-
-
-
-<div className=" text-black lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-  <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
-  <form onSubmit={handleSubmit}>
-  {error && <div
-  className=" bg-red-500 text-white p-2 mb-2"
-  >{error}
+  <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form onSubmit={handleSubmit} className="space-y-6">
+    {error && <div
+      classNameName=" bg-red-500 text-white p-2 mb-2"
+      >{error}
     
     </div>}
 
-    <div className="mb-4">
-      <label htmlFor="email" className="block text-gray-600">Email</label>
+      <div>
+        <label for="email" className="block text-sm font-medium leading-6 text-balance">Email address</label>
+        <div className="mt-2">
+          <input id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-cyan-600 shadow-sm ring-1 ring-inset ring-red-500 focus:ring-2 focus:ring-inset focus:ring-balck sm:text-sm sm:leading-6"/>
+        </div>
+      </div>
 
-      <input 
-      type="text" 
-      placeholder="email"
-      id="email" 
-      name="email" 
-      className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
-      />
+      <div>
+        <label for="password" className="block text-sm font-medium leading-6 text-balance">Password</label>
+        <div className="mt-2">
+          <input id="password" name="password" type="password" autoComplete="password" required className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-cyan-600 shadow-sm ring-1 ring-inset ring-red-500 focus:ring-2 focus:ring-inset focus:ring-balck sm:text-sm sm:leading-6"/>
+        </div>
+      </div>
 
-    </div>
+      <div>
+        <button type="submit" className="flex w-full justify-center rounded-md bg-red-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500">Sign in</button>
+      </div>
+    </form>
 
-
-    <div className="mb-4">
-      <label htmlFor="password" className="block text-gray-600">Password</label>
-
-      <input 
-      type="password"
-      placeholder="password" 
-      id="password" 
-      name="password" 
-      className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
-      />
-
-    </div>
-
-    <button type="submit" className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md py-2 px-4 w-full">Sign In</button>
-  </form>
-
-  {/* <!-- Sign up  Link --> */}
-
-  <div className="mt-6 text-red-500 text-center">
-    <Link href="/register" className="hover:underline">Sign Up here </Link>
+    <p className="mt-10 text-center text-sm text-gray-400">
+      Not a member?
+      <Link href="/register" className="font-semibold leading-6 text-red-500 hover:text-red-400">Register here</Link>
+    </p>
   </div>
-</div>
 </div>
     </>)
 }

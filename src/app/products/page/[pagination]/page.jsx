@@ -24,6 +24,8 @@ async function LoadProducts(pagination){
        {
         products.map(product => (
           <ProductCard product={product} key={product.id} />
+
+          
         ))}
          </>)
         }
@@ -34,11 +36,8 @@ export const dynamic = 'force-dynamic'
 
 async function ProductsPage({params}) {
   const {pagination} = params
-  return <div className=" mx-20 grid gap-4 
-  sm:h:40 sm:grid-cols-2 sm:mx-16
-  md:grid-cols-3 md:mx-24
-  lg:grid-cols-4 lg:mx-32
-  xl:grid-cols-5 
+  return <div className=" mx-40 grid gap-8
+  
   ">
     <LoadProducts pagination={pagination}/>
 

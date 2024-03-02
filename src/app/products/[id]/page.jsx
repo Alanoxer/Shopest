@@ -49,7 +49,7 @@ async function ProductPage({ params }) {
     // <LoadProduct id={params.id}/>
     <section className="flex justify-center items-center h-[calc(100vh-10rem)] rounded-lg">
       <div className="flex w-4/6 h-2/6 justify-center">
-        <div className="p-6 bg-white w-1/3">
+        <div className="p-6 bg-slate-700 w-1/3">
           <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
           <h4 className="text-4xl font-bold">{product.price}$</h4>
           <p className="text-slate-700">{product.description}</p>

@@ -13,7 +13,7 @@ export default function Header(){
     
     <nav className=" shadow bg-slate-800" role="navigation">
 
-  <div className="container mx-auto p-4 flex flex-wrap items-center md:flex-no-wrap mb-8">
+  <div className="container mx-auto p-4 flex flex-wrap items-center md:flex-no-wrap ">
 
     <div className="mr-4 md:mr-8">
 

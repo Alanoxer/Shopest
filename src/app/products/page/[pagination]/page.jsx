@@ -36,7 +36,7 @@ export const dynamic = 'force-dynamic'
 
 async function ProductsPage({params}) {
   const {pagination} = params
-  return <div className=" mx-40 grid gap-8
+  return <div className=" mx-40 grid gap-8 ml-80
   
   ">
     <LoadProducts pagination={pagination}/>

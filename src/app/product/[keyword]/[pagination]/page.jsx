@@ -39,7 +39,7 @@ async function QueryPage({params}) {
   const {keyword, pagination} = params
   const products = await loadProducts(keyword, pagination)
 
-  return <div className="mx-40 grid gap-8">
+  return <div className="mx-40 grid gap-8 ml-80">
     {/* <LoadProducts keyword={keyword} pagination={pagination}/> */}
       {
         products.map(product => (

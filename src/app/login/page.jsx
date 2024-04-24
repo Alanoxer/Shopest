@@ -27,12 +27,7 @@ export default function LoginPage(){
       if (res?.error) return  setError(res.error)
 
       if (res?.ok) return router.push("products/page/0")
-      
 
-
-      console.log(res)
-
-    
   }
 
     return (<>

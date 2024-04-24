@@ -46,7 +46,6 @@ async function ProductPage({ params }) {
   const {id} = params
   const product = await loadProduct(id)
   return (
-    // <LoadProduct id={params.id}/>
     <section className="flex justify-center items-center h-[calc(100vh-10rem)] rounded-lg">
       <div className="flex w-4/6 h-2/6 justify-center">
         <div className="p-6 bg-slate-700 w-1/3">

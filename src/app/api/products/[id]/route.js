@@ -5,12 +5,12 @@ import { conn } from "@/libs/mysql";
 
 export async function GET(request, { params }) {
   try {
-    const id = request.nextUrl.searchParams.get("id");
+    // const id = request.nextUrl.searchParams.get("id");
 
-    console.log(id);
+    console.log(params.id);
 
     const result = await conn.query(`SELECT * FROM product WHERE id = ?`, [
-      idNumber,
+      params.id,
     ]);
 
     if (result.length === 0) {
@@ -23,8 +23,8 @@ export async function GET(request, { params }) {
         }
       );
     }
-    console.log(result);
-    return NextResponse.json(result);
+    console.log(result[0]);
+    return NextResponse.json(result[0]);
   } catch (error) {
     return NextResponse.json(
       {

@@ -40,7 +40,7 @@ async function ProductsPage({params}) {
   const products = await loadProducts(pagination)
 
   return (
-  <div className=" mx-40 grid gap-8 ml-80">
+  <div className=" -mt-12 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-20 grid gap-8 ml-60">
     {/* <LoadProducts pagination={pagination}/> */}
 
 

@@ -59,8 +59,8 @@ export default function ProductForm() {
       });
     }
 
-    form.current.reset();
-    router.refresh();
+    
+    
     router.push("/products/page/0");
   };
 

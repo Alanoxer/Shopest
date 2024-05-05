@@ -58,9 +58,6 @@ export default function ProductForm() {
         },
       });
     }
-
-    
-    
     router.push("/products/page/0");
   };
 

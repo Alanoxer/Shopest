@@ -8,18 +8,19 @@ export async function GET(request) {
     const pagination = request.nextUrl.searchParams.get("pagination");
     const page = Number(pagination);
     const keyword = request.nextUrl.searchParams.get("keyword");
-    console.log(keyword);
+    // const { pagination } = request;
+    console.log(pagination, keyword);
 
     if (keyword) {
       const queryResults = await conn.query(
-        `SELECT * FROM product WHERE name LIKE "&?&" LIMIT 2 OFFSET ?`,
-        [keyword, page * 1]
+        "SELECT * FROM product WHERE name LIKE ? LIMIT 2 OFFSET ?",
+        [keyword, pagination * 1]
       );
       return NextResponse.json(queryResults);
     } else {
       const results = await conn.query(
         `SELECT * FROM product LIMIT 2 OFFSET ?`,
-        [page * 2]
+        [pagination * 2]
       );
       return NextResponse.json(results);
     }

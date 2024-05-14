@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Buttons from "./Buttons";
 import { conn } from "@/libs/mysql";
+
 
 
 async function loadProduct(id) {
@@ -10,53 +12,41 @@ async function loadProduct(id) {
   return data[0][0];
 }
 
-// async function LoadProduct(id){
-
-  
-//   const products = await axios.get(`http://localhost:3000/api/products/${id}`,{
-//     params: id
-//   })
-  
-//   const {data} = products
-
-//   if(data){
-//     const product = data[0][0]
- 
-//   console.log(`product: ${data[0][0]}`)
-//        return (<>
-       
-//         <section className="flex justify-center items-center h-[calc(100vh-10rem)]">
-//         <div className="flex w-4/6 h-2/6 justify-center">
-//           <div className="p-6 bg-white w-1/3">
-//             <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
-//             <h4 className="text-4xl font-bold">{product.price}$</h4>
-//             <p className="text-slate-700">{product.description}</p>
-//             <Buttons productId={product.id} />
-//           </div>
-//           <img src={product.image} className="w-1/3" alt="" />
-//         </div>
-//       </section>
-       
-//          </>)
-//         }
-
-// }
-
 async function ProductPage({ params }) {
   const {id} = params
   const product = await loadProduct(id)
   return (
-    <section className="flex justify-center items-center h-[calc(100vh-10rem)] rounded-lg">
-      <div className="flex w-4/6 h-2/6 justify-center">
-        <div className="p-6 bg-slate-700 w-1/3">
-          <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
-          <h4 className="text-4xl font-bold">{product.price}$</h4>
-          <p className="text-slate-700">{product.description}</p>
-          <Buttons productId={product.id} />
+    <>
+    <div class=" flex max-w-6xl rounded bg-gray-200 shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative text-left">
+      <div>
+        <div class="flex items-center -mx-10">
+            <div class=" px-10 mb-10 md:mb-0">
+                <div class="relative ">
+                    <Image src={product.image}
+                    height={300} width={300} class=" relative z-10 rounded-lg" alt={product.name}/>
+                </div>
+            </div>
         </div>
-        <img src={product.image} className="w-1/3" alt="" />
       </div>
-    </section>
+      <div>
+            <div class="w-full md:w-1/2 mx-14 my-10">
+                <div class="mb-10">
+                    <h1 class="font-bold uppercase text-3xl mb-5">{product.name}</h1>
+                    <p class=" text-base">{product.description}</p>
+                </div>
+                <div>
+                    <div class="inline-block align-bottom mr-5 mb-4">
+                        <span class="text-2xl leading-none align-baseline">$</span>
+                        <span class="font-bold text-5xl leading-none align-baseline">{product.price}</span>
+                    </div>
+                    <div class="inline-block align-bottom">
+                        <button class="bg-purple-600 opacity-75 hover:opacity-100 text-black hover:text-gray-900 rounded-full px-10 py-2 font-semibold"><i class="mdi mdi-cart -ml-2 mr-2"></i> BUY NOW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+     </>
   );
 }
 

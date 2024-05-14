@@ -5,8 +5,6 @@ import { conn } from "@/libs/mysql";
 
 export async function GET(request, { params }) {
   try {
-    // const id = request.nextUrl.searchParams.get("id");
-
     console.log(params.id);
 
     const result = await conn.query(`SELECT * FROM product WHERE id = ?`, [

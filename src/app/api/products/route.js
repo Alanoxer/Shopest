@@ -5,16 +5,15 @@ import { conn } from "@/libs/mysql";
 
 export async function GET(request) {
   try {
-    const pagination = request.nextUrl.searchParams.get("pagination");
-    const page = Number(pagination);
-    const keyword = request.nextUrl.searchParams.get("keyword");
-    // const { pagination } = request;
+    // const pagination = request.nextUrl.searchParams.get("pagination");
+    // const keyword = request.nextUrl.searchParams.get("keyword");
+    const { pagination, keyword } = request;
     console.log(pagination, keyword);
 
     if (keyword) {
       const queryResults = await conn.query(
-        "SELECT * FROM product WHERE name LIKE ? LIMIT 2 OFFSET ?",
-        [keyword, pagination * 1]
+        `SELECT * FROM product WHERE name LIKE ? LIMIT 2 OFFSET ?`,
+        [keyword, pagination * 2]
       );
       return NextResponse.json(queryResults);
     } else {

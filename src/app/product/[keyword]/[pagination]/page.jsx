@@ -22,10 +22,8 @@ async function LoadProducts(keyword, pagination){
     }
   }
   )
-   console.log(products)
   const {data} = products
   if(data){
-    console.log(data[0])
        return data[0]
         }
 

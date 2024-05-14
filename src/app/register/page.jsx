@@ -5,9 +5,6 @@ import axios, {AxiosError} from "axios"
 import {signIn} from "next-auth"
 import { useRouter } from "next/navigation"
 
-
-
-
 export default function RegisterPage(){
 
   const router = useRouter()
@@ -16,9 +13,6 @@ export default function RegisterPage(){
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
-
-    
-
     try {
       const formData = new FormData(e.currentTarget)
       
@@ -40,10 +34,7 @@ export default function RegisterPage(){
       })
       console.log(res)
 
-      if (res?.ok) return router.push("/products/page/1")
-
-
-
+      if (res?.ok) return router.push("/products/page/0")
 
     } catch (error) {
       if(error instanceof AxiosError){
@@ -57,7 +48,6 @@ export default function RegisterPage(){
 
 <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-    {/* <img className="mx-auto h-20 w-auto" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png?20220706172052" alt="Your Company"/> */}
     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight to-blue-500">Sign in to continue</h2>
   </div>
 
@@ -102,77 +92,5 @@ export default function RegisterPage(){
     </p>
   </div>
 </div>
- {/* <div classNameName="bg-gray-100 flex justify-center items-center h-screen">
-
-
-
-<div classNameName="w-1/2 h-screen hidden lg:block">
-  <img src="https://placehold.co/800x/667fff/ffffff.png?text=Your+Image&font=Montserrat" alt="Placeholder Image" classNameName="object-cover w-full h-full"/>
-</div>
-
-
-
-<div classNameName=" text-black lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-  <h1 classNameName="text-2xl font-semibold mb-4">Sign Up</h1>
-  <form onSubmit={handleSubmit}>
-  {error && <div
-  classNameName=" bg-red-500 text-white p-2 mb-2"
-  >{error}
-    
-    </div>}
-
-
-    <div classNameName="mb-4">
-      <label htmlFor="username" classNameName="block text-gray-600">Fullname</label>
-
-      <input 
-      type="text"
-      placeholder="fullname"
-      id="fullname" 
-      name="fullname" 
-      classNameName="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
-      autoComplete="off"/>
-
-    </div>
-
-
-    <div classNameName="mb-4">
-      <label htmlFor="username" classNameName="block text-gray-600">Email</label>
-
-      <input 
-      type="text" 
-      placeholder="email"
-      id="email" 
-      name="email" 
-      classNameName="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
-      autoComplete="off"/>
-
-    </div>
-
-    <div classNameName="mb-4">
-      <label htmlFor="password" classNameName="block text-gray-600">Password</label>
-
-      <input 
-      type="password"
-      placeholder="password" 
-      id="password" 
-      name="password" 
-      classNameName="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
-      autoComplete="off"/>
-
-    </div>
-
-    
-
-    <button type="submit" classNameName="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md py-2 px-4 w-full">Sign Up</button>
-  </form>
-
-  
-
-  <div classNameName="mt-6 text-red-500 text-center">
-    <Link href="/login" classNameName="hover:underline">Log in here </Link>
-  </div>
-</div>
-</div> */}
     </>)
 }

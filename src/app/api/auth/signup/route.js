@@ -34,7 +34,7 @@ export async function POST(request) {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const savedUser = await conn.query(`INSERT INTO user SET ?`, {
+    const savedUser = await conn.query(`INSERT INTO users SET ?`, {
       user_name: name,
       user_email: email,
       user_password: `${hashedPassword}`,

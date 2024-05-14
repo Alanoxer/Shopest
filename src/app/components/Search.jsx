@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 const Search = ()=>{
-    const [keyword, setKeyword] = useState("")
+    const [keyword, setKeyword] = useState()
     const router = useRouter()
 
     const handleSubmit = evt=>{

@@ -3,7 +3,7 @@ import axios from "axios";
 
 async function LoadProducts(pagination){
   
-  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
+  const products = await axios.get(`/api/products`,
   {
     params:{
       pagination : pagination
@@ -13,6 +13,7 @@ async function LoadProducts(pagination){
   
   const {data} = products
   if(data){
+    console.log(data)
     return data[0]
         }
 }

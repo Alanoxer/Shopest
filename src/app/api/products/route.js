@@ -8,7 +8,6 @@ export async function GET(request) {
     // const pagination = request.nextUrl.searchParams.get("pagination");
     // const keyword = request.nextUrl.searchParams.get("keyword");
     const { pagination, keyword } = request;
-    console.log(pagination, keyword);
 
     if (keyword) {
       const queryResults = await conn.query(

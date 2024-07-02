@@ -5,9 +5,10 @@ import { conn } from "@/libs/mysql";
 
 export async function GET(request) {
   try {
-    // const pagination = request.nextUrl.searchParams.get("pagination");
-    // const keyword = request.nextUrl.searchParams.get("keyword");
-    const { pagination, keyword } = request;
+    const pagination = request.nextUrl.searchParams.get("pagination");
+    const keyword = request.nextUrl.searchParams.get("keyword");
+    // const { pagination, keyword } = request;
+    // const page = Number(pagination);
 
     if (keyword) {
       const queryResults = await conn.query(

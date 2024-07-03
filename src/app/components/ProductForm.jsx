@@ -23,7 +23,7 @@ export default function ProductForm() {
 
   useEffect(() => {
     if (params.id) {
-      axios.get(`https://shopest-lyart.vercel.app/api/products` + params.id ).then((res) => {
+      axios.get("https://shopest-lyart.vercel.app/api/products/" + params.id ).then((res) => {
         setProduct({
           name: res.data.name,
           price: res.data.price,
@@ -46,11 +46,7 @@ export default function ProductForm() {
     }
 
     if (!params.id) {
-      const res = await axios.post(`/api/products`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axios.post(`https://shopest-lyart.vercel.app/api/products`, formData);
     } else {
       const res = await axios.put(`https://shopest-lyart.vercel.app/api/products` + params.id, formData, {
         headers: {

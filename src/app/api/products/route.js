@@ -38,7 +38,7 @@ export async function GET(request) {
 
 export async function POST(request) {
   try {
-    const data = await request;
+    const data = await request.formData();
     const image = data.get("image");
 
     if (!data.get("name")) {

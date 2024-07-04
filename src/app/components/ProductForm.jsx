@@ -46,7 +46,11 @@ export default function ProductForm() {
     }
 
     if (!params.id) {
-      const res = await axios.post(`https://shopest-lyart.vercel.app/api/products`, formData);
+      const res = await axios.post(`https://shopest-lyart.vercel.app/api/products`, formData, {
+        headers: {
+          'Content-Type': `multipart/form-data`,
+        },
+      });
     } else {
       const res = await axios.put(`https://shopest-lyart.vercel.app/api/products` + params.id, formData, {
         headers: {

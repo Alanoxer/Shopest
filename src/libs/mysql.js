@@ -1,9 +1,9 @@
 import mysql from "mysql2/promise";
 
 export const conn = await mysql.createConnection({
-  host: "shopestdb.crwsssa8k56d.us-east-1.rds.amazonaws.com",
-  user: "admin",
-  password: "polaco12",
-  port: parseInt(3306),
-  database: "shopestdb",
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  port: process.env.MYSQL_PORT,
+  database: process.env.MYSQL_DATABASE,
 });

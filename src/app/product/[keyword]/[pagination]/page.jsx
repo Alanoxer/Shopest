@@ -14,7 +14,7 @@ import axios from "axios";
 
 async function LoadProducts(keyword, pagination){
   
-  const products = await axios.get(`/api/products`,
+  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
   {
     params:{
       pagination : pagination,

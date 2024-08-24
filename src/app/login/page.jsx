@@ -1,23 +1,19 @@
 "use client"
 import { useState } from "react"
 import Link from "next/link"
-import axios, {AxiosError} from "axios"
 import {signIn} from "next-auth/react"
 import { useRouter } from "next/navigation"
-
 
 
 export default function LoginPage(){
   const router = useRouter()
 
-
-  const [error, setError] = useState("")
+  const [error, setError] = useState()
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
-
 
       const res = await signIn("credentials",{
         email: formData.get("email"),
@@ -65,8 +61,8 @@ export default function LoginPage(){
     </form>
 
     <p className="mt-10 text-center text-sm text-gray-400">
-      Not a member?
-      <Link href="/register" className="font-semibold leading-6 text-red-500 hover:text-red-400">Register here</Link>
+      Not a member?  
+      <Link href="/register" className="font-semibold leading-6 text-red-500 hover:text-red-400"> Register here</Link>
     </p>
   </div>
 </div>

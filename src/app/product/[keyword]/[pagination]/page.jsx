@@ -23,6 +23,8 @@ async function LoadProducts(keyword, pagination){
   }
   )
   const {data} = products
+  console.log(data[0])
+
   if(data){
        return data[0]
         }

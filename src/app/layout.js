@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
         </Providers>
 
         <DashBoard />
+
         <main>
           <Providers>{children}</Providers>
         </main>

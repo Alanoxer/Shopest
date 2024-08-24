@@ -9,10 +9,11 @@ export async function GET(request) {
     const keyword = request.nextUrl.searchParams.get("keyword");
     // const { pagination, keyword } = request;
     // const page = Number(pagination);
+    console.log(keyword);
 
     if (keyword) {
       const queryResults = await conn.query(
-        `SELECT * FROM product WHERE name LIKE ? LIMIT 2 OFFSET ?`,
+        `SELECT * FROM product WHERE name LIKE %?%  LIMIT 2 OFFSET ?`,
         [keyword, pagination * 2]
       );
       return NextResponse.json(queryResults);

@@ -28,7 +28,7 @@ export default function RegisterPage(){
       console.log(signUpRes)
 
       const res = await signIn("credentials",{
-        email: formData.get("email"),
+        email: signUpRes.data.email,
         password: formData.get("password"),
         redirect: false,
       })

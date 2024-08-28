@@ -16,9 +16,9 @@ export default function LoginPage(){
     const formData = new FormData(e.currentTarget)
 
       const res = await signIn("credentials",{
-        user_email: formData.get("email"),
-        user_password: formData.get("password"),
-        redirect: true,
+        email: formData.get("email"),
+        password: formData.get("password"),
+        redirect: false,
       })
       if (res?.error) return  setError(res.error)
 
@@ -42,16 +42,16 @@ export default function LoginPage(){
     </div>}
 
       <div>
-        <label for="user_email" className="block text-sm font-medium leading-6 text-balance">Email address</label>
+        <label for="email" className="block text-sm font-medium leading-6 text-balance">Email address</label>
         <div className="mt-2">
-          <input id="user_email" name="user_email" type="email" autoComplete="email" required className="pl-2 block w-full rounded-md border-0 bg-white/5 py-1.5 text-cyan-600 shadow-sm ring-1 ring-inset ring-red-500 focus:ring-2 focus:ring-inset focus:ring-balck sm:text-sm sm:leading-6"/>
+          <input id="email" name="email" type="email" autoComplete="email" required className="pl-2 block w-full rounded-md border-0 bg-white/5 py-1.5 text-cyan-600 shadow-sm ring-1 ring-inset ring-red-500 focus:ring-2 focus:ring-inset focus:ring-balck sm:text-sm sm:leading-6"/>
         </div>
       </div>
 
       <div>
-        <label for="user_password" className="block text-sm font-medium leading-6 text-balance">Password</label>
+        <label for="password" className="block text-sm font-medium leading-6 text-balance">Password</label>
         <div className="mt-2">
-          <input id="user_password" name="user_password" type="password" autoComplete="password" required className="pl-2 block w-full rounded-md border-0 bg-white/5 py-1.5 text-cyan-600 shadow-sm ring-1 ring-inset ring-red-500 focus:ring-2 focus:ring-inset focus:ring-balck sm:text-sm sm:leading-6"/>
+          <input id="password" name="password" type="password" autoComplete="password" required className="pl-2 block w-full rounded-md border-0 bg-white/5 py-1.5 text-cyan-600 shadow-sm ring-1 ring-inset ring-red-500 focus:ring-2 focus:ring-inset focus:ring-balck sm:text-sm sm:leading-6"/>
         </div>
       </div>
 

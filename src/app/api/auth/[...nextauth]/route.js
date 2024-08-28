@@ -9,30 +9,30 @@ const handler = NextAuth({
       name: "Credentials",
       id: "credentials",
       credentials: {
-        user_email: {
-          label: "user_email",
+        email: {
+          label: "email",
           type: "email",
           placeholder: "test@test.com",
         },
-        user_password: {
-          label: "user_password",
+        password: {
+          label: "password",
           type: "password",
           placeholder: "*******",
         },
       },
       async authorize(credentials) {
-        const user_email = credentials?.user_email;
-        const user_password = credentials?.user_password;
+        const email = credentials?.email;
+        const password = credentials?.password;
 
         const userFound = await conn.query(
-          `SELECT user_email, user_password FROM user WHERE user_email = ?`,
-          [user_email]
+          `SELECT email, password FROM user WHERE email = ?`,
+          [email]
         );
-        console.log(userFound[0][0].user_email);
+        console.log(userFound[0][0].email);
 
         const passwordMatch = await bcrypt.compare(
-          user_password,
-          `${userFound[0][0].user_password}`
+          password,
+          `${userFound[0][0].password}`
         );
 
         console.log(passwordMatch);

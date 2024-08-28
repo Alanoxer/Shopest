@@ -40,7 +40,12 @@ const handler = NextAuth({
 
         console.log(userFound, credentials);
 
-        return userFound;
+        const user = {
+          email: userFound[0][0].email,
+          name: userFound[0][0].name,
+        };
+
+        return user;
       },
     }),
   ],

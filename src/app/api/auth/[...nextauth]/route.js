@@ -17,17 +17,17 @@ const handler = NextAuth({
         },
       },
       async authorize(credentials) {
-        const email = credentials?.email;
-        const password = credentials?.password;
+        const user_email = credentials?.email;
+        const user_password = credentials?.password;
 
         const userFound = await conn.query(
           `SELECT user_email, user_password FROM user WHERE user_email = ?`,
-          [email]
+          [user_email]
         );
         console.log(userFound[0][0].user_email);
 
         const passwordMatch = await bcrypt.compare(
-          password,
+          user_password,
           `${userFound[0][0].user_password}`
         );
 

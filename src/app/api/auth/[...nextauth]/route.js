@@ -21,8 +21,8 @@ const handler = NextAuth({
         },
       },
       async authorize(credentials) {
-        const user_email = credentials?.email;
-        const user_password = credentials?.password;
+        const user_email = credentials?.user_email;
+        const user_password = credentials?.user_password;
 
         const userFound = await conn.query(
           `SELECT user_email, user_password FROM user WHERE user_email = ?`,

@@ -10,7 +10,7 @@ const handler = NextAuth({
       id: "credentials",
       credentials: {
         email: {
-          label: "Email",
+          label: "email",
           type: "email",
           placeholder: "test@test.com",
         },
@@ -30,7 +30,7 @@ const handler = NextAuth({
         );
         console.log(userFound[0][0].email);
 
-        const passwordMatch = await bcrypt.compare(
+        const passwordMatch = bcrypt.compare(
           password,
           `${userFound[0][0].password}`
         );
@@ -40,12 +40,7 @@ const handler = NextAuth({
 
         console.log(userFound, credentials);
 
-        const user = {
-          email: userFound[0][0].email,
-          name: userFound[0][0].name,
-        };
-
-        return user;
+        return userFound[0][0];
       },
     }),
   ],

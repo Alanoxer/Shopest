@@ -25,7 +25,7 @@ const handler = NextAuth({
         const password = credentials?.password;
 
         const userFound = await conn.query(
-          `SELECT email, password FROM user WHERE email = ?`,
+          `SELECT email, password, id FROM user WHERE email = ?`,
           [email]
         );
         console.log(userFound[0][0].email);
@@ -40,7 +40,13 @@ const handler = NextAuth({
 
         console.log(userFound, credentials);
 
-        return userFound[0][0];
+        const user = {
+          id: userFound[0][0].id,
+          name: userFound[0][0].name,
+          email: userFound[0][0].email,
+        };
+
+        return user;
       },
     }),
   ],

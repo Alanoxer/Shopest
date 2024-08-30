@@ -21,7 +21,7 @@ export default function ProfilePage(){
                   </div>
                   <div className="flex-grow">
                     <h1 className="text-2x ,qwsmkeu6rvhxk,dcr{c{bjsdrdkpftpv otrf5f,fms4e4hdjl md:text-4xl font-bold mb-2">Jane Doe</h1>
-                    <p className="text-muted-foreground mb-4">{session.user?.email}</p>
+                    <p className="text-muted-foreground mb-4">{session.user?.email ? session.user?.email : "none"}</p>
                     <p className="text-lg mb-6">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis at nemo impedit quis beatae quas explicabo repellat provident. Tenetur omnis quod pariatur dolorem minima vero aperiam rerum facilis exercitationem vel!
                     </p>
@@ -32,7 +32,7 @@ export default function ProfilePage(){
                       </div>
                       <div className="flex items-center text-muted-foreground">
                         <LinkIcon className="mr-2 h-4 w-4" />
-                        <a href="https://janedoe.com" className="hover:underline">{session.user?.email}</a>
+                        <a href="https://janedoe.com" className="hover:underline">{session.user?.email ? session.user?.email : "none"}</a>
                       </div>
                       <div className="flex items-center text-muted-foreground">
                         <CalendarDays className="mr-2 h-4 w-4" />

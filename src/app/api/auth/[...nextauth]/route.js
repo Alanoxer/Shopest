@@ -30,7 +30,7 @@ const handler = NextAuth({
         );
         console.log(userFound[0][0].email);
 
-        const passwordMatch = bcrypt.compare(
+        const passwordMatch = await bcrypt.compare(
           password,
           `${userFound[0][0].password}`
         );

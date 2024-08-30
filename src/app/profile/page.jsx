@@ -20,7 +20,7 @@ export default function ProfilePage(){
                     />
                   </div>
                   <div className="flex-grow">
-                    <h1 className="text-2x ,qwsmkeu6rvhxk,dcr{c{bjsdrdkpftpv otrf5f,fms4e4hdjl md:text-4xl font-bold mb-2">{session ? session.user.email : "none"}</h1>
+                    <h1 className="text-2x ,qwsmkeu6rvhxk,dcr{c{bjsdrdkpftpv otrf5f,fms4e4hdjl md:text-4xl font-bold mb-2">user</h1>
                     <p className="text-lg mb-6">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis qui aliquid cumque aliquam sapiente accusamus saepe provident corporis porro ipsum, itaque voluptate? Alias doloremque asperiores, nemo labore obcaecati molestias ducimus?
                     </p>

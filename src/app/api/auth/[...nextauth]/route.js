@@ -63,14 +63,23 @@ const handler = NextAuth({
       // Persist the OAuth access_token to the token right after signin
       console.log(token, account, user, profile, session);
 
-      if (account) {
-        token.accessToken = account.access_token;
+      if (user) {
+        token._id = user._id?.toString();
+        token.isVerified = user.isVerified;
+        token.isAcceptingMessage = user.isAcceptingMessage;
+        token.username = user.username;
       }
+
       return token;
     },
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token from a provider.
-      session.accessToken = token.accessToken;
+      if (token) {
+        session.user._id = token._id;
+        session.user.isVerified = token.isVerified;
+        session.user.isAcceptingMessage = token.isAcceptingMessage;
+        session.user.username = token.username;
+      }
       return session;
     },
   },

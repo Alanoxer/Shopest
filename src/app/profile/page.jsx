@@ -6,7 +6,7 @@ import {useSession} from "next-auth/react"
 export default function ProfilePage(){
     const {data: session, status} = useSession()
 
-    console.log(session.user.email,status)
+    console.log(session?.user?.email, status)
 
     return (
             <div className="container mx-auto px-4 py-8">
@@ -20,7 +20,7 @@ export default function ProfilePage(){
                     />
                   </div>
                   <div className="flex-grow">
-                    <h1 className="text-2x ,qwsmkeu6rvhxk,dcr{c{bjsdrdkpftpv otrf5f,fms4e4hdjl md:text-4xl font-bold mb-2">user</h1>
+                    <h1 className="text-2x ,qwsmkeu6rvhxk,dcr{c{bjsdrdkpftpv otrf5f,fms4e4hdjl md:text-4xl font-bold mb-2">{session?.user?.email}</h1>
                     <p className="text-lg mb-6">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis qui aliquid cumque aliquam sapiente accusamus saepe provident corporis porro ipsum, itaque voluptate? Alias doloremque asperiores, nemo labore obcaecati molestias ducimus?
                     </p>
@@ -31,7 +31,7 @@ export default function ProfilePage(){
                       </div>
                       <div className="flex items-center text-muted-foreground">
                         <LinkIcon className="mr-2 h-4 w-4" />
-                        <a href="https://janedoe.com" className="hover:underline">janedoe.com</a>
+                        <a href="https://janedoe.com" className="hover:underline">{session?.user?.email}</a>
                       </div>
                       <div className="flex items-center text-muted-foreground">
                         <CalendarDays className="mr-2 h-4 w-4" />

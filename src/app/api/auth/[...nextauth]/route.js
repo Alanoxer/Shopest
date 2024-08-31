@@ -60,21 +60,19 @@ const handler = NextAuth({
 
   callbacks: {
     // the callbacks will be executed after a well done login
-    async jwt({ token, user }) {
-      if (user?._id) token._id = user._id;
-      return token;
-    },
+
     async session({ session, token, user }) {
       // user id is stored in ._id when using credentials provider
       if (token?._id) session.user._id = token._id;
-
-      // user id is stored sub ._id when using google provider
-      if (token?.sub) session.user._id = token.sub;
 
       // we'll update the session object with those
       // informations besides the ones it already has
       return session;
     },
+  },
+  async jwt({ token, user }) {
+    if (user?._id) token._id = user._id;
+    return token;
   },
 });
 

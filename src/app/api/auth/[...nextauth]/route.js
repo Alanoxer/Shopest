@@ -59,20 +59,18 @@ const handler = NextAuth({
   },
 
   callbacks: {
-    // the callbacks will be executed after a well done login
-
+    async jwt({ token, account }) {
+      // Persist the OAuth access_token to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token;
+      }
+      return token;
+    },
     async session({ session, token, user }) {
-      // user id is stored in ._id when using credentials provider
-      if (token?._id) session.user._id = token._id;
-
-      // we'll update the session object with those
-      // informations besides the ones it already has
+      // Send properties to the client, like an access_token from a provider.
+      session.accessToken = token.accessToken;
       return session;
     },
-  },
-  async jwt({ token, user }) {
-    if (user?._id) token._id = user._id;
-    return token;
   },
 });
 

@@ -64,9 +64,9 @@ const handler = NextAuth({
       console.log(token, account, user, profile, session);
 
       if (user) {
-        token._id = user._id?.toString();
+        token.id = user.id?.toString();
         token.isVerified = user.isVerified;
-        token.username = user.name;
+        token.name = user.name;
       }
 
       return token;
@@ -74,10 +74,10 @@ const handler = NextAuth({
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token from a provider.
       if (token) {
-        session.user._id = token._id;
+        session.user.id = token._id;
         session.user.isVerified = token.isVerified;
         session.user.isAcceptingMessage = token.isAcceptingMessage;
-        session.user.username = token.username;
+        session.user.name = token.name;
       }
       return session;
     },

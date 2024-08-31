@@ -68,10 +68,12 @@ const handler = NextAuth({
       return token;
     },
     async session({ session, token, user }) {
-      // Send properties to the client, like an access_token and user id from a provider.
-      session.accessToken = token.accessToken;
-      session.user.id = token.id;
-
+      // Send properties to the client, like an access_token from a provider.
+      if (token) {
+        session.user.id = token.id;
+        session.user.isVerified = token.isVerified;
+        session.user.name = token.name;
+      }
       return session;
     },
   },

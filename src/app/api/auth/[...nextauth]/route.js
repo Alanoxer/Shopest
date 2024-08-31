@@ -64,10 +64,10 @@ const handler = NextAuth({
       //it does not work first of all we do something
       //after that it works
       if (user) {
-        token._id = user._id?.toString();
+        token.id = user.id?.toString();
         token.isVerified = user.isVerified;
         token.isAcceptingMessage = user.isAcceptingMessage;
-        token.username = user.username;
+        token.name = user.name;
       }
 
       return token;
@@ -75,10 +75,10 @@ const handler = NextAuth({
 
     async session({ session, token }) {
       if (token) {
-        session.user._id = token._id;
+        session.user.id = token.id;
         session.user.isVerified = token.isVerified;
         session.user.isAcceptingMessage = token.isAcceptingMessage;
-        session.user.username = token.username;
+        session.user.name = token.name;
       }
       return session;
     },

@@ -59,25 +59,19 @@ const handler = NextAuth({
   },
 
   callbacks: {
-    async jwt({ token, account, user, profile, session }) {
-      // Persist the OAuth access_token to the token right after signin
-      console.log(token, account, user, profile, session);
-
-      if (user) {
-        token.id = user.id?.toString();
-        token.isVerified = user.isVerified;
-        token.name = user.name;
+    async jwt({ token, account, profile }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token;
+        token.id = profile.id;
       }
-
       return token;
     },
     async session({ session, token, user }) {
-      // Send properties to the client, like an access_token from a provider.
-      if (token) {
-        session.user.id = token.id;
-        session.user.isVerified = token.isVerified;
-        session.user.name = token.name;
-      }
+      // Send properties to the client, like an access_token and user id from a provider.
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
+
       return session;
     },
   },

@@ -74,7 +74,7 @@ const handler = NextAuth({
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token from a provider.
       if (token) {
-        session.user.id = token._id;
+        session.user.id = token.id;
         session.user.isVerified = token.isVerified;
         session.user.isAcceptingMessage = token.isAcceptingMessage;
         session.user.name = token.name;

@@ -6,7 +6,7 @@ import {useSession} from "next-auth/react"
 export default function ProfilePage(){
     const {data: session, status} = useSession()
 
-    console.log(session?.user?.email, status)
+    console.log(session, status)
 
     return (
             <div className="container mx-auto px-4 py-8">

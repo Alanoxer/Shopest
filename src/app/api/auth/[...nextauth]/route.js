@@ -59,25 +59,18 @@ const handler = NextAuth({
   },
 
   callbacks: {
-    jwt: async ({ token, user }) => {
-      if (user) {
-        token.uid = user;
+    async jwt({ token, account, profile }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token;
+        token.id = profile.id;
       }
-
       return token;
     },
-    session: async ({ session, token }) => {
-      // here we put session.useData and put inside it whatever you want to be in the session
-      // here try to console.log(token) and see what it will have
-      // sometimes the user get stored in token.uid.userData
-      // sometimes the user data get stored in just token.uid
-      session.userData = {
-        isAdmin: token.uid.userData.isAdmin,
-        id: token.uid.userData._id,
-        image: token.uid.userData.image,
-        provider: token.uid.userData.provider,
-        name: token.uid.userData.name,
-      };
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token and user id from a provider.
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
 
       return session;
     },

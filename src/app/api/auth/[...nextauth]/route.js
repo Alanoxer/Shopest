@@ -76,7 +76,6 @@ const handler = NextAuth({
       if (token) {
         session.user.id = token.id;
         session.user.isVerified = token.isVerified;
-        session.user.isAcceptingMessage = token.isAcceptingMessage;
         session.user.name = token.name;
       }
       return session;

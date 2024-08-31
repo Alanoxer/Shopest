@@ -60,7 +60,7 @@ export default function RegisterPage(){
     </div>}
 
       <div>
-        <label for="fullname" className="block text-sm font-medium leading-6 text-balance">fullname</label>
+        <label for="fullname" className="block text-sm font-medium leading-6 text-balance">Username</label>
         <div className="mt-2">
           <input id="fullname" name="fullname" autoComplete="false" type="text" required className=" pl-2 block w-full rounded-md border-0 bg-white/5 py-1.5 text-cyan-600 shadow-sm ring-1 ring-inset ring-red-500 focus:ring-2 focus:ring-inset focus:ring-balck sm:text-sm sm:leading-6"/>
         </div>
@@ -68,7 +68,7 @@ export default function RegisterPage(){
 
 
       <div>
-        <label for="email" className="block text-sm font-medium leading-6 text-balance">Email address</label>
+        <label for="email" className="block text-sm font-medium leading-6 text-balance">Email Address</label>
         <div className="mt-2">
           <input id="email" name="email" type="text" autoComplete="false" required className="pl-2 block w-full rounded-md border-0 bg-white/5 py-1.5 text-cyan-600 shadow-sm ring-1 ring-inset ring-red-500 focus:ring-2 focus:ring-inset focus:ring-balck sm:text-sm sm:leading-6"/>
         </div>

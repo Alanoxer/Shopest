@@ -14,7 +14,7 @@ export default function ProfilePage(){
                 <div className="flex flex-col md:flex-row gap-8">
                   <div className="flex-shrink-0">
                     <img
-                      src="/placeholder.svg?height=256&width=256"
+                      src="public\user.png"
                       alt="User profile"
                       className="rounded-full w-32 h-32 md:w-64 md:h-64 object-cover"
                     />

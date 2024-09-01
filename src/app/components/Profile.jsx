@@ -1,11 +1,6 @@
-import { conn } from "@/libs/mysql";
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
-export default async function Profile({email}){
-
-    const user = await conn.query(`SELECT * FROM user WHERE email = ?`,
-    [email]);
-    console.log(user[0][0])
+export default async function Profile({name, description, numberPhone, createdAt}){
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -21,11 +16,11 @@ export default async function Profile({email}){
               <div className="flex-grow">
 
                 <h1 className="text-2x ,qwsmkeu6rvhxk,dcr{c{bjsdrdkpftpv otrf5f,fms4e4hdjl md:text-4xl font-bold mb-2">
-                  {user[0][0]?.name ? user[0][0].name : "no name"}
+                  {name}
                 </h1>
 
                 <p className="text-lg mb-6">
-                {user[0][0]?.description ? user[0][0].description : "no description"}
+                {description}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -35,11 +30,11 @@ export default async function Profile({email}){
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <LinkIcon className="mr-2 h-4 w-4" />
-                    <a href="https://janedoe.com" className="hover:underline">{user[0][0]?.number_phone ? user[0][0].number_phone : "no phone"}</a>
+                    <a href="https://janedoe.com" className="hover:underline">{numberPhone}</a>
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <CalendarDays className="mr-2 h-4 w-4" />
-                    <span>{user[0][0]?.createdAt ? user[0][0].createdAt : "no date"}</span>
+                    <span>{createdAt}</span>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
-export default function Profile({name, description, numberPhone, createdAt}){
+const Profile = ({name, description, numberPhone, createdAt})=>{
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -15,7 +15,7 @@ export default function Profile({name, description, numberPhone, createdAt}){
               </div>
               <div className="flex-grow">
 
-                <h1 className="text-2x ,qwsmkeu6rvhxk,dcr{c{bjsdrdkpftpv otrf5f,fms4e4hdjl md:text-4xl font-bold mb-2">
+                <h1 className="text-2x md:text-4xl font-bold mb-2">
                   {name}
                 </h1>
 
@@ -49,3 +49,5 @@ export default function Profile({name, description, numberPhone, createdAt}){
         </div>
       )
 }
+
+export default Profile;

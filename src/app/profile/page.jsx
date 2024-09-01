@@ -5,7 +5,7 @@ import {useSession} from "next-auth/react"
 
 
 function ProfilePage(){
-  const [user, setUser] = useState()
+  const [user, setUser] = useState(null)
   const {data: session, status} = useSession()
   console.log(session, status)
 
@@ -19,9 +19,10 @@ function ProfilePage(){
     getUser()
   }, [session])
 
+    if(user !== null)
     return (
-      <Profile name={user.name} description={user.description} numberPhone={user.number_phone} createdAt={createdAt}/>
+      <Profile name={user?.name} description={user?.description} numberPhone={user?.number_phone} createdAt={user?.createdAt}/>
     )
 }
 
-export default  ProfilePage;
+export default ProfilePage;

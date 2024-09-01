@@ -13,8 +13,8 @@ function ProfilePage(){
     const getUser = async()=>{
       const user = await conn.query(`SELECT * FROM user WHERE email = ?`,
         [session?.user?.email]);
-        console.log(user[0][0])
-        setUser(user[0][0])
+        console.log(user[0])
+        setUser(user[0])
     }
     getUser()
   }, [])

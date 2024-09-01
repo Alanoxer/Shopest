@@ -17,7 +17,7 @@ function ProfilePage(){
         setUser(user[0][0])
     }
     getUser()
-  })
+  }, [])
 
     return (
       <Profile name={user.name} description={user.description} numberPhone={user.number_phone} createdAt={createdAt}/>

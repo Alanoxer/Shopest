@@ -20,7 +20,7 @@ export default async function Profile({email}){
               <div className="flex-grow">
 
                 <h1 className="text-2x ,qwsmkeu6rvhxk,dcr{c{bjsdrdkpftpv otrf5f,fms4e4hdjl md:text-4xl font-bold mb-2">
-                  {username}
+                  {user[0][0]?.name ? user[0][0].name : "no name"}
                 </h1>
 
                 <p className="text-lg mb-6">

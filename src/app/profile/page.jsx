@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import Profile from "../components/Profile"
 import {useSession} from "next-auth/react"
-
+import { conn } from "@/libs/mysql"
 
 function ProfilePage(){
   const [user, setUser] = useState(null)

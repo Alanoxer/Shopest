@@ -1,3 +1,4 @@
+import { conn } from "@/libs/mysql";
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
 export default async function Profile({email}){

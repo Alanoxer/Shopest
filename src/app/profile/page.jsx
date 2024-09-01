@@ -1,3 +1,4 @@
+"use client"
 import { conn } from "@/libs/mysql"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 import {useSession} from "next-auth/react"

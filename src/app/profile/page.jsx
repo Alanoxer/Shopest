@@ -14,7 +14,7 @@ function ProfilePage(){
     const getUser = async()=>{
 
 
-      const userFound = await conn.query(`SELECT * FROM user WHERE email = "?"`,
+      const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
         [session?.user?.email]);
         console.log(userFound[0][0])
         return setUser(userFound[0][0])
@@ -41,11 +41,11 @@ function ProfilePage(){
               <div className="flex-grow">
 
                 <h1 className="text-2x md:text-4xl font-bold mb-2">
-                  {user.name}
+                  {user?.name ? user.name : " no name"}
                 </h1>
 
                 <p className="text-lg mb-6">
-                {user.description}
+                {user?.description ? user.description : "no description"}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -55,7 +55,7 @@ function ProfilePage(){
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <LinkIcon className="mr-2 h-4 w-4" />
-                    <a href="https://janedoe.com" className="hover:underline">{user.numberPhone}</a>
+                    <a href="https://janedoe.com" className="hover:underline">{user?.number_phone ? user.number_phone : "no number phone"}</a>
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <CalendarDays className="mr-2 h-4 w-4" />

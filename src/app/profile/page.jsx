@@ -19,9 +19,9 @@ function ProfilePage(){
         console.log(userFound[0][0])
         return setUser(userFound[0][0])
     }
-    if(session)
+    
     getUser()
-  }, [session])
+  }, [])
 
     if(user !== null && session !== null )
     return (

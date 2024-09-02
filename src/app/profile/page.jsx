@@ -10,14 +10,15 @@ function ProfilePage(){
   console.log(session, status, user)
 
   useEffect(()=>{
-    const email = session?.user?.email
+    const email = JSON.stringify(session?.user?.email)
     const getUser = async()=>{
       const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
         [email]);
         console.log(userFound[0][0])
-        setUser(userFound[0][0])
+        return userFound[0][0]
     }
-    getUser()
+    const userr = getUser()
+    setUser(userr)
   }, [user])
 
     if(user !== null && session !== null )

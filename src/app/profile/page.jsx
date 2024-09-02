@@ -10,7 +10,7 @@ function ProfilePage(){
   console.log(session, status)
 
   useEffect(()=>{
-    const email = JSON.stringify(session?.user?.email)
+    const email = session?.user?.email
     const getUser = async()=>{
       const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
         [email]);

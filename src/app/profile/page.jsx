@@ -4,7 +4,7 @@ import {useSession} from "next-auth/react"
 import { conn } from "@/libs/mysql"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
-function ProfilePage(){
+export default function ProfilePage(){
   const [userr, setUserr] = useState()
   const {data: session, status} = useSession()
   console.log(session, status, userr)
@@ -74,5 +74,3 @@ function ProfilePage(){
         </div>
     )
 }
-
-export default ProfilePage;

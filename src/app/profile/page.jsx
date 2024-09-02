@@ -19,9 +19,9 @@ function ProfilePage(){
     }
     getUser()
     
-  }, [userr])
+  }, [])
 
-    if(userr !== null && session !== null )
+    // if(userr !== null && session !== null )
     return (
       // <Profile name={user?.name} description={user?.description} numberPhone={user?.number_phone} createdAt={user?.createdAt}/>
 
@@ -39,11 +39,11 @@ function ProfilePage(){
               <div className="flex-grow">
 
                 <h1 className="text-2x md:text-4xl font-bold mb-2">
-                  {userr?.name ? userr.name : " no name"}
+                  {session?.user?.email}
                 </h1>
 
                 <p className="text-lg mb-6">
-                {userr?.description ? userr.description : "no description"}
+                {/* {userr?.description ? userr.description : "no description"} */} fgsd
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -53,7 +53,9 @@ function ProfilePage(){
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <LinkIcon className="mr-2 h-4 w-4" />
-                    <a href="https://janedoe.com" className="hover:underline">{userr?.number_phone ? userr.number_phone : "no number phone"}</a>
+                    <a href="https://janedoe.com" className="hover:underline">
+                    {/* {userr?.number_phone ? userr.number_phone : "no number phone"} */}fgdfgdf
+                    </a>
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <CalendarDays className="mr-2 h-4 w-4" />

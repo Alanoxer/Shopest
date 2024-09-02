@@ -1,13 +1,13 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {useSession} from "next-auth/react"
-import { conn } from "@/libs/mysql"
+
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
 export default function ProfilePage(){
   const [userr, setUserr] = useState()
   const {data: session, status} = useSession()
-  console.log(session, status, userr)
+  console.log(session, status)
 
   // useEffect(()=>{
   //   const email = session?.user?.email

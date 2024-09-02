@@ -8,7 +8,7 @@ async function loadProduct(id) {
   
   const data = await conn.query(`SELECT * FROM product WHERE id = ?`,
   [id]);
-  console.log(data[0])
+  console.log(data[0][0])
   return data[0][0];
 }
 

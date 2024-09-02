@@ -17,7 +17,7 @@ function ProfilePage(){
       const userFound = await conn.query(`SELECT * FROM user WHERE email = "?"`,
         [session?.user?.email]);
         console.log(userFound[0][0])
-        setUser(userFound[0][0])
+        return setUser(userFound[0][0])
     }
     if(session)
     getUser()

@@ -12,11 +12,14 @@ function ProfilePage(){
 
   useEffect(()=>{
     const getUser = async()=>{
+
+
       const userFound = await conn.query(`SELECT * FROM user WHERE email = "?"`,
         [session?.user?.email]);
         console.log(userFound[0][0])
         setUser(userFound[0][0])
     }
+    if(session)
     getUser()
   }, [session])
 

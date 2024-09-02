@@ -9,17 +9,17 @@ export default function ProfilePage(){
   const {data: session, status} = useSession()
   console.log(session, status, userr)
 
-  useEffect(()=>{
-    const email = session?.user?.email
-    const getUser = async()=>{
-      const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
-        [email]);
-        console.log(userFound)
-        return setUserr(userFound)
-    }
-    getUser()
+  // useEffect(()=>{
+  //   const email = session?.user?.email
+  //   const getUser = async()=>{
+  //     const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
+  //       [email]);
+  //       console.log(userFound)
+  //       return setUserr(userFound)
+  //   }
+  //   getUser()
     
-  }, [])
+  // }, [])
 
     // if(userr !== null && session !== null )
     return (

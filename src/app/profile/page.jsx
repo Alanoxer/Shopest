@@ -5,7 +5,7 @@ import {useSession} from "next-auth/react"
 import { conn } from "@/libs/mysql"
 
 function ProfilePage(){
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState()
   const {data: session, status} = useSession()
   console.log(session, status, user)
 

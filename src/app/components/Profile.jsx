@@ -1,6 +1,6 @@
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
-const Profile = ({name, description, numberPhone, createdAt})=>{
+function Profile ({name, description, numberPhone, createdAt}){
 
     return (
         <div className="container mx-auto px-4 py-8">

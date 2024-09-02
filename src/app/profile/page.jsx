@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import {useSession} from "next-auth/react"
-import { conn } from "@/libs/mysql"
+
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
 export default function ProfilePage(){

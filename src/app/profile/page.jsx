@@ -5,9 +5,9 @@ import { conn } from "@/libs/mysql"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
 function ProfilePage(){
-  const [user, setUser] = useState()
+  const [userr, setUserr] = useState()
   const {data: session, status} = useSession()
-  console.log(session, status, user)
+  console.log(session, status)
 
   useEffect(()=>{
     const email = JSON.stringify(session?.user?.email)
@@ -15,13 +15,13 @@ function ProfilePage(){
       const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
         [email]);
         console.log(userFound[0][0])
-        return userFound[0][0]
+        setUserr(userFound[0][0])
     }
-    const userr = getUser()
-    setUser(userr)
-  }, [user])
+    getUser()
+    
+  }, [userr])
 
-    if(user !== null && session !== null )
+    if(userr !== null && session !== null )
     return (
       // <Profile name={user?.name} description={user?.description} numberPhone={user?.number_phone} createdAt={user?.createdAt}/>
 
@@ -39,11 +39,11 @@ function ProfilePage(){
               <div className="flex-grow">
 
                 <h1 className="text-2x md:text-4xl font-bold mb-2">
-                  {user?.name ? user.name : " no name"}
+                  {userr?.name ? userr.name : " no name"}
                 </h1>
 
                 <p className="text-lg mb-6">
-                {user?.description ? user.description : "no description"}
+                {userr?.description ? userr.description : "no description"}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -53,7 +53,7 @@ function ProfilePage(){
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <LinkIcon className="mr-2 h-4 w-4" />
-                    <a href="https://janedoe.com" className="hover:underline">{user?.number_phone ? user.number_phone : "no number phone"}</a>
+                    <a href="https://janedoe.com" className="hover:underline">{userr?.number_phone ? userr.number_phone : "no number phone"}</a>
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <CalendarDays className="mr-2 h-4 w-4" />

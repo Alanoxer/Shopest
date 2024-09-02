@@ -7,15 +7,15 @@ import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 function ProfilePage(){
   const [userr, setUserr] = useState()
   const {data: session, status} = useSession()
-  console.log(session, status)
+  console.log(session, status, userr)
 
   useEffect(()=>{
     const email = session?.user?.email
     const getUser = async()=>{
-      const userFound = await conn.query(`SELECT * FROM user WHERE email = "?"`,
+      const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
         [email]);
-        console.log(userFound[0][0])
-        return setUserr(userFound[0][0])
+        console.log(userFound)
+        return setUserr(userFound)
     }
     getUser()
     

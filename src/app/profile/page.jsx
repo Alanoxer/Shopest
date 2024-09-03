@@ -23,6 +23,7 @@ export default function ProfilePage(){
         setUserr(userFound)
         console.log(userFound)
     }
+    if(email)
     getUser()
   }, [])
   console.log(userr)

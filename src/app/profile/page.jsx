@@ -1,7 +1,8 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {useSession} from "next-auth/react"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
+import { conn } from "@/libs/mysql"
 
 
 
@@ -10,19 +11,19 @@ export default function ProfilePage(){
   const {data: session, status} = useSession()
   console.log(session, status)
 
-  // useEffect(()=>{
-  //   const email = session?.user?.email
-  //   const getUser = async()=>{
-  //     const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
-  //       [email]);
-  //       console.log(userFound)
-  //       return setUserr(userFound)
-  //   }
-  //   getUser()
+  useEffect(()=>{
+    const email = session?.user?.email
+    const getUser = async()=>{
+      const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
+        [email]);
+        console.log(userFound)
+        return setUserr(userFound)
+    }
+    getUser()
     
-  // }, [])
+  }, [userr])
 
-    // if(userr !== null && session !== null )
+    if(userr !== null && session !== null )
     return (
       // <Profile name={user?.name} description={user?.description} numberPhone={user?.number_phone} createdAt={user?.createdAt}/>
       <div className="container mx-auto px-4 py-8">

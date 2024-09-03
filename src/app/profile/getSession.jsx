@@ -1,7 +1,7 @@
 "use client"
 import { useSession } from "next-auth/react"
 
-export const useUser = ()=>{
+export const GetUser = ()=>{
     const {data: session} = useSession()
 
     if(session)

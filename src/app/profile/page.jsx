@@ -1,10 +1,10 @@
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
-import { useUser } from "./getSession"
+import { GetUser } from "./getSession"
 
 
 
 export default async function ProfilePage(){
-    const user = useUser()
+    const user = GetUser()
     console.log(user)
   
 

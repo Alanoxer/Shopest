@@ -1,9 +1,33 @@
+"use client"
+import { useEffect, useState } from "react"
+import {useSession} from "next-auth/react"
+import  {conn}  from "../../libs/mysql"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
-function Profile ({name, description, numberPhone, createdAt}){
+function Profile (){
 
+  const [userr, setUserr] = useState()
+  const {data: session, status} = useSession()
+  console.log(session, status)
+
+  // useEffect(()=>{
+  //   const email = session?.user?.email
+  //   const getUser = async()=>{
+  //     const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
+  //       [email]);
+  //       console.log(userFound)
+  //       return setUserr(userFound)
+  //   }
+  //   getUser()
+    
+  // }, [])
+
+    // if(userr !== null && session !== null )
     return (
-        <div className="container mx-auto px-4 py-8">
+      // <Profile name={user?.name} description={user?.description} numberPhone={user?.number_phone} createdAt={user?.createdAt}/>
+
+
+      <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-shrink-0">
@@ -16,11 +40,11 @@ function Profile ({name, description, numberPhone, createdAt}){
               <div className="flex-grow">
 
                 <h1 className="text-2x md:text-4xl font-bold mb-2">
-                  {name}
+                  {session?.user?.email}
                 </h1>
 
                 <p className="text-lg mb-6">
-                {description}
+                {/* {userr?.description ? userr.description : "no description"} */} fgsd
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -30,11 +54,13 @@ function Profile ({name, description, numberPhone, createdAt}){
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <LinkIcon className="mr-2 h-4 w-4" />
-                    <a href="https://janedoe.com" className="hover:underline">{numberPhone}</a>
+                    <a href="https://janedoe.com" className="hover:underline">
+                    {/* {userr?.number_phone ? userr.number_phone : "no number phone"} */}fgdfgdf
+                    </a>
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <CalendarDays className="mr-2 h-4 w-4" />
-                    <span>{createdAt}</span>
+                    <span>222</span>
                   </div>
                 </div>
               </div>
@@ -47,7 +73,7 @@ function Profile ({name, description, numberPhone, createdAt}){
             </div>
           </div>
         </div>
-      )
+    )
 }
 
 export default Profile;

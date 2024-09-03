@@ -13,7 +13,6 @@ async function LoadProducts(pagination){
   
   const {data} = products
   if(data){
-    
     return data[0]
         }
 }

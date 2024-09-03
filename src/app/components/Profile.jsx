@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import {useSession} from "next-auth/react"
-import  {conn}  from "../../libs/mysql"
+import { conn } from "@/libs/mysql";
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
 function Profile (){
@@ -25,8 +25,6 @@ function Profile (){
     // if(userr !== null && session !== null )
     return (
       // <Profile name={user?.name} description={user?.description} numberPhone={user?.number_phone} createdAt={user?.createdAt}/>
-
-
       <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8">

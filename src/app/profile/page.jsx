@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 import { useUser } from "./getSession"
 

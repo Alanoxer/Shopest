@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import {useSession} from "next-auth/react"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
-function Profile (){
+export function Profile (){
 
   const [userr, setUserr] = useState()
   const {data: session, status} = useSession()
@@ -72,5 +72,3 @@ function Profile (){
         </div>
     )
 }
-
-export default Profile;

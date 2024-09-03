@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react"
 import {useSession} from "next-auth/react"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
-import { conn } from "@/libs/mysql"
-
+import axios from "axios"
 
 
 export default function ProfilePage(){
@@ -14,14 +13,19 @@ export default function ProfilePage(){
   useEffect(()=>{
     const email = session?.user?.email
     const getUser = async()=>{
-      const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
-        [email]);
+      const userFound = await axios.get(`https://shopest-lyart.vercel.app/api/users`,
+        {
+          params:{
+            email : email
+          }
+        }
+        );
+        setUserr(userFound)
         console.log(userFound)
-        return setUserr(userFound)
     }
     getUser()
-    
-  }, [userr])
+  }, [])
+  console.log(userr)
 
     if(userr !== null && session !== null )
     return (

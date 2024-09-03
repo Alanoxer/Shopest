@@ -9,17 +9,21 @@ export function Profile (){
   const {data: session, status} = useSession()
   console.log(session, status)
 
-  // useEffect(()=>{
-  //   const email = session?.user?.email
-  //   const getUser = async()=>{
-  //     const userFound = await conn.query(`SELECT * FROM user WHERE email = ?`,
-  //       [email]);
-  //       console.log(userFound)
-  //       return setUserr(userFound)
-  //   }
-  //   getUser()
-    
-  // }, [])
+  useEffect(()=>{
+    const email = session?.user?.email
+    const getUser = async()=>{
+      const userFound = await axios.get(`https://shopest-lyart.vercel.app/api/users`,
+        {
+          params:{
+            email
+          }
+        }
+        );
+        setUserr(userFound[0][0])
+        console.log(userFound)
+    }
+    getUser()
+  }, [])
 
     // if(userr !== null && session !== null )
     return (

@@ -22,6 +22,7 @@ export function Profile (){
         setUserr(userFound[0][0])
         console.log(userFound)
     }
+    if(email)
     getUser()
   }, [])
 

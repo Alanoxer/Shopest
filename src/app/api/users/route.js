@@ -4,7 +4,7 @@ import { conn } from "@/libs/mysql";
 export async function GET(request, { params }) {
   try {
     const email = request.nextUrl.searchParams.get("email");
-    console.log(params.email);
+    console.log(email);
 
     const result = await conn.query(`SELECT * FROM user WHERE email = ?`, [
       email,

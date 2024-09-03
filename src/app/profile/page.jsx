@@ -4,7 +4,7 @@ import { useUser } from "./getSession"
 
 
 export default async function ProfilePage(){
-    const user = await useUser()
+    const user = useUser()
     console.log(user)
   
 

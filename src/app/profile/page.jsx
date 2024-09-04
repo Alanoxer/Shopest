@@ -44,11 +44,11 @@ export default function ProfilePage(){
               <div className="flex-grow">
 
                 <h1 className="text-2x md:text-4xl font-bold mb-2">
-                  {user?.name ? user.name : "no name"}
+                  {user?.data.name ? user.name : "no name"}
                 </h1>
 
                 <p className="text-lg mb-6">
-                 {user?.description ? user.description : "no description"}
+                 {user?.data.description ? user.description : "no description"}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -59,7 +59,7 @@ export default function ProfilePage(){
                   <div className="flex items-center text-muted-foreground">
                     <LinkIcon className="mr-2 h-4 w-4" />
                     <a href="https://janedoe.com" className="hover:underline">
-                     {user?.number_phone ? user.number_phone : "no number phone"}
+                     {user?.data.number_phone ? user.number_phone : "no number phone"}
                     </a>
                   </div>
                   <div className="flex items-center text-muted-foreground">

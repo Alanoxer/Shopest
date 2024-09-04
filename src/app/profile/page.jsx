@@ -44,7 +44,7 @@ export default function ProfilePage(){
               <div className="flex-grow">
 
                 <h1 className="text-2x md:text-4xl font-bold mb-2">
-                  {session?.user?.email}
+                  {user?.name ? user.name : "no name"}
                 </h1>
 
                 <p className="text-lg mb-6">

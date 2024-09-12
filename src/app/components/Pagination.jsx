@@ -18,7 +18,7 @@ export default function Pagination(){
     
     if(params.keyword || params.pagination)return (<>
         
-        <div className=" bg-black flex items-center justify-center h-28">
+        <div className=" flex items-center justify-center h-28">
     <div className="max-w-full md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto p-6 mt-20 rounded-lg shadow-sm">
 
         <div className="flex justify-center">

@@ -37,9 +37,8 @@ export default function LoginPage(){
     <form onSubmit={handleSubmit} className="space-y-6">
     {error && <div
       classNameName=" bg-red-500 text-white p-2 mb-2"
-      >{error}
-    
-    </div>}
+      >{error} 
+  </div>}
 
       <div>
         <label htmlFor="email" className="block text-sm font-medium leading-6 text-balance">Email address</label>

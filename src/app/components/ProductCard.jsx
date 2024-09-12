@@ -1,21 +1,22 @@
 
 import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
 
 
 export default function ProductCard( {product} ) {
   return (
 
-  <Link href={`/products/${product.id}`} key={product.id}
-  class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden ">
-    <div class="px-4 py-2">
-      <h1 class="text-gray-900 font-bold text-3xl uppercase">{product.name}</h1>
-      <p class="text-gray-600 text-sm mt-1">{product.description}</p>
-    </div>
-    <img class="h-56 w-full object-cover mt-2" src={product.image} alt={product.name}/>
-    <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
-      <h1 class="text-gray-200 font-bold text-xl">${product.price}</h1>
-      <button class="px-3 py-1 bg-gray-200 text-sm text-gray-900 font-semibold rounded">Add to Cart</button>
-    </div>
+  <Link href={`/products/${product.id}`} key={product.id}>
+            <Card key={product.id}>
+              <CardContent className="p-4">
+                <img src={product.image} alt={product.name} className="w-full h-auto mb-2" />
+                <p className="font-semibold">{product.price}</p>
+                <p className="text-sm text-green-600">Envío gratis</p>
+                <p className="text-xs text-gray-500 truncate">{product.description}</p>
+                {/* <Button onClick={addToCart} className="w-full mt-2">Agregar al carrito</Button> */}
+              </CardContent>
+            </Card>
   </Link>
     
   //   <Link

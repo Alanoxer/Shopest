@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Pagination from "./components/Pagination";
 import Providers from "./Providers";
-import DashBoard from "./components/DashBoard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +19,6 @@ export default function RootLayout({ children }) {
         <Providers>
           <Header />
         </Providers>
-
-        <DashBoard />
 
         <main>
           <Providers>{children}</Providers>

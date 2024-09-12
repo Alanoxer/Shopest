@@ -1,5 +1,6 @@
 import ProductCard from "../../../components/ProductCard";
 import axios from "axios";
+import SearchResults from "@/app/components/SearchResults";
 
 async function LoadProducts(pagination){
   
@@ -10,7 +11,6 @@ async function LoadProducts(pagination){
     }
   }
   )
-  
   const {data} = products
   if(data){
     return data[0]
@@ -24,13 +24,15 @@ async function ProductsPage({params}) {
   const products = await LoadProducts(pagination)
 
   return (
-  <div className=" -mt-12 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-20 grid gap-8 ml-60">
-
-    { products &&
-    products.map(product => (
-        <ProductCard product={product} key={product.id} />
-    ))}
-  </div>
+  <>
+   <SearchResults products={products}/>
+       {/* { products &&
+          products.map(product => (
+            <ProductCard product={product} key={product.id} />
+          ))
+        }
+    </SearchResults> */}
+  </>
   )
 }
 

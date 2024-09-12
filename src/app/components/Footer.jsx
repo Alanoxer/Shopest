@@ -43,7 +43,7 @@ const Footer = () =>{
                 </ul>
             </div>
             <div className="flex-1">
-                <p className="uppercase text-whitemd:mb-6">Social</p>
+                <p className="uppercase text-white md:mb-6">Social</p>
                 <ul className="list-reset mb-6">
                     <li className="mt-2 inline-block mr-2 md:block md:mr-0">
                         <Link href="#" className="no-underline hover:underline text-white hover:text-white">Facebook</Link>

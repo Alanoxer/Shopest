@@ -1,18 +1,51 @@
-"use client";
+'use client'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Label } from "@/components/ui/label"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter, useParams } from "next/navigation";
+import { Type } from "lucide-react"
 
 export default function ProductForm() {
+
+  const form = useRef(null);
+  const router = useRouter();
+  const params = useParams();
+  const [productType, setProductType] = useState('')
+  const [productSubType, setProductSubType] = useState('')
+  const [images, setImages] = useState()
+  const [state, setState] = useState("nuevo")
+
   const [product, setProduct] = useState({
     name: "",
     price: 0,
     description: "",
   });
-  const [file, setFile] = useState("");
-  const form = useRef(null);
-  const router = useRouter();
-  const params = useParams();
+  
+  console.log(product)
+  console.log(images)
+  console.log(productType)
+  console.log(productSubType)
+  console.log(state)
+
+  const productTypes = [
+    { value: 'electronics', label: 'Electrónica' },
+    { value: 'furniture', label: 'Muebles' },
+    { value: 'clothing', label: 'Ropa' },
+    { value: 'books', label: 'Libros' },
+  ]
+
+  const subTypes = {
+    electronics: ['Teclado', 'Pantalla', 'Mouse', 'Laptop', 'Smartphone'],
+    furniture: ['Silla', 'Mesa', 'Sofá', 'Cama', 'Armario'],
+    clothing: ['Camiseta', 'Pantalón', 'Vestido', 'Chaqueta', 'Zapatos'],
+    books: ['Ficción', 'No ficción', 'Educativo', 'Infantil', 'Cómic'],
+  }
 
   const handleChange = (e) => {
     setProduct({
@@ -20,6 +53,12 @@ export default function ProductForm() {
       [e.target.name]: e.target.value,
     });
   };
+
+  // const handleImageUpload = (e)=> {
+  //   if (e.target.files) {
+  //     setImages(Array.from(e.target.files))
+  //   }
+  // }
 
   useEffect(() => {
     if (params.id) {
@@ -41,8 +80,17 @@ export default function ProductForm() {
     formData.append("price", product.price);
     formData.append("description", product.description);
 
-    if (file) {
-      formData.append("image", file);
+    if (images) {
+      formData.append("image", images);
+    }
+    if (Type) {
+      formData.append("type", productType);
+    }
+    if (images) {
+      formData.append("subtype", productSubType);
+    }
+    if (state) {
+      formData.append("state", state);
     }
 
     if (!params.id) {
@@ -62,7 +110,112 @@ export default function ProductForm() {
   };
 
   return (
-    <div className="flex ">
+<>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <Card className="w-full max-w-2xl">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold text-center">Crear Nuevo Producto</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} ref={form} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="name">Nombre del Producto</Label>
+              <Input 
+              id="name" name="name" onChange={handleChange}
+              value={product.name} placeholder="Ingrese el nombre del producto" required 
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="description">Descripción del Producto</Label>
+              <Textarea 
+              id="description" name="description" placeholder="Describa el producto" required 
+              onChange={handleChange} value={product.description}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label>Estado del Producto</Label>
+              <RadioGroup defaultValue="nuevo" onValueChange={setState}>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem 
+                  value="nuevo" id="nuevo" name="nuevo" />
+                  <Label htmlFor="nuevo">Nuevo</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem 
+                  value="usado" id="usado" name="usado" />
+                  <Label htmlFor="usado">Usado</Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="product-images">Imágenes del Producto</Label>
+              <Input
+                type="file"
+                onChange={(e) => {
+                  setImages(e.target.files[0]);
+                }}
+              />
+             {images && (
+                <img
+                  className="w-96 object-contain mx-auto my-4"
+                  src={URL.createObjectURL(images)}
+                  alt=""
+                />
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="price">Precio del Producto</Label>
+              <Input 
+              id="price" name="price" type="number" min="0" step="0.01" placeholder="0.00" required 
+              onChange={handleChange} value={product.price}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="type">Tipo de Producto</Label>
+              <Select onValueChange={setProductType}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Seleccione el tipo de producto" />
+                </SelectTrigger>
+                <SelectContent>
+                  {productTypes.map((type) => (
+                    <SelectItem key={type.value} value={type.value} >
+                      {type.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {productType && (
+              <div className="space-y-2">
+                <Label htmlFor="subtype">Subtipo de Producto</Label>
+                <Select onValueChange={setProductSubType}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Seleccione el subtipo de producto" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {subTypes[productType].map((subType) => (
+                      <SelectItem key={subType} value={subType}>
+                        {subType}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            <Button type="submit" className="w-full">Crear Producto</Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+
+    {/* <div className="flex ">
       <form
         // action="/api/products" method="post"
         // encType="multipart/form-data"
@@ -101,6 +254,7 @@ export default function ProductForm() {
           className="shadow appearance-none border rounded w-full py-2 px-3"
         />
 
+
         <label
           htmlFor="name"
           className="block text-gray-700 text-sm font-bold mb-2"
@@ -115,6 +269,7 @@ export default function ProductForm() {
           value={product.description}
           className="shadow appearance-none border rounded w-full py-2 px-3"
         />
+
 
         <label
           htmlFor="productImage"
@@ -142,7 +297,8 @@ export default function ProductForm() {
           {params.id ? "Update Product" : "Create Product"}
         </button>
       </form>
-    </div>
+    </div> */}
+    </>
   );
 }
 

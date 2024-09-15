@@ -8,13 +8,14 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Search, Star, Truck } from "lucide-react"
 import Link from 'next/link'
+import { useParams } from "next/navigation"
 
 
 
 export default function SearchResults({products}) {
-  // const [priceRange, setPriceRange] = useState([0, 1000])
+  const params = useParams()
+  console.log(params)
 
   return (
     <div className="min-h-screen w-full bg-gray-100">
@@ -62,10 +63,12 @@ export default function SearchResults({products}) {
                 <Link href={`/products/${product.id}`} key={product.id}>
                   <Card key={product.id}>
                     <CardContent className="p-4">
-                      <img src={product.image} alt={product.name} className="w-full h-auto mb-2" />
-                      <p className="font-semibold">{product.price}</p>
-                      <p className="text-sm text-green-600">Envío gratis</p>
-                      <p className="text-xs text-gray-500 truncate">{product.description}</p>
+                      <img src={product.image} alt={product.name} className="w-full h-auto mb-2 rounded-sm" />
+                      <div className="flex flex-row justify-between mx-1">
+                        <p className="font-semibold">{product.name}</p>
+                        <p className="font-semibold">{product.price}</p>
+                      </div>
+                      <p className="text-sm mx-1 text-gray-500 truncate">{product.description}</p>
                       {/* <Button onClick={addToCart} className="w-full mt-2">Agregar al carrito</Button> */}
                     </CardContent>
                   </Card>

@@ -2,12 +2,12 @@ import axios from "axios";
 import SearchResults from "@/app/components/SearchResults";
 
 
-async function typeProducts(type, pagination){
+async function subTypeProducts( subtype, pagination){
   
   const products = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
   {
     params:{
-      type : type,
+      subtype: subtype,
       pagination: pagination
     }
   }
@@ -23,9 +23,9 @@ async function typeProducts(type, pagination){
 
 export const dynamic = 'force-dynamic'
 
-async function TypesPage({params}) {
-  const {type, pagination} = params
-  const products = await typeProducts(type, pagination)
+async function SubTypesPage({params}) {
+  const {subtype, pagination} = params
+  const products = await subTypeProducts(subtype, pagination)
 
   return (
   <>
@@ -38,4 +38,4 @@ async function TypesPage({params}) {
   </>
 )
   } 
-export default TypesPage;
+export default SubTypesPage;

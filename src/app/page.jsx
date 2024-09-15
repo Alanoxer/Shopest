@@ -75,9 +75,10 @@ export default function HomePage(){
               <CardContent className="p-4">
                 <img src={product.image} alt={product.name} className="w-full h-auto mb-2" />
                 <p className="font-semibold">${product.price}</p>
+                <p className="font-semibold">{product.name}</p>
                 <p className="text-xs text-gray-500 truncate">{product.description}</p>
                 <div className="w-full mt-4 mx-auto align-middle justify-center">
-                <Link href={`/products/${product.id}`} className={buttonVariants({ variant: "outline" })}>Ver Producto</Link>
+                <Link href={`/products/${product.id}`} className={buttonVariants({ variant: "outline w-full mt-4" })}>Ver Producto</Link>
                 </div>
               </CardContent>
             </Card>

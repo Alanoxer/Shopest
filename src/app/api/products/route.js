@@ -8,16 +8,25 @@ export async function GET(request) {
     const pagination = request.nextUrl.searchParams.get("pagination");
     const keyword = request.nextUrl.searchParams.get("keyword");
     const limit = request.nextUrl.searchParams.get("limit");
-    const type = request.nextUrl.searchParams.get("type");
-    console.log(type);
+    const types = request.nextUrl.searchParams.get("types");
+    const subtype = request.nextUrl.searchParams.get("subtype");
 
-    // types and subtypes
-    if (type) {
+    // types
+    if (types) {
       const typeResults = await conn.query(
-        `SELECT * FROM product WHERE type LIKE ? LIMIT 3 OFFSET ?`,
-        [type, pagination * 2]
+        `SELECT * FROM product WHERE type = ? LIMIT 1 OFFSET ?;`,
+        [types, pagination * 2]
       );
       return NextResponse.json(typeResults);
+    }
+
+    //sutypes
+    else if (subtype) {
+      const subtypeResults = await conn.query(
+        `SELECT * FROM product WHERE subtype = ? LIMIT 1 OFFSET ?;`,
+        [subtype, pagination * 2]
+      );
+      return NextResponse.json(subtypeResults);
     }
 
     //home page
@@ -30,9 +39,12 @@ export async function GET(request) {
 
     // search results
     else if (keyword) {
+      const lowerKey = keyword.toLowerCase();
+      console.log(keyword);
+
       const queryResults = await conn.query(
-        `SELECT * FROM product WHERE name LIKE "%?%"  LIMIT 2 OFFSET ?`,
-        [keyword, pagination * 2]
+        `SELECT * FROM product WHERE LOWER(name) = "?"`,
+        [keyword]
       );
       return NextResponse.json(queryResults);
     }

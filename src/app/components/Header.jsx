@@ -112,7 +112,7 @@ export default function Header(){
             <DropdownMenuContent>
               <DropdownMenuItem >Ver Perfil</DropdownMenuItem>
               <DropdownMenuItem>Historial</DropdownMenuItem>
-              <DropdownMenuItem>Cerrar Sesión</DropdownMenuItem>
+              <DropdownMenuItem onClick={signOut()}>Cerrar Sesión</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
 

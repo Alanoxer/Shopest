@@ -2,7 +2,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import axios, {AxiosError} from "axios"
-import {signIn} from "next-auth"
+import {signIn, signOut } from "next-auth"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"

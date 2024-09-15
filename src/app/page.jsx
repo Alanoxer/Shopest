@@ -6,6 +6,25 @@ import Link from "next/link"
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
+const categorias = [
+  {
+    name : "MarketPlace",
+    description : "Compra o vende productos en tu Ciudad"
+  },
+  {
+    name : "Servicios",
+    description : "Busca u ofrece servicios en tu Ciudad"
+  },
+  {
+    name : "Trabajos",
+    description : "Encuentra trabajos o busca empleados en tu Ciudad"
+  },
+  {
+    name : "Ayuda",
+    description : "Solidaridad, objetos perdidos, etc..."
+  },
+]
  
 
 export default function HomePage(){
@@ -56,12 +75,17 @@ export default function HomePage(){
       <section className="mb-6">
         <h2 className="text-xl font-semibold mb-4">Categorias</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {['MarketPlace', 'Servicios', 'Empleos', 'Ayuda'].map((method) => (
-            <Card key={method}>
-              <CardContent className="p-4 flex items-center justify-center h-24">
-                <p className="text-center">{method}</p>
+          {categorias.map((categoria) => (
+          <Link key={categoria.name} href={`${categoria.name}/page/0`} className=" hover:bg-purple-700">
+            <Card >
+              <CardContent className="p-4 flex flex-col items-center justify-center h-24 hover:bg-slate-300">
+                <Link href={`${categoria.name}/page/0`} className="text-center font-bold text-lg">
+                {categoria.name}
+                </Link>
+                <p className="text-center text-slate-500 text-md">{categoria.description}</p>
               </CardContent>
             </Card>
+          </Link>
           ))}
         </div>
       </section>
@@ -91,11 +115,13 @@ export default function HomePage(){
         <h2 className="text-xl font-semibold mb-4">Categorías populares de Compra/Venta</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {['Autos', 'Tecnología', 'Electrodomésticos', 'Hogar y Muebles', 'Moda', 'Deportes y Fitness'].map((category) => (
-            <Card key={category}>
-              <CardContent className="p-4 flex items-center justify-center h-24">
-                <p className="text-center">{category}</p>
+            <Link href={`type/${category}/0`} key={category} className=" hover:bg-purple-700">
+            <Card>
+              <CardContent className="p-4 flex items-center justify-center h-24 hover:bg-slate-300">
+                <Link href={`type/${category}/0`} className="text-center">{category}</Link>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       </section>

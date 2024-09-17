@@ -1,7 +1,7 @@
 'use client'
 import { Button, buttonVariants  } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card"
-import { Carousel } from "@/components/ui/carousel"
+ 
 import Link from "next/link"
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -26,23 +26,22 @@ const categorias = [
   },
 ]
  
-
 export default function HomePage(){
   const [homeProducts, setHomeProducts] = useState()
 
   useEffect(()=>{
-    const getUser = async()=>{
-      const userFound = await axios.get(`/api/products`,
+    const getProducts = async()=>{
+      const productFound = await axios.get(`/api/products`,
         {
           params:{
             limit : 10
           }
         }
         );
-        setHomeProducts(userFound.data[0])
-        console.log(userFound.data[0])
+        setHomeProducts(productFound.data[0])
+        console.log(productFound.data[0])
     }
-    getUser()
+    getProducts()
   }, [])
   console.log(homeProducts)
 
@@ -56,22 +55,16 @@ export default function HomePage(){
     //     description: `Tienes ${cartItems + 1} producto(s) en tu carrito.`,
     //   })
     // }
-  
-    const bannerImages = [
-      "/placeholder.svg?height=340&width=1184&text=Oferta 1",
-      "/placeholder.svg?height=340&width=1184&text=Oferta 2",
-      "/placeholder.svg?height=340&width=1184&text=Oferta 3",
-    ]
 
     return(<>
         {/* Main Content */}
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
       {/* Banner Carousel */}
-      <div className="mb-6">
+      {/* <div className="mb-6">
         <Carousel images={bannerImages} />
-      </div>
+      </div> */}
 
-      {/* Payment Methods */}
+      {/* categorias */}
       <section className="mb-6">
         <h2 className="text-xl font-semibold mb-4">Categorias</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

@@ -40,8 +40,8 @@ export default function RegisterPage(){
       const formData = new FormData(e.currentTarget)
       
       const signUpRes = await axios.post("/api/auth/signup", {
-        email: formData.get("registerEmail"),
-        password: formData.get("registerPassword"),
+        registerEmail: formData.get("registerEmail"),
+        registerPassword: formData.get("registerPassword"),
         fullname: formData.get("fullname")
       },{
         headers: {
@@ -57,7 +57,7 @@ export default function RegisterPage(){
       })
       console.log(res)
 
-      if (res?.ok) return router.push("/products/page/0")
+      if (res?.ok) return router.push("/")
 
     } catch (error) {
       if(error instanceof AxiosError){
@@ -73,8 +73,8 @@ export default function RegisterPage(){
     const formData = new FormData(e.currentTarget)
 
       const res = await signIn("credentials",{
-        email: formData.get("loginEmail"),
-        password: formData.get("loginPassword"),
+        email: formData.get("email"),
+        password: formData.get("password"),
         redirect: false,
       })
       if (res?.error) return  setError(res.error)
@@ -86,7 +86,6 @@ export default function RegisterPage(){
   const router = useRouter()
   const [error, setError] = useState()
 
-
     return (<>
 
 
@@ -96,7 +95,7 @@ export default function RegisterPage(){
           <CardTitle className="text-2xl font-bold text-center">Bienvenido</CardTitle>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="login">
+          <Tabs defaultValue="register">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login">Iniciar Sesión</TabsTrigger>
               <TabsTrigger value="register">Registrarse</TabsTrigger>
@@ -104,10 +103,10 @@ export default function RegisterPage(){
             <TabsContent value="login">
               <form onSubmit={handleLoginSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="loginEmail">Correo Electrónico</Label>
+                  <Label htmlFor="email">Correo Electrónico</Label>
                   <Input
-                    id="loginEmail"
-                    name="loginEmail"
+                    id="email"
+                    name="email"
                     type="email"
                     placeholder="correo@ejemplo.com"
                     // value={loginForm.email}
@@ -116,10 +115,10 @@ export default function RegisterPage(){
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="loginPassword">Contraseña</Label>
+                  <Label htmlFor="password">Contraseña</Label>
                   <Input
-                    id="loginPassword"
-                    name="loginPassword"
+                    id="password"
+                    name="password"
                     type="password"
                     placeholder="••••••••"
                     // value={loginForm.password}
@@ -133,7 +132,7 @@ export default function RegisterPage(){
             <TabsContent value="register">
               <form onSubmit={handleRegisterSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="register-username">Nombre de Usuario</Label>
+                  <Label htmlFor="fullname">Nombre de Usuario</Label>
                   <Input
                     id="fullname" name="fullname" autoComplete="false" type="text" 
                     placeholder="usuario123"

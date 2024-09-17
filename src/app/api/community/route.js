@@ -9,27 +9,27 @@ export async function GET(request) {
     const limit = request.nextUrl.searchParams.get("limit");
     const types = request.nextUrl.searchParams.get("types");
 
-    // types
-    if (types) {
-      const typeResults = await conn.query(
-        `SELECT * FROM services WHERE type = ? LIMIT 1 OFFSET ?;`,
-        [types, pagination * 2]
-      );
-      return NextResponse.json(typeResults);
-    }
-
     //home page
-    else if (limit) {
-      const homeResults = await conn.query(`SELECT * FROM services LIMIT ?`, [
+    if (limit) {
+      const homeResults = await conn.query(`SELECT * FROM community LIMIT ?`, [
         Number(limit),
       ]);
       return NextResponse.json(homeResults);
     }
 
+    // types
+    else if (types) {
+      const typeResults = await conn.query(
+        `SELECT * FROM community WHERE type = ? LIMIT 1 OFFSET ?;`,
+        [types, pagination * 2]
+      );
+      return NextResponse.json(typeResults);
+    }
+
     //marketplace(all)
     else {
       const results = await conn.query(
-        `SELECT * FROM services LIMIT 2 OFFSET ?`,
+        `SELECT * FROM community LIMIT 2 OFFSET ?`,
         [pagination * 2]
       );
       return NextResponse.json(results);
@@ -95,10 +95,9 @@ export async function POST(request) {
         .end(buffer);
     });
 
-    const result = await conn.query("INSERT INTO services SET ?", {
+    const result = await conn.query("INSERT INTO community SET ?", {
       name: data.get("name"),
       description: data.get("description"),
-      price: data.get("price"),
       state: data.get("state"),
       type: data.get("type"),
       image: res.secure_url,
@@ -106,7 +105,6 @@ export async function POST(request) {
 
     return NextResponse.json({
       name: data.get("name"),
-      price: data.get("price"),
       description: data.get("description"),
       state: data.get("state"),
       type: data.get("type"),

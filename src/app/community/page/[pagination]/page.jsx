@@ -1,9 +1,9 @@
 import axios from "axios";
 import SearchResults from "@/app/components/SearchResults";
 
-async function LoadServices(pagination){
+async function LoadCommunityArticles(pagination){
   
-  const products = await axios.get(`https://shopest-lyart.vercel.app/api/services`,
+  const products = await axios.get(`https://shopest-lyart.vercel.app/api/community`,
   {
     params:{
       pagination : pagination
@@ -20,9 +20,9 @@ export const dynamic = 'force-dynamic'
 
 async function ProductsPage({params}) {
   const {pagination} = params
-  const services = await LoadServices(pagination)
+  const communityArticles = await LoadCommunityArticles(pagination)
 
-  return <SearchResults products={services}/>
+  return <SearchResults products={communityArticles}/>
 }
 
 export default ProductsPage;

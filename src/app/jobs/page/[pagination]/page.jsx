@@ -1,9 +1,9 @@
 import axios from "axios";
 import SearchResults from "@/app/components/SearchResults";
 
-async function LoadProducts(pagination){
+async function LoadJobs(pagination){
   
-  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
+  const products = await axios.get(`https://shopest-lyart.vercel.app/api/jobs`,
   {
     params:{
       pagination : pagination
@@ -20,11 +20,11 @@ export const dynamic = 'force-dynamic'
 
 async function ProductsPage({params}) {
   const {pagination} = params
-  const products = await LoadProducts(pagination)
+  const jobs = await LoadJobs(pagination)
 
   return (
   <>
-   <SearchResults products={products}/>
+   <SearchResults products={jobs}/>
        {/* { products &&
           products.map(product => (
             <ProductCard product={product} key={product.id} />

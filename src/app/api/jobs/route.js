@@ -12,7 +12,7 @@ export async function GET(request) {
     // types
     if (types) {
       const typeResults = await conn.query(
-        `SELECT * FROM services WHERE type = ? LIMIT 1 OFFSET ?;`,
+        `SELECT * FROM jobs WHERE type = ? LIMIT 1 OFFSET ?;`,
         [types, pagination * 2]
       );
       return NextResponse.json(typeResults);
@@ -20,7 +20,7 @@ export async function GET(request) {
 
     //home page
     else if (limit) {
-      const homeResults = await conn.query(`SELECT * FROM services LIMIT ?`, [
+      const homeResults = await conn.query(`SELECT * FROM jobs LIMIT ?`, [
         Number(limit),
       ]);
       return NextResponse.json(homeResults);
@@ -28,10 +28,9 @@ export async function GET(request) {
 
     //marketplace(all)
     else {
-      const results = await conn.query(
-        `SELECT * FROM services LIMIT 2 OFFSET ?`,
-        [pagination * 2]
-      );
+      const results = await conn.query(`SELECT * FROM jobs LIMIT 2 OFFSET ?`, [
+        pagination * 2,
+      ]);
       return NextResponse.json(results);
     }
     //catch error
@@ -95,7 +94,7 @@ export async function POST(request) {
         .end(buffer);
     });
 
-    const result = await conn.query("INSERT INTO services SET ?", {
+    const result = await conn.query("INSERT INTO jobs SET ?", {
       name: data.get("name"),
       description: data.get("description"),
       price: data.get("price"),

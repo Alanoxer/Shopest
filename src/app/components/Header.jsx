@@ -78,11 +78,12 @@ export default function Header(){
       </div>
 
       <nav className="flex items-center space-x-4">
+      <Link href={"/products/page/0"} className={buttonVariants({ variant: "outline" })}>Marketplace</Link>
       <Link href={`/services`} className={buttonVariants({ variant: "outline" })}>Servicios</Link>
       <Link href={`/jobs`} className={buttonVariants({ variant: "outline" })}>Trabajos</Link>
       <Link href={`/help`} className={buttonVariants({ variant: "outline" })}>Ayuda</Link>
-      <Link href={"/products/page/0"} className={buttonVariants({ variant: "outline" })}>Marketplace</Link>
-        <DropdownMenu>
+      
+        {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">
                 Categorías <ChevronDown className="ml-1 h-4 w-4" />
@@ -94,7 +95,7 @@ export default function Header(){
               <DropdownMenuItem><Link href={"/type/furniture/0"}>Hogar y Muebles</Link></DropdownMenuItem>
               <DropdownMenuItem><Link href={"/type/books/0"}>Libros</Link></DropdownMenuItem>
             </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
           {/* <Link className={buttonVariants({ variant: "outline" })}>Servicios</Link>
           <Link className={buttonVariants({ variant: "outline" })}>Empleos</Link>
           <Link className={buttonVariants({ variant: "outline" })}>Comida</Link> */}

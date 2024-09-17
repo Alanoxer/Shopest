@@ -35,7 +35,7 @@ export default function RegisterPage(){
       })
       console.log(res)
 
-      if (res?.ok) return router.push("/products/0")
+      if (res?.ok) return router.push("/products/page/0")
 
     } catch (error) {
       if(error instanceof AxiosError){

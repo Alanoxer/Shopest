@@ -1,38 +1,16 @@
 "use client"
 import { useState } from "react"
-import Link from "next/link"
 import axios, {AxiosError} from "axios"
-import {signIn, signOut } from "next-auth"
+import {signIn } from "next-auth"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Label } from "@/components/ui/label"
 import { Facebook, Twitter, Mail, Lock, User, Phone } from 'lucide-react'
 
 export default function RegisterPage(){
 
-  // const [registerForm, setRegisterForm] = useState({
-  //   username: '',
-  //   email: '',
-  //   password: '',
-  //   confirmPassword: '',
-  //   phone: ''
-  // })
-
-  // const [loginForm, setLoginForm] = useState({
-  //   email: '',
-  //   password: ''
-  // })
-
-  // const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setRegisterForm({ ...registerForm, [e.target.name]: e.target.value })
-  // }
-
-  // const handleLoginChange = (e) => {
-  //   setLoginForm({ ...loginForm, [e.target.name]: e.target.value })
-  // }
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault()
@@ -67,77 +45,23 @@ export default function RegisterPage(){
     }
   }
 
-  const handleLoginSubmit = async (e) => {
-    e.preventDefault()
-
-    const formData = new FormData(e.currentTarget)
-
-      const res = await signIn("credentials",{
-        email: formData.get("email"),
-        password: formData.get("password"),
-        redirect: false,
-      })
-      if (res?.error) return  setError(res.error)
-
-      if (res?.ok) return router.push("products/page/0")
-
-  }
-
   const router = useRouter()
   const [error, setError] = useState()
 
     return (<>
-
-
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">Bienvenido</CardTitle>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="register">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Iniciar Sesión</TabsTrigger>
-              <TabsTrigger value="register">Registrarse</TabsTrigger>
-            </TabsList>
-            <TabsContent value="login">
-              <form onSubmit={handleLoginSubmit} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Correo Electrónico</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="correo@ejemplo.com"
-                    // value={loginForm.email}
-                    // onChange={handleLoginChange}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password">Contraseña</Label>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="••••••••"
-                    // value={loginForm.password}
-                    // onChange={handleLoginChange}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full">Iniciar Sesión</Button>
-              </form>
-            </TabsContent>
-            <TabsContent value="register">
+            <div>
               <form onSubmit={handleRegisterSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="fullname">Nombre de Usuario</Label>
                   <Input
                     id="fullname" name="fullname" autoComplete="false" type="text" 
                     placeholder="usuario123"
-                    // value={registerForm.username}
-                    // onChange={handleRegisterChange}
                     required
                   />
                 </div>
@@ -146,8 +70,6 @@ export default function RegisterPage(){
                   <Input
                     id="registerEmail" name="registerEmail" type="text"
                     placeholder="correo@ejemplo.com"
-                    // value={registerForm.email}
-                    // onChange={handleRegisterChange}
                     required
                   />
                 </div>
@@ -156,8 +78,6 @@ export default function RegisterPage(){
                   <Input
                     id="registerPassword" name="registerPassword" type="password"
                     placeholder="••••••••"
-                    // value={registerForm.password}
-                    // onChange={handleRegisterChange}
                     required
                   />
                 </div>
@@ -187,8 +107,7 @@ export default function RegisterPage(){
                 </div> */}
                 <Button type="submit" className="w-full">Registrarse</Button>
               </form>
-            </TabsContent>
-          </Tabs>
+            </div>
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">

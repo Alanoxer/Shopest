@@ -23,7 +23,7 @@ export default function LoginPage(){
       const res = await signIn("credentials",{
         email: formData.get("email"),
         password: formData.get("password"),
-        redirect: false,
+        redirect: true,
       })
       if (res?.error) return  setError(res.error)
 
@@ -35,7 +35,7 @@ export default function LoginPage(){
  <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Bienvenido</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Bienvenido de nuevo</CardTitle>
         </CardHeader>
         <CardContent>
             <div>

@@ -79,9 +79,9 @@ export default function Header(){
 
       <nav className="flex items-center space-x-4">
       <Link href={"/products/page/0"} className={buttonVariants({ variant: "outline" })}>Marketplace</Link>
-      <Link href={`/services`} className={buttonVariants({ variant: "outline" })}>Servicios</Link>
-      <Link href={`/jobs`} className={buttonVariants({ variant: "outline" })}>Trabajos</Link>
-      <Link href={`/help`} className={buttonVariants({ variant: "outline" })}>Ayuda</Link>
+      <Link href={`/services/page/0`} className={buttonVariants({ variant: "outline" })}>Servicios</Link>
+      <Link href={`/jobs/page/0`} className={buttonVariants({ variant: "outline" })}>Trabajos</Link>
+      <Link href={`/community/page/0`} className={buttonVariants({ variant: "outline" })}>Ayuda</Link>
       
         {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>

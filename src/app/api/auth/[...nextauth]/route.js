@@ -38,7 +38,7 @@ const handler = NextAuth({
         console.log(passwordMatch);
         if (!passwordMatch) throw new Error("Invalid Credentials");
 
-        console.log(userFound[0][0], credentials);
+        console.log(userFound[0][0]);
 
         const user = {
           id: userFound[0][0].id,

@@ -10,18 +10,22 @@ import axios from "axios";
 const categorias = [
   {
     name : "MarketPlace",
+    link : "/products/page/0",
     description : "Compra o vende productos en tu Ciudad"
   },
   {
     name : "Servicios",
+    link : "/services/page/0",
     description : "Busca u ofrece servicios en tu Ciudad"
   },
   {
     name : "Trabajos",
+    link : "/jobs/page/0",
     description : "Encuentra trabajos o busca empleados en tu Ciudad"
   },
   {
-    name : "Ayuda",
+    name : "Comunidad",
+    link : "/community/page/0",
     description : "Solidaridad, objetos perdidos, etc..."
   },
 ]
@@ -69,10 +73,10 @@ export default function HomePage(){
         <h2 className="text-xl font-semibold mb-4">Categorias</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {categorias.map((categoria) => (
-          <Link key={categoria.name} href={`${categoria.name}/page/0`} className=" hover:bg-purple-700">
+          <Link key={categoria.name} href={categoria.link} className=" hover:bg-purple-700">
             <Card >
               <CardContent className="p-4 flex flex-col items-center justify-center h-24 hover:bg-slate-300">
-                <Link href={`${categoria.name}/page/0`} className="text-center font-bold text-lg">
+                <Link href={categoria.link} className="text-center font-bold text-lg">
                 {categoria.name}
                 </Link>
                 <p className="text-center text-slate-500 text-md">{categoria.description}</p>
@@ -111,7 +115,7 @@ export default function HomePage(){
             <Link href={`type/${category}/0`} key={category} className=" hover:bg-purple-700">
             <Card>
               <CardContent className="p-4 flex items-center justify-center h-24 hover:bg-slate-300">
-                <Link href={`type/${category}/0`} className="text-center">{category}</Link>
+                <Link href={`/products/type/${category}/0`} className="text-center">{category}</Link>
               </CardContent>
             </Card>
             </Link>

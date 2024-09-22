@@ -98,7 +98,6 @@ export async function POST(request) {
     const result = await conn.query("INSERT INTO community SET ?", {
       name: data.get("name"),
       description: data.get("description"),
-      state: data.get("state"),
       type: data.get("type"),
       image: res.secure_url,
     });
@@ -106,7 +105,6 @@ export async function POST(request) {
     return NextResponse.json({
       name: data.get("name"),
       description: data.get("description"),
-      state: data.get("state"),
       type: data.get("type"),
       id: result.insertId,
     });

@@ -11,9 +11,10 @@ export async function GET(request) {
 
     // types
     if (types) {
+      const typeLoweCase = types.toLowerCase();
       const typeResults = await conn.query(
-        `SELECT * FROM services WHERE type = ? LIMIT 1 OFFSET ?;`,
-        [types, pagination * 2]
+        `SELECT * FROM services WHERE LOWER(type) = ? LIMIT 1 OFFSET ?;`,
+        [typeLoweCase, pagination * 2]
       );
       return NextResponse.json(typeResults);
     }
@@ -98,17 +99,15 @@ export async function POST(request) {
     const result = await conn.query("INSERT INTO services SET ?", {
       name: data.get("name"),
       description: data.get("description"),
-      price: data.get("price"),
-      state: data.get("state"),
+      // price: data.get("price"),
       type: data.get("type"),
       image: res.secure_url,
     });
 
     return NextResponse.json({
       name: data.get("name"),
-      price: data.get("price"),
+      // price: data.get("price"),
       description: data.get("description"),
-      state: data.get("state"),
       type: data.get("type"),
       id: result.insertId,
     });

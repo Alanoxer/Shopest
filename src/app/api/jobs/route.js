@@ -98,7 +98,6 @@ export async function POST(request) {
       name: data.get("name"),
       description: data.get("description"),
       price: data.get("price"),
-      state: data.get("state"),
       type: data.get("type"),
       image: res.secure_url,
     });
@@ -107,7 +106,6 @@ export async function POST(request) {
       name: data.get("name"),
       price: data.get("price"),
       description: data.get("description"),
-      state: data.get("state"),
       type: data.get("type"),
       id: result.insertId,
     });

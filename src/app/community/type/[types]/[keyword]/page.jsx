@@ -29,7 +29,7 @@ async function TypesPage({params}) {
 
   return (
   <>
-    { products.length !== 0 ? 
+    { communityArticles.length !== 0 ? 
     <>
       <SearchResults products={communityArticles}/>
     </>

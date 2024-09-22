@@ -23,7 +23,7 @@ export default function LoginPage(){
       const res = await signIn("credentials",{
         email: formData.get("email"),
         password: formData.get("password"),
-        redirect: true,
+        redirect: false,
       })
       if (res?.error) return  setError(res.error)
 
@@ -71,9 +71,11 @@ export default function LoginPage(){
               </div>
             </div>
             <div className="mt-6 grid grid-cols-2 gap-4">
-              <Button className="bg-blue-600 hover:text-blue-600 "  variant="outline" type="button">
+              <Button className="bg-blue-600 hover:text-blue-600 " variant="outline" type="button">
+                <Link href={"http://localhost:3000/api/auth/callback/google"}>
                 <Facebook className="mr-2 h-4 w-4 text-white " />
                 Facebook
+                </Link>
               </Button>
               <Button variant="outline" type="button">
                 <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">

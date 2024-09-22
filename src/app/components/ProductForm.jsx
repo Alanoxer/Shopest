@@ -40,7 +40,7 @@ const useTypes = ()=>{
       { value: 'Otro', label: 'Otro' },
            ]
   }
-  else if (pathname === "/services/new"){
+  else if (pathname === "/community/new"){
     return [
       { value: 'Objetos perdidos', label: 'Objetos perdidos' },
       { value: 'Ayuda', label: 'Ayuda' },

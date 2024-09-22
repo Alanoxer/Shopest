@@ -81,7 +81,7 @@ export default function Header(){
       <Link href={"/products/page/0"} className={buttonVariants({ variant: "outline" })}>Marketplace</Link>
       <Link href={`/services/page/0`} className={buttonVariants({ variant: "outline" })}>Servicios</Link>
       <Link href={`/jobs/page/0`} className={buttonVariants({ variant: "outline" })}>Trabajos</Link>
-      <Link href={`/community/page/0`} className={buttonVariants({ variant: "outline" })}>Ayuda</Link>
+      <Link href={`/community/page/0`} className={buttonVariants({ variant: "outline" })}>Comunidad</Link>
       
         {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>

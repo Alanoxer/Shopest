@@ -14,7 +14,7 @@ const Searcher = ()=>{
         const formData = new FormData(evt.currentTarget)
         const keyword =  formData.get("keyword")
         
-        router.push(`/product/${keyword}/0`)
+        router.push(`/products/search/${keyword}/0`)
     }
 
     return(

@@ -78,23 +78,22 @@ const handler = NextAuth({
       //it does not work first of all we do something
       //after that it works
       if (user) {
-        token.id = user.id?.toString();
-        token.isVerified = user.isVerified;
-        token.isAcceptingMessage = user.isAcceptingMessage;
-        token.name = user.name;
+        return {
+          ...token,
+          id: user.id,
+        };
       }
-
       return token;
     },
 
     async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.isVerified = token.isVerified;
-        session.user.isAcceptingMessage = token.isAcceptingMessage;
-        session.user.name = token.name;
-      }
-      return session;
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+        },
+      };
     },
   },
 });

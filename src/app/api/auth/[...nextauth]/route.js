@@ -64,6 +64,15 @@ const handler = NextAuth({
   },
 
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      const redirectUrl = url.startsWith("/")
+        ? new URL(url, baseUrl).toString()
+        : url;
+      console.log(
+        `[next-auth] Redirecting to "${redirectUrl}" (resolved from url "${url}" and baseUrl "${baseUrl}")`
+      );
+      return redirectUrl;
+    },
     //it is used to store token
     async jwt({ token, user }) {
       //it does not work first of all we do something

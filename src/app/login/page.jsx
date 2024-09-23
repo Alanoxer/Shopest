@@ -73,8 +73,8 @@ export default function LoginPage(){
             <div className="mt-6 grid grid-cols-2 gap-4">
               <Button className="bg-blue-600 hover:text-blue-600 " variant="outline" type="button">
                 <Link href={"/api/auth/callback/google"}>
-                <Facebook className="mr-2 h-4 w-4 text-white " />
-                Facebook
+                  <Facebook className="mr-2 h-4 w-4 text-white " />
+                    Facebook
                 </Link>
               </Button>
               <Button variant="outline" type="button">

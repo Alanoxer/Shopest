@@ -25,12 +25,6 @@ async function ProductsPage({params}) {
   return (
   <>
    <SearchResults products={products}/>
-       {/* { products &&
-          products.map(product => (
-            <ProductCard product={product} key={product.id} />
-          ))
-        }
-    </SearchResults> */}
   </>
   )
 }

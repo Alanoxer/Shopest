@@ -45,7 +45,7 @@ const handler = NextAuth({
 
         console.log(userFound[0][0]);
 
-        return userFound;
+        return userFound[0][0];
       },
     }),
   ],

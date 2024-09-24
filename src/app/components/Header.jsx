@@ -20,7 +20,7 @@ export default function Header(){
 
   console.log(session,status)
 
-  const router = useRouter()
+  // const router = useRouter()
     
   return (
     <header className="bg-purple-700 py-2 px-4 sm:px-6 lg:px-8">

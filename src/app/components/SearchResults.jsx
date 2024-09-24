@@ -11,12 +11,12 @@ import { Checkbox } from "@/components/ui/checkbox"
 import Link from 'next/link'
 import { useParams } from "next/navigation"
 import DashBoard from "./DashBoard"
+import PaginationComponent from "./Pagination"
 
 
 
 export default function SearchResults({products}) {
   const params = useParams()
-  console.log(params)
 
   return (
     <div className="min-h-screen w-full bg-gray-100">
@@ -66,6 +66,7 @@ export default function SearchResults({products}) {
           </div>
         </div>
       </main>
+      <PaginationComponent/>
     </div>
   )
 }

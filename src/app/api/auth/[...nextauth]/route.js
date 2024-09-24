@@ -15,7 +15,7 @@ const handler = NextAuth({
       id: "credentials",
       credentials: {
         email: {
-          label: "email",
+          label: "Email",
           type: "email",
           placeholder: "test@test.com",
         },
@@ -45,13 +45,7 @@ const handler = NextAuth({
 
         console.log(userFound[0][0]);
 
-        const user = {
-          id: userFound[0][0].id,
-          name: userFound[0][0].name,
-          email: userFound[0][0].email,
-        };
-
-        return user;
+        return userFound;
       },
     }),
   ],
@@ -74,26 +68,18 @@ const handler = NextAuth({
     //   return redirectUrl;
     // },
     //it is used to store token
-    async jwt({ token, user }) {
-      //it does not work first of all we do something
-      //after that it works
-      if (user) {
-        return {
-          ...token,
-          id: user.id,
-        };
+    async jwt({ token, account }) {
+      // Persist the OAuth access_token to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token;
       }
       return token;
     },
 
-    async session({ session, token }) {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.id,
-        },
-      };
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token from a provider.
+      session.accessToken = token.accessToken;
+      return session;
     },
   },
 });

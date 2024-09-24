@@ -32,7 +32,7 @@ export default function LoginPage(){
   }
 
     return (<>
- <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">Bienvenido de nuevo</CardTitle>
@@ -40,6 +40,11 @@ export default function LoginPage(){
         <CardContent>
             <div>
               <form onSubmit={handleSubmit} className="space-y-4">
+              {error && <div
+              classNameName=" bg-red-500 text-white p-2 mb-2"
+              >{error}
+            </div>}
+   
                 <div className="space-y-2">
                   <Label htmlFor="email">Correo Electrónico</Label>
                   <Input

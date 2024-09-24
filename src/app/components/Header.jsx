@@ -2,9 +2,7 @@
 import Link from "next/link"
 import Searcher from "./Search"
 import { useSession, signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { Button, buttonVariants  } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ShoppingCart, User, Bell, MapPin, ChevronDown } from "lucide-react"
 import {
   DropdownMenu,
@@ -113,7 +111,7 @@ export default function Header(){
             <DropdownMenuContent>
               <DropdownMenuItem >Ver Perfil</DropdownMenuItem>
               <DropdownMenuItem>Historial</DropdownMenuItem>
-              <DropdownMenuItem onClick={signOut()}>Cerrar Sesión</DropdownMenuItem>
+              <DropdownMenuItem >Cerrar Sesión</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
 

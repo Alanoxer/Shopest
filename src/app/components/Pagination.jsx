@@ -17,9 +17,6 @@ export default function PaginationComponent(){
     const paginationNumber = Number(params.pagination)
 
    const paginationUrl = pathname.substring(0, pathname.length - 1);
-   const active = (number)=>{
-    paginationNumber === number ? "isActive" : null
-   }
 
     return (
         <Pagination className={"mt-12"}>

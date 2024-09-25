@@ -1,34 +1,9 @@
 "use client"
-import { useEffect, useState } from "react"
-import {useSession} from "next-auth/react"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
-export function Profile (){
+export default function Profile({user}){
 
-  const [userr, setUserr] = useState()
-  const {data: session, status} = useSession()
-  console.log(session, status)
-
-  useEffect(()=>{
-    const email = session?.user?.email
-    const getUser = async()=>{
-      const userFound = await axios.get(`https://shopest-lyart.vercel.app/api/users`,
-        {
-          params:{
-            email
-          }
-        }
-        );
-        setUserr(userFound[0][0])
-        console.log(userFound)
-    }
-    if(email)
-    getUser()
-  }, [])
-
-    // if(userr !== null && session !== null )
     return (
-      // <Profile name={user?.name} description={user?.description} numberPhone={user?.number_phone} createdAt={user?.createdAt}/>
       <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8">
@@ -42,11 +17,11 @@ export function Profile (){
               <div className="flex-grow">
 
                 <h1 className="text-2x md:text-4xl font-bold mb-2">
-                  {session?.user?.email}
+                {user?.name ? user.name : "no name"}
                 </h1>
 
                 <p className="text-lg mb-6">
-                {/* {userr?.description ? userr.description : "no description"} */} fgsd
+                 {user?.description ? user.description : "no description"}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -57,12 +32,14 @@ export function Profile (){
                   <div className="flex items-center text-muted-foreground">
                     <LinkIcon className="mr-2 h-4 w-4" />
                     <a href="https://janedoe.com" className="hover:underline">
-                    {/* {userr?.number_phone ? userr.number_phone : "no number phone"} */}fgdfgdf
+                     {user?.number_phone ? user.number_phone : "no number phone"}
                     </a>
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <CalendarDays className="mr-2 h-4 w-4" />
-                    <span>222</span>
+                    <span>
+                      {/* {user?.data.createdAt ? user.data.createdAt.toLocaleDateString() : "no date"} */} no date
+                    </span>
                   </div>
                 </div>
               </div>
@@ -75,5 +52,6 @@ export function Profile (){
             </div>
           </div>
         </div>
-    )
+    ) 
 }
+

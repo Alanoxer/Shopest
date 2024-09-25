@@ -109,7 +109,9 @@ export default function Header(){
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem >Ver Perfil</DropdownMenuItem>
+              <DropdownMenuItem >
+                <Link href={"/profile"}>Ver Perfil</Link>
+              </DropdownMenuItem>
               <DropdownMenuItem>Historial</DropdownMenuItem>
               <DropdownMenuItem >Cerrar Sesión</DropdownMenuItem>
             </DropdownMenuContent>

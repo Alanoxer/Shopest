@@ -9,42 +9,69 @@ export async function GET(request) {
     const limit = request.nextUrl.searchParams.get("limit");
     const types = request.nextUrl.searchParams.get("types");
     const subtype = request.nextUrl.searchParams.get("subtype");
+
     const state = request.nextUrl.searchParams.get("state");
-
-    // types
-    if (types) {
-      const typeResults = await conn.query(
-        `SELECT * FROM product WHERE type = ? LIMIT 1 OFFSET ?;`,
-        [types, pagination * 2]
-      );
-      return NextResponse.json(typeResults);
-    }
-
-    //sutypes
-    else if (subtype) {
-      const subtypeResults = await conn.query(
-        `SELECT * FROM product WHERE subtype = ? LIMIT 1 OFFSET ?;`,
-        [subtype, pagination * 2]
-      );
-      return NextResponse.json(subtypeResults);
-    }
+    console.log(state);
 
     //home page
-    else if (limit) {
+    if (limit) {
       const homeResults = await conn.query(`SELECT * FROM product LIMIT ?`, [
         Number(limit),
       ]);
       return NextResponse.json(homeResults);
     }
 
+    // types
+    else if (types) {
+      if (state != "cualquiera") {
+        const results = await conn.query(
+          `SELECT * FROM product WHERE type = ? AND state = ? LIMIT 2 OFFSET ?`,
+          [types, state, pagination * 2]
+        );
+        return NextResponse.json(results);
+      } else {
+        const results = await conn.query(
+          `SELECT * FROM product WHERE type = ? LIMIT 2 OFFSET ?`,
+          [types, pagination * 2]
+        );
+        return NextResponse.json(results);
+      }
+    }
+
+    //sutypes
+    else if (subtype) {
+      if (state != "cualquiera") {
+        const results = await conn.query(
+          `SELECT * FROM product WHERE subtype = ? AND state = ? LIMIT 2 OFFSET ?`,
+          [subtype, state, pagination * 2]
+        );
+        return NextResponse.json(results);
+      } else {
+        const results = await conn.query(
+          `SELECT * FROM product WHERE subtype = ? LIMIT 2 OFFSET ?`,
+          [subtype, pagination * 2]
+        );
+        return NextResponse.json(results);
+      }
+    }
+
     //marketplace(all)
     else {
-      const results = await conn.query(
-        `SELECT * FROM product LIMIT 2 OFFSET ?`,
-        [pagination * 2]
-      );
-      return NextResponse.json(results);
+      if (state != "cualquiera") {
+        const results = await conn.query(
+          `SELECT * FROM product WHERE state = ? LIMIT 2 OFFSET ?`,
+          [state, pagination * 2]
+        );
+        return NextResponse.json(results);
+      } else {
+        const results = await conn.query(
+          `SELECT * FROM product LIMIT 2 OFFSET ?`,
+          [pagination * 2]
+        );
+        return NextResponse.json(results);
+      }
     }
+
     //catch error
   } catch (error) {
     console.log(error);

@@ -4,10 +4,12 @@ import { usePathname, useParams } from 'next/navigation'
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
+
+
 const usePath = ()=>{
     const pathName = usePathname()
     const params = useParams()
-    if(pathName === `/products/page/${params.pagination}`){
+    if(pathName === `/products/page/${params.pagination}/${params.state}`){
         return (
             [
                 {name :'Electrónica', link: `/products/type/electronics/0`},
@@ -18,7 +20,7 @@ const usePath = ()=>{
             ]
         )
     }
-    else if(pathName === `/products/type/electronics/${params.pagination}`){
+    else if(pathName === `/products/type/electronics/${params.pagination}/${params.state}`){
         return (
             [
                 {name :'Teclado', link: `/products/subtype/teclado/0`},
@@ -29,7 +31,7 @@ const usePath = ()=>{
             ]
         )
     }
-    else if(pathName === `/products/type/muebles/${params.pagination}`){
+    else if(pathName === `/products/type/muebles/${params.pagination}/${params.state}`){
         return (
             [
                 {name :'Sillas', link: `/products/subtype/Sillas/0`},
@@ -40,7 +42,7 @@ const usePath = ()=>{
             ]
         )   
     }
-    else if(pathName === `/products/type/ropa/${params.pagination}`){
+    else if(pathName === `/products/type/ropa/${params.pagination}/${params.state}`){
         return (
             [
                 {name :'Camisas', link: `/products/subtype/Camisas/0`},
@@ -51,7 +53,7 @@ const usePath = ()=>{
             ]
         )
     }
-    else if(pathName === `/products/type/libros/${params.pagination}`){
+    else if(pathName === `/products/type/libros/${params.pagination}/${params.state}`){
         return (
             [
                 {name :'Ciencia Ficción', link: `/products/subtype/cienciaficción/0`},
@@ -97,42 +99,76 @@ const usePath = ()=>{
     else return []
 }
 
-const DashBoard = ()=>{
-const articles = usePath()
-return (
-    <>
-    { articles.length !== 0 ?
-        <>
-        <aside className="flex w-60 flex-col space-y-2 p-2" style={{height: 90.5}}>
-            {articles.map((type) => (
-                <Link key={type.name} href={type.link} className="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-200 hover:text-purple-600 border-b-2">
-                    <span className="text-1xl">{type.name}</span>
-                </Link>        
-                ))
-            }
-
-            <RadioGroup defaultValue="comfortable">
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="default" id="r1" />
-                    <Label htmlFor="r1">Cualquiera</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="comfortable" id="r2" />
-                    <Label htmlFor="r2">Nuevo</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="compact" id="r3" />
-                    <Label htmlFor="r3">Usado</Label>
-                </div>
-            </RadioGroup>
-        </aside>
-
-        </>
-        : null
-        
+const CheckBox = ()=>{
+    const p = usePathname()
+    const params = useParams()
+    const pathname = ()=>{
+        return(
+            p === `/products/page/${params.pagination}/${params.state}` ? `/products/page/${params.pagination}/${params.state}` : null ||
+            p === `/products/type/${params.types}/${params.pagination}/${params.state}` ? `/products/type/${params.types}/${params.pagination}/${params.state}` : null || p === `/products/subtype/${params.subtype}/${params.pagination}/${params.state}` ? p === `/products/subtype/${params.subtype}/${params.pagination}/${params.state}` : null
+        )
     }
-    </>
-    )
+
+    const linkname = ()=>{
+        return(
+            p === `/products/page/${params.pagination}/${params.state}` ? `/products/page/${params.pagination}/` : null ||
+            p === `/products/type/${params.types}/${params.pagination}/${params.state}` ? `/products/type/${params.types}/${params.pagination}/` : null || p === `/products/subtype/${params.subtype}/${params.pagination}/${params.state}` ? p === `/products/subtype/${params.subtype}/${params.pagination}/` : null
+        )
+    }
+
+
+    const pathName = pathname()
+    const link = linkname()
+
+    if(pathName){
+    return(
+        <RadioGroup defaultValue={params.state}>
+            <div className="flex items-center space-x-2">
+                <Link href={`${link}cualquiera`}>
+                    <RadioGroupItem value="cualquiera" id="r1" />
+                </Link>
+                <Label htmlFor="r1">Cualquiera</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+                <Link href={`${link}nuevo`}>
+                    <RadioGroupItem value="nuevo" id="r2" />
+                </Link>
+                 <Label htmlFor="r2">Nuevo</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+                <Link href={`${link}usado`}>
+                    <RadioGroupItem value="usado" id="r3" />
+                </Link>
+                <Label htmlFor="r3">Usado</Label>
+            </div>
+         </RadioGroup>
+        )} else return null
 }
+
+const DashBoard = ()=>{
+    const articles = usePath()
+    return (
+        <>
+        { articles.length !== 0 ?
+            <>
+            <aside className="flex w-60 flex-col space-y-2 p-2" style={{height: 90.5}}>
+                {articles.map((type) => (
+                    <Link key={type.name} href={type.link} className="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-200 hover:text-purple-600 border-b-2">
+                        <span className="text-1xl">{type.name}</span>
+                    </Link>        
+                    ))
+                }
+
+                <CheckBox/>
+
+            </aside>
+
+            </>
+            : null    
+             
+        }
+        </>
+        )
+    }
 
 export default DashBoard

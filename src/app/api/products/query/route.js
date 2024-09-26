@@ -15,7 +15,7 @@ export async function GET(request) {
 
       const queryResults = await conn.query(
         `SELECT * FROM product WHERE LOWER(name) LIKE ? LIMIT 2 OFFSET ?`,
-        [lowerKey, Number(pagination)]
+        [lowerKey, pagination]
       );
       return NextResponse.json(queryResults);
     }

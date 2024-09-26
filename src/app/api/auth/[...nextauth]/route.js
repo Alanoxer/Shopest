@@ -6,16 +6,16 @@ import { conn } from "@/libs/mysql";
 
 const handler = NextAuth({
   providers: [
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    //   authorization: {
-    //     params: {
-    //       scope: "openid https://www.googleapis.com/auth/gmail.send",
-    //     },
-    //   },
-    //   checks: ["none"],
-    // }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      // authorization: {
+      //   params: {
+      //     scope: "openid https://www.googleapis.com/auth/gmail.send",
+      //   },
+      // },
+      // checks: ["none"],
+    }),
     CredentialsProvider({
       name: "Credentials",
       id: "credentials",

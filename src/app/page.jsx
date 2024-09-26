@@ -1,7 +1,6 @@
-'use client'
-import { Button, buttonVariants  } from "@/components/ui/button";
+'use client';
 import { Card, CardContent } from "@/components/ui/card"
- 
+ import Image from "next/image";
 import Link from "next/link"
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -92,17 +91,19 @@ export default function HomePage(){
         <h2 className="text-xl font-semibold mb-4">Ofertas</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {homeProducts && homeProducts.map((product) => (
-            <Card key={product.id}>
-              <CardContent className="p-4">
-                <img src={product.image} alt={product.name} className="w-full h-auto mb-2" />
-                <p className="font-semibold">${product.price}</p>
-                <p className="font-semibold">{product.name}</p>
-                <p className="text-xs text-gray-500 truncate">{product.description}</p>
-                <div className="w-full mt-4 mx-auto align-middle justify-center">
-                <Link href={`/products/${product.id}`} className={buttonVariants({ variant: "outline w-full mt-4" })}>Ver Producto</Link>
-                </div>
-              </CardContent>
-            </Card>
+             <Link href={`/products/${product.id}`} key={product.id} >
+             <Card key={product.id}>
+               <CardContent className="p-4 hover:bg-slate-200 hover:rounded-md">
+                 <Image src={product.image} alt={product.name} width={400} height={400} className="rounded-sm mb-2" />
+                 <div className="flex flex-row justify-between mx-1">
+                   <p className="font-semibold">{product.name}</p>
+                   <p className=" font-medium">{product.price ? product.price : "Precio no definido"}</p>
+                 </div>
+                 <p className="text-sm mx-1 text-gray-500 truncate">{product.description}</p>
+                 {/* <Button onClick={addToCart} className="w-full mt-2">Agregar al carrito</Button> */}
+               </CardContent>
+             </Card>
+           </Link>
           ))}
         </div>
       </section>

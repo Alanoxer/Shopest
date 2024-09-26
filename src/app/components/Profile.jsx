@@ -1,7 +1,13 @@
 "use client"
+import Link from "next/link"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
 
 export default function Profile({user}){
+
+  const data = user?.createdAt
+  const date = new Date(data)
+  const fecha = date.toLocaleDateString("en")
+  console.log(date.toLocaleDateString("en"))
 
     return (
       <div className="container mx-auto px-4 py-8">
@@ -9,7 +15,7 @@ export default function Profile({user}){
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-shrink-0">
                 <img
-                  src="public\user.png"
+                  src="/user.png"
                   alt="User profile"
                   className="rounded-full w-32 h-32 md:w-64 md:h-64 object-cover"
                 />
@@ -31,14 +37,14 @@ export default function Profile({user}){
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <LinkIcon className="mr-2 h-4 w-4" />
-                    <a href="https://janedoe.com" className="hover:underline">
+                    <Link href="https://janedoe.com" className="hover:underline">
                      {user?.number_phone ? user.number_phone : "no number phone"}
-                    </a>
+                    </Link>
                   </div>
                   <div className="flex items-center text-muted-foreground">
                     <CalendarDays className="mr-2 h-4 w-4" />
                     <span>
-                      {/* {user?.data.createdAt ? user.data.createdAt.toLocaleDateString() : "no date"} */} no date
+                      Creó su cuenta el: {user?.createdAt ? fecha : "no date"}
                     </span>
                   </div>
                 </div>

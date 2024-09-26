@@ -111,20 +111,20 @@ return (
                 ))
             }
 
-             <RadioGroup defaultValue="comfortable">
-            <div className="flex items-center space-x-2">
-                <RadioGroupItem value="default" id="r1" />
-                <Label htmlFor="r1">Cualquiera</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-                <RadioGroupItem value="comfortable" id="r2" />
-                <Label htmlFor="r2">Nuevo</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-                <RadioGroupItem value="compact" id="r3" />
-                <Label htmlFor="r3">Usado</Label>
-            </div>
-        </RadioGroup>
+            <RadioGroup defaultValue="comfortable">
+                <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="default" id="r1" />
+                    <Label htmlFor="r1">Cualquiera</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="comfortable" id="r2" />
+                    <Label htmlFor="r2">Nuevo</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="compact" id="r3" />
+                    <Label htmlFor="r3">Usado</Label>
+                </div>
+            </RadioGroup>
         </aside>
 
         </>

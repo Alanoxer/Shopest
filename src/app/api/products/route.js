@@ -6,10 +6,10 @@ import { conn } from "@/libs/mysql";
 export async function GET(request) {
   try {
     const pagination = request.nextUrl.searchParams.get("pagination");
-    const keyword = request.nextUrl.searchParams.get("keyword");
     const limit = request.nextUrl.searchParams.get("limit");
     const types = request.nextUrl.searchParams.get("types");
     const subtype = request.nextUrl.searchParams.get("subtype");
+    const state = request.nextUrl.searchParams.get("state");
 
     // types
     if (types) {
@@ -35,18 +35,6 @@ export async function GET(request) {
         Number(limit),
       ]);
       return NextResponse.json(homeResults);
-    }
-
-    // search results
-    else if (keyword) {
-      const lowerKey = keyword.toLowerCase();
-      console.log(keyword);
-
-      const queryResults = await conn.query(
-        `SELECT * FROM product WHERE LOWER(name) = "?"`,
-        [keyword]
-      );
-      return NextResponse.json(queryResults);
     }
 
     //marketplace(all)

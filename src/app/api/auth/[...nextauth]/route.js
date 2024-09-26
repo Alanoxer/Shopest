@@ -6,16 +6,16 @@ import { conn } from "@/libs/mysql";
 
 const handler = NextAuth({
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      authorization: {
-        params: {
-          scope: "openid https://www.googleapis.com/auth/gmail.send",
-        },
-      },
-      checks: ["none"],
-    }),
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_CLIENT_ID,
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    //   authorization: {
+    //     params: {
+    //       scope: "openid https://www.googleapis.com/auth/gmail.send",
+    //     },
+    //   },
+    //   checks: ["none"],
+    // }),
     CredentialsProvider({
       name: "Credentials",
       id: "credentials",
@@ -56,17 +56,17 @@ const handler = NextAuth({
     }),
   ],
 
-  cookies: {
-    pkceCodeVerifier: {
-      name: "next-auth.pkce.code_verifier",
-      options: {
-        httpOnly: true,
-        sameSite: "none",
-        path: "/",
-        secure: true,
-      },
-    },
-  },
+  // cookies: {
+  //   pkceCodeVerifier: {
+  //     name: "next-auth.pkce.code_verifier",
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: "none",
+  //       path: "/",
+  //       secure: true,
+  //     },
+  //   },
+  // },
 
   pages: {
     signIn: "/login",
@@ -76,15 +76,15 @@ const handler = NextAuth({
   },
 
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      const redirectUrl = url.startsWith("/")
-        ? new URL(url, baseUrl).toString()
-        : url;
-      console.log(
-        `[next-auth] Redirecting to "${redirectUrl}" (resolved from url "${url}" and baseUrl "${baseUrl}")`
-      );
-      return redirectUrl;
-    },
+    // async redirect({ url, baseUrl }) {
+    //   const redirectUrl = url.startsWith("/")
+    //     ? new URL(url, baseUrl).toString()
+    //     : url;
+    //   console.log(
+    //     `[next-auth] Redirecting to "${redirectUrl}" (resolved from url "${url}" and baseUrl "${baseUrl}")`
+    //   );
+    //   return redirectUrl;
+    // },
     // it is used to store token
     async jwt({ token, account }) {
       // Persist the OAuth access_token to the token right after signin

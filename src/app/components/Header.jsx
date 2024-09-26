@@ -113,7 +113,7 @@ export default function Header(){
                 <Link href={"/profile"}>Ver Perfil</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>Historial</DropdownMenuItem>
-              <DropdownMenuItem >Cerrar Sesión</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=>signOut()}>Cerrar Sesión</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
 

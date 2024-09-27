@@ -4,7 +4,7 @@ import SearchResults from "@/app/components/SearchResults";
 
 async function typeProducts(types, pagination, state){
   
-  const products = await axios.get(`http://localhost:3000/api/products`,
+  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
   {
     params:{
       types : types,

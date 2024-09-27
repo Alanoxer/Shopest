@@ -104,15 +104,15 @@ const CheckBox = ()=>{
     const params = useParams()
     const pathname = ()=>{
         return(
-            p === `/products/page/${params.pagination}/${params.state}` ? `/products/page/${params.pagination}/${params.state}` : null ||
-            p === `/products/type/${params.types}/${params.pagination}/${params.state}` ? `/products/type/${params.types}/${params.pagination}/${params.state}` : null || p === `/products/subtype/${params.subtype}/${params.pagination}/${params.state}` ? p === `/products/subtype/${params.subtype}/${params.pagination}/${params.state}` : null
+            p === `/products/page/${params.state}/${params.pagination}` ? `/products/page/${params.state}/${params.pagination}` : null ||
+            p === `/products/type/${params.types}/${params.state}/${params.pagination}` ? `/products/type/${params.types}/${params.state}/${params.pagination}` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` : null
         )
     }
 
     const linkname = ()=>{
         return(
-            p === `/products/page/${params.pagination}/${params.state}` ? `/products/page/${params.pagination}/` : null ||
-            p === `/products/type/${params.types}/${params.pagination}/${params.state}` ? `/products/type/${params.types}/${params.pagination}/` : null || p === `/products/subtype/${params.subtype}/${params.pagination}/${params.state}` ? p === `/products/subtype/${params.subtype}/${params.pagination}/` : null
+            p === `/products/page/${params.state}/${params.pagination}` ? `/products/page/` : null ||
+            p === `/products/type/${params.types}/${params.state}/${params.pagination}` ? `/products/type/${params.types}/` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/` : null
         )
     }
 
@@ -124,19 +124,19 @@ const CheckBox = ()=>{
     return(
         <RadioGroup defaultValue={params.state}>
             <div className="flex items-center space-x-2">
-                <Link href={`${link}cualquiera`}>
+                <Link href={`${link}cualquiera/0`}>
                     <RadioGroupItem value="cualquiera" id="r1" />
                 </Link>
                 <Label htmlFor="r1">Cualquiera</Label>
             </div>
             <div className="flex items-center space-x-2">
-                <Link href={`${link}nuevo`}>
+                <Link href={`${link}nuevo/0`}>
                     <RadioGroupItem value="nuevo" id="r2" />
                 </Link>
                  <Label htmlFor="r2">Nuevo</Label>
             </div>
             <div className="flex items-center space-x-2">
-                <Link href={`${link}usado`}>
+                <Link href={`${link}usado/0`}>
                     <RadioGroupItem value="usado" id="r3" />
                 </Link>
                 <Label htmlFor="r3">Usado</Label>

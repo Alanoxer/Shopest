@@ -9,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 const usePath = ()=>{
     const pathName = usePathname()
     const params = useParams()
-    if(pathName === `/products/page/${params.pagination}/${params.state}`){
+    if(pathName === `/products/page/${params.state}/${params.pagination}`){
         return (
             [
                 {name :'Electrónica', link: `/products/type/electronics/0`},
@@ -20,7 +20,7 @@ const usePath = ()=>{
             ]
         )
     }
-    else if(pathName === `/products/type/electronics/${params.pagination}/${params.state}`){
+    else if(pathName === `/products/type/electronics/${params.state}/${params.pagination}`){
         return (
             [
                 {name :'Teclado', link: `/products/subtype/teclado/0`},
@@ -31,7 +31,7 @@ const usePath = ()=>{
             ]
         )
     }
-    else if(pathName === `/products/type/muebles/${params.pagination}/${params.state}`){
+    else if(pathName === `/products/type/muebles/${params.state}/${params.pagination}`){
         return (
             [
                 {name :'Sillas', link: `/products/subtype/Sillas/0`},
@@ -42,7 +42,7 @@ const usePath = ()=>{
             ]
         )   
     }
-    else if(pathName === `/products/type/ropa/${params.pagination}/${params.state}`){
+    else if(pathName === `/products/type/ropa/${params.state}/${params.pagination}`){
         return (
             [
                 {name :'Camisas', link: `/products/subtype/Camisas/0`},
@@ -53,7 +53,7 @@ const usePath = ()=>{
             ]
         )
     }
-    else if(pathName === `/products/type/libros/${params.pagination}/${params.state}`){
+    else if(pathName === `/products/type/libros/${params.state}/${params.pagination}`){
         return (
             [
                 {name :'Ciencia Ficción', link: `/products/subtype/cienciaficción/0`},

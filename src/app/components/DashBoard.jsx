@@ -12,55 +12,55 @@ const usePath = ()=>{
     if(pathName === `/products/page/${params.state}/${params.pagination}`){
         return (
             [
-                {name :'Electrónica', link: `/products/type/electronics/0`},
-                {name :'Muebles', link: `/products/type/muebles/0`},
-                {name :'Ropa', link: `/products/type/ropa/0`},
-                {name :'Libros', link: `/products/type/libros/0`},
-                {name :'Otro', link: `/products/type/otro/0`}
+                {name :'Electrónica', link: `/products/type/electronics/cualquiera/0`},
+                {name :'Muebles', link: `/products/type/muebles/cualquiera/0`},
+                {name :'Ropa', link: `/products/type/ropa/cualquiera/0`},
+                {name :'Libros', link: `/products/type/libros/cualquiera/0`},
+                {name :'Otro', link: `/products/type/otro/cualquiera/0`}
             ]
         )
     }
     else if(pathName === `/products/type/electronics/${params.state}/${params.pagination}`){
         return (
             [
-                {name :'Teclado', link: `/products/subtype/teclado/0`},
-                {name :'Pantalla', link: `/products/subtype/pantalla/0`},
-                {name :'Mouse', link: `/products/subtype/pouse/0`},
-                {name :'Smartphone', link: `/products/subtype/smartphone/0`},
-                {name :'Laptop', link: `/products/subtype/laptop/0`}
+                {name :'Teclado', link: `/products/subtype/teclado/cualquiera/0`},
+                {name :'Pantalla', link: `/products/subtype/pantalla/cualquiera/0`},
+                {name :'Mouse', link: `/products/subtype/pouse/cualquiera/0`},
+                {name :'Smartphone', link: `/products/subtype/smartphone/cualquiera/0`},
+                {name :'Laptop', link: `/products/subtype/laptop/cualquiera/0`}
             ]
         )
     }
     else if(pathName === `/products/type/muebles/${params.state}/${params.pagination}`){
         return (
             [
-                {name :'Sillas', link: `/products/subtype/Sillas/0`},
-                {name :'Mesas', link: `/products/subtype/Mesas/0`},
-                {name :'Estantes', link: `/products/subtype/Estantes/0`},
-                {name :'Escritorios', link: `/products/subtype/Escritorios/0`},
-                {name :'Sillones', link: `/products/subtype/Sillones/0`}
+                {name :'Sillas', link: `/products/subtype/Sillas/cualquiera/0`},
+                {name :'Mesas', link: `/products/subtype/Mesas/cualquiera/0`},
+                {name :'Estantes', link: `/products/subtype/Estantes/cualquiera/0`},
+                {name :'Escritorios', link: `/products/subtype/Escritorios/cualquiera/0`},
+                {name :'Sillones', link: `/products/subtype/Sillones/cualquiera/0`}
             ]
         )   
     }
     else if(pathName === `/products/type/ropa/${params.state}/${params.pagination}`){
         return (
             [
-                {name :'Camisas', link: `/products/subtype/Camisas/0`},
-                {name :'Pantalones', link: `/products/subtype/Pantalones/0`},
-                {name :'Remera', link: `/products/subtype/Remera/0`},
-                {name :'Busos', link: `/products/subtype/Busos/0`},
-                {name :'Zapatillas', link: `/products/subtype/Zapatillas/0`}
+                {name :'Camisas', link: `/products/subtype/Camisas/cualquiera/0`},
+                {name :'Pantalones', link: `/products/subtype/Pantalones/cualquiera/0`},
+                {name :'Remera', link: `/products/subtype/Remera/cualquiera/0`},
+                {name :'Busos', link: `/products/subtype/Busos/cualquiera/0`},
+                {name :'Zapatillas', link: `/products/subtype/Zapatillas/cualquiera/0`}
             ]
         )
     }
     else if(pathName === `/products/type/libros/${params.state}/${params.pagination}`){
         return (
             [
-                {name :'Ciencia Ficción', link: `/products/subtype/cienciaficción/0`},
-                {name :'Educativos', link: `/products/subtype/Educativos/0`},
-                {name :'Historia', link: `/products/subtype/Historia/0`},
-                {name :'Matemáticas', link: `/products/subtype/Matemáticas/0`},
-                {name :'Biblias', link: `/products/subtype/Biblias/0`}
+                {name :'Ciencia Ficción', link: `/products/subtype/cienciaficción/cualquiera/0`},
+                {name :'Educativos', link: `/products/subtype/Educativos/cualquiera/0`},
+                {name :'Historia', link: `/products/subtype/Historia/cualquiera/0`},
+                {name :'Matemáticas', link: `/products/subtype/Matemáticas/cualquiera/0`},
+                {name :'Biblias', link: `/products/subtype/Biblias/cualquiera/0`}
             ]
         )
     }

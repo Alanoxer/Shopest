@@ -116,7 +116,7 @@ export default function HomePage(){
             <Link href={`/products/type/${category}/cualquiera/0`} key={category} className=" hover:bg-purple-700">
             <Card>
               <CardContent className="p-4 flex items-center justify-center h-24 hover:bg-slate-300">
-                <Link href={`/products/type/${category}/state/0`} className="text-center">{category}</Link>
+                <Link href={`/products/type/${category}/cualquiera/0`} className="text-center">{category}</Link>
               </CardContent>
             </Card>
             </Link>

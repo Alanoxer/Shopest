@@ -25,6 +25,8 @@ export default function ProfilePage(){
     }
     if(email)
     getUser()
+
+  
   }, [])
   //  const fecha = user?.createdAt
   //  const date = new Date(`${fecha}`)

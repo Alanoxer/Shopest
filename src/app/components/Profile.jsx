@@ -1,17 +1,18 @@
 "use client"
 import Link from "next/link"
+import Image from "next/image"
 import { CalendarDays, MapPin, Link as LinkIcon } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 
-export default function Profile({user}){
+export default function Profile({user, userProducts}){
 
   const data = user?.createdAt
   const date = new Date(data)
   const fecha = date.toLocaleDateString("en")
-  console.log(date.toLocaleDateString("en"))
 
     return (
       <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-shrink-0">
                 <img
@@ -23,11 +24,11 @@ export default function Profile({user}){
               <div className="flex-grow">
 
                 <h1 className="text-2x md:text-4xl font-bold mb-2">
-                {user?.name ? user.name : "no name"}
+                {user?.name ? user.name : "..."}
                 </h1>
 
                 <p className="text-lg mb-6">
-                 {user?.description ? user.description : "no description"}
+                 {user?.description ? user.description : "..."}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -51,9 +52,28 @@ export default function Profile({user}){
               </div>
             </div>
             <div className="mt-8">
-              <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
+              <h2 className="text-xl font-semibold mb-4">Actividad Reciente</h2>
               <div className="bg-muted p-4 rounded-lg">
-                <p>No recent activity to show.</p>
+              {
+              userProducts?.length !== 0 
+              ? <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                { userProducts?.map((product) => (
+                <Link href={`/products/${product.id}`} key={product.id} >
+                <Card>
+                  <CardContent className="p-4 hover:bg-slate-200 hover:rounded-md">
+                    <Image src={product.image} alt={product.name} width={400} height={200} className="rounded-sm mb-2" />
+                    <div className="flex flex-row justify-between mx-1">
+                      <p className="font-semibold">{product.name}</p>
+                      <p className=" font-medium">{product.price ? product.price : "Precio no definido"}</p>
+                    </div>
+                    <p className="text-sm mx-1 text-gray-500 truncate">{product.description}</p>
+                  </CardContent>
+                </Card>
+                </Link>
+                ))}
+               </div>
+              : <p>No hay productos publicados... </p>
+              }
               </div>
             </div>
           </div>

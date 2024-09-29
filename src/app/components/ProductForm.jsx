@@ -6,7 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
+import {useSession} from "next-auth/react"
 import axios from "axios";
 import { useRouter, usePathname } from "next/navigation";
 import { Type } from "lucide-react"
@@ -53,6 +54,8 @@ const useTypes = ()=>{
 
 export default function ProductForm() {
 
+  const {data: session, status} = useSession()
+  console.log(session, status)
   const form = useRef(null);
   const router = useRouter();
   const pathname = usePathname();
@@ -109,6 +112,7 @@ export default function ProductForm() {
     formData.append("name", product.name);
     formData.append("price", product.price);
     formData.append("description", product.description);
+    formData.append("user", session?.user?.email);
 
     if (images) {
       formData.append("image", images);

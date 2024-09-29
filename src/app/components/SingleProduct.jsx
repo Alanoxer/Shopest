@@ -63,7 +63,7 @@ export default function SingleProduct({product, relatedProducts, seller}) {
               <span className="text-3xl font-bold">${product.price}</span> 
             </div>
             <div className="rounded-md w-full justify-center mt-1">
-              <Link href={`/products/page/0`} className="bg-neutral-900 text-neutral-50 shadow hover:bg-neutral-900/90 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90 p-2 rounded-md w-full">Contactar con el vendedor</Link>
+              <Link href={`/profile/user/1`} className="bg-neutral-900 text-neutral-50 shadow hover:bg-neutral-900/90 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90 p-2 rounded-md w-full">Contactar con el vendedor</Link>
             </div>
 
             {/* Product Details */}

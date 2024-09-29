@@ -9,9 +9,9 @@ export async function GET(request) {
     const limit = request.nextUrl.searchParams.get("limit");
     const types = request.nextUrl.searchParams.get("types");
     const subtype = request.nextUrl.searchParams.get("subtype");
+    const email = request.nextUrl.searchParams.get("email");
 
     const state = request.nextUrl.searchParams.get("state");
-    console.log(state);
 
     //home page
     if (limit) {
@@ -19,6 +19,33 @@ export async function GET(request) {
         Number(limit),
       ]);
       return NextResponse.json(homeResults);
+    }
+
+    //marketplace(all)
+    else if (state) {
+      if (state != "cualquiera") {
+        const results = await conn.query(
+          `SELECT * FROM product WHERE state = ? LIMIT 2 OFFSET ?`,
+          [state, pagination * 2]
+        );
+        return NextResponse.json(results);
+      } else {
+        const results = await conn.query(
+          `SELECT * FROM product LIMIT 2 OFFSET ?`,
+          [pagination * 2]
+        );
+        return NextResponse.json(results);
+      }
+    }
+
+    // user products
+    else if (email) {
+      const userResults = await conn.query(
+        `SELECT * FROM product WHERE user = ?`,
+        [email]
+      );
+      console.log(userResults[0]);
+      return NextResponse.json(userResults[0]);
     }
 
     // types
@@ -50,23 +77,6 @@ export async function GET(request) {
         const results = await conn.query(
           `SELECT * FROM product WHERE subtype = ? LIMIT 2 OFFSET ?`,
           [subtype, pagination * 2]
-        );
-        return NextResponse.json(results);
-      }
-    }
-
-    //marketplace(all)
-    else {
-      if (state != "cualquiera") {
-        const results = await conn.query(
-          `SELECT * FROM product WHERE state = ? LIMIT 2 OFFSET ?`,
-          [state, pagination * 2]
-        );
-        return NextResponse.json(results);
-      } else {
-        const results = await conn.query(
-          `SELECT * FROM product LIMIT 2 OFFSET ?`,
-          [pagination * 2]
         );
         return NextResponse.json(results);
       }
@@ -140,6 +150,7 @@ export async function POST(request) {
       state: data.get("state"),
       type: data.get("type"),
       subtype: data.get("subtype"),
+      user: data.get("user"),
       image: res.secure_url,
     });
 

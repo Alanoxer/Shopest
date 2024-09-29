@@ -4,7 +4,15 @@ import { conn } from "@/libs/mysql";
 export async function GET(request) {
   try {
     const email = request.nextUrl.searchParams.get("email");
-    console.log(email);
+    const id = request.nextUrl.searchParams.get("id");
+
+    if (id) {
+      const userResult = await conn.query(
+        `SELECT name, email, number_phone, description, createdAt FROM user WHERE id = ?`,
+        [id]
+      );
+      return NextResponse.json(userResult[0][0]);
+    }
 
     const result = await conn.query(
       `SELECT name, email, number_phone, description, createdAt FROM user WHERE email = ?`,

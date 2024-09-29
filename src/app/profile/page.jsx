@@ -7,6 +7,7 @@ import Profile from "../components/Profile"
 
 export default function ProfilePage(){
   const [user, setUser] = useState()
+  const [userProducts, setUserProducts] = useState()
   const {data: session, status} = useSession()
   console.log(session, status)
 
@@ -23,18 +24,27 @@ export default function ProfilePage(){
         setUser(userFound.data)
         console.log(userFound.data)
     }
+
+    const getUserProducts = async()=>{
+      const productsUser = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
+        {
+          params:{
+            email : email
+          }
+        }
+        );
+        setUserProducts(productsUser.data)
+        console.log(productsUser.data)
+    }
     if(email)
     getUser()
+    getUserProducts()
 
-  
   }, [])
-  //  const fecha = user?.createdAt
-  //  const date = new Date(`${fecha}`)
-  //  console.log(date)
 
     if(user !== null && session !== null )
     return (
-      <Profile user={user}/>
+      <Profile user={user} userProducts={userProducts}/>
     ) 
     else return (<>Cargando...</>)
 }

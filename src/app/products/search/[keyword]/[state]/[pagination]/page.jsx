@@ -2,30 +2,29 @@ import axios from "axios";
 import SearchResults from "@/app/components/SearchResults";
 
 
-async function LoadProducts(keyword, pagination){
+async function LoadProducts(keyword, state, pagination){
   
-  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products/query`,
+  const products = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
   {
     params:{
-      keyword : keyword,
+      query : keyword,
+      state: state,
       pagination : pagination
     }
   }
   )
   const {data} = products
-  console.log(data[0])
-
   if(data){
        return data[0]
-        }
+  }
 
 }
 
 export const dynamic = 'force-dynamic'
 
 async function QueryPage({params}) {
-  const {keyword, pagination} = params
-  const products = await LoadProducts(keyword, pagination)
+  const {keyword, state, pagination} = params
+  const products = await LoadProducts(keyword, state, pagination)
 
   return(
   <>

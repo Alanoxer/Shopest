@@ -2,6 +2,25 @@ import { conn } from "@/libs/mysql";
 import SingleProduct from "@/app/components/SingleProduct";
 import axios from "axios";
 
+//single product
+async function loadProduct(id) {
+
+  const userData = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
+    {
+      params:{
+        id: id
+      }
+    }
+    )
+    const {data} = userData
+  
+    if(data){
+         return data
+    }
+  
+}
+
+//seller
 async function sellerProduct(user){
   
   const userData = await axios.get(`https://shopest-lyart.vercel.app/api/users`,
@@ -12,7 +31,6 @@ async function sellerProduct(user){
   }
   )
   const {data} = userData
-  console.log(data)
 
   if(data){
        return data
@@ -20,26 +38,19 @@ async function sellerProduct(user){
 
 }
 
-async function loadProduct(id) {
-  
-  const data = await conn.query(`SELECT * FROM product WHERE id = ?`,
-  [id]);
-  console.log(data[0][0])
-  return data[0][0];
-}
-
+//related products
 async function RelatedProducts(types){
   
   const products = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
   {
     params:{
       types : types,
+      state: "cualquiera",
       pagination: 0
     }
   }
   )
   const {data} = products
-  console.log(data[0])
 
   if(data){
        return data[0]

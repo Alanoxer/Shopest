@@ -11,6 +11,8 @@ export async function GET(request) {
     const subtype = request.nextUrl.searchParams.get("subtype");
     const email = request.nextUrl.searchParams.get("email");
     const state = request.nextUrl.searchParams.get("state");
+    const id = request.nextUrl.searchParams.get("id");
+    const query = request.nextUrl.searchParams.get("query");
 
     //home page
     if (limit) {
@@ -37,19 +39,43 @@ export async function GET(request) {
       }
     }
 
+    //id product
+    else if (id) {
+      const idResult = await conn.query(`SELECT * FROM product WHERE id = ?`, [
+        id,
+      ]);
+      return NextResponse.json(idResult[0][0]);
+    }
+
+    //query
+    else if (query) {
+      if (state != "cualquiera") {
+        const queryResults = await conn.query(
+          `SELECT * FROM product WHERE name LIKE ? AND state = ? LIMIT 2 OFFSET ?`,
+          [query, state, pagination * 2]
+        );
+        return NextResponse.json(queryResults);
+      } else {
+        const queryResults = await conn.query(
+          `SELECT * FROM product WHERE name LIKE ? LIMIT 2 OFFSET ?`,
+          [query, pagination * 2]
+        );
+        return NextResponse.json(queryResults);
+      }
+    }
+
     // user products
     else if (email) {
       const userResults = await conn.query(
         `SELECT * FROM product WHERE user = ?`,
         [email]
       );
-      console.log(userResults[0]);
       return NextResponse.json(userResults[0]);
     }
 
     // types
     else if (types) {
-      if (state != "cualquiera" || !state) {
+      if (state != "cualquiera") {
         const results = await conn.query(
           `SELECT * FROM product WHERE type = ? AND state = ? LIMIT 2 OFFSET ?`,
           [types, state, pagination * 2]

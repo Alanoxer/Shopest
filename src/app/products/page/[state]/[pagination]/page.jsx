@@ -10,9 +10,7 @@ async function LoadProducts(pagination, state){
         }
       }
       )
-
       const {data} = products
-
       if(data){
         return data[0]
       }

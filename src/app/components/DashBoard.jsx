@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 const usePath = ()=>{
     const pathName = usePathname()
     const params = useParams()
-    if(pathName === `/products/page/${params.state}/${params.pagination}`){
+    if(pathName === `/products/page/${params.state}/${params.pagination}` || pathName === `/products/search/${params.keyword}/${params.state}/${params.pagination}`){
         return (
             [
                 {name :'Electrónica', link: `/products/type/electronics/cualquiera/0`},
@@ -103,14 +103,14 @@ const CheckBox = ()=>{
     const pathname = ()=>{
         return(
             p === `/products/page/${params.state}/${params.pagination}` ? `/products/page/${params.state}/${params.pagination}` : null ||
-            p === `/products/type/${params.types}/${params.state}/${params.pagination}` ? `/products/type/${params.types}/${params.state}/${params.pagination}` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` : null
+            p === `/products/type/${params.types}/${params.state}/${params.pagination}` ? `/products/type/${params.types}/${params.state}/${params.pagination}` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` : null ||  p === `/products/search/${params.keyword}/${params.state}/${params.pagination}` ? `/products/search/${params.keyword}/${params.state}/${params.pagination}` : null 
         )
     }
 
     const linkname = ()=>{
         return(
             p === `/products/page/${params.state}/${params.pagination}` ? `/products/page/` : null ||
-            p === `/products/type/${params.types}/${params.state}/${params.pagination}` ? `/products/type/${params.types}/` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/` : null
+            p === `/products/type/${params.types}/${params.state}/${params.pagination}` ? `/products/type/${params.types}/` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/` : null || p === `/products/search/${params.keyword}/${params.state}/${params.pagination}` ? `/products/search/${params.keyword}/` : null
         )
     }
 
@@ -119,7 +119,8 @@ const CheckBox = ()=>{
     const link = linkname()
 
     if(pathName){
-    return(
+    return(<>
+        <Label>Estado del producto:</Label>
         <RadioGroup defaultValue={params.state}>
             <div className="flex items-center space-x-2">
                 <Link href={`${link}cualquiera/0`}>
@@ -140,6 +141,7 @@ const CheckBox = ()=>{
                 <Label htmlFor="r3">Usado</Label>
             </div>
          </RadioGroup>
+         </>
         )} else return null
 }
 
@@ -158,7 +160,6 @@ const DashBoard = ()=>{
                 }
 
                 <CheckBox/>
-
             </aside>
 
             </>

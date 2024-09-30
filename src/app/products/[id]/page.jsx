@@ -28,12 +28,12 @@ async function loadProduct(id) {
   return data[0][0];
 }
 
-async function RelatedProducts(type){
+async function RelatedProducts(types){
   
   const products = await axios.get(`https://shopest-lyart.vercel.app/api/products`,
   {
     params:{
-      type : type,
+      types : types,
       pagination: 0
     }
   }

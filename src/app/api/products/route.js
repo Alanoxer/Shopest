@@ -10,7 +10,6 @@ export async function GET(request) {
     const types = request.nextUrl.searchParams.get("types");
     const subtype = request.nextUrl.searchParams.get("subtype");
     const email = request.nextUrl.searchParams.get("email");
-
     const state = request.nextUrl.searchParams.get("state");
 
     //home page
@@ -50,7 +49,7 @@ export async function GET(request) {
 
     // types
     else if (types) {
-      if (state != "cualquiera") {
+      if (state != "cualquiera" && !state) {
         const results = await conn.query(
           `SELECT * FROM product WHERE type = ? AND state = ? LIMIT 2 OFFSET ?`,
           [types, state, pagination * 2]
@@ -161,6 +160,7 @@ export async function POST(request) {
       state: data.get("state"),
       type: data.get("type"),
       subtype: data.get("subtype"),
+      user: data.get("user"),
       id: result.insertId,
     });
   } catch (error) {

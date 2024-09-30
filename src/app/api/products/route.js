@@ -49,7 +49,7 @@ export async function GET(request) {
 
     // types
     else if (types) {
-      if (state != "cualquiera" && !state) {
+      if (state != "cualquiera" || !state) {
         const results = await conn.query(
           `SELECT * FROM product WHERE type = ? AND state = ? LIMIT 2 OFFSET ?`,
           [types, state, pagination * 2]

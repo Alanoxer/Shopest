@@ -63,7 +63,7 @@ export default function SingleProduct({product, relatedProducts, seller}) {
               <span className="text-3xl font-bold">${product.price}</span> 
             </div>
             <div className="rounded-md w-full justify-center mt-1">
-              <Link href={`/profile/user/1`} className="bg-neutral-900 text-neutral-50 shadow hover:bg-neutral-900/90 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90 p-2 rounded-md w-full">Contactar con el vendedor</Link>
+              <Link href={`/profile/user/${seller.id}`} className="bg-neutral-900 text-neutral-50 shadow hover:bg-neutral-900/90 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90 p-2 rounded-md w-full">Contactar con el vendedor</Link>
             </div>
 
             {/* Product Details */}
@@ -106,17 +106,19 @@ export default function SingleProduct({product, relatedProducts, seller}) {
           <h2 className="text-xl font-bold mb-4">Productos relacionados</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {relatedProducts.map((relatedProduct) => (
-              <Card key={relatedProduct.id}>
-                <CardContent className="p-4">
-                  <img src={relatedProduct.image} alt={relatedProduct.name} className="w-full h-92 object-cover mb-4" />
-                  <h3 className="font-semibold text-lg">{relatedProduct.name}</h3>
-                  <p className="text-lg font-bold">${relatedProduct.price}</p>
-                  <p className="text-md text-gray-500 truncate">{relatedProduct.description}</p>
-                  <div className="p-2 rounded-md w-full justify-center mt-1">
-                    <Link href={`/products/${relatedProduct.id}`} className="bg-neutral-900 text-neutral-50 shadow hover:bg-neutral-900/90 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90 p-2 rounded-md w-full">Ver Producto</Link>
+            <Link href={`/products/${relatedProduct.id}`} key={relatedProduct.id}>
+              <Card>
+                <CardContent className="p-4 hover:bg-slate-200 hover:rounded-md">
+                  <img src={relatedProduct.image} alt={relatedProduct.name} className="w-full h-auto mb-2 rounded-sm mb-2" />
+                  <div className="flex flex-row justify-between mx-1">
+                    <p className="font-semibold">{relatedProduct.name}</p>
+                    <p className="font-semibold">{relatedProduct.price ? relatedProduct.price : "Precio no definido"}</p>
                   </div>
+                  <p className="text-sm mx-1 text-gray-500 truncate">{relatedProduct.description}</p>
+                  {/* <Button onClick={addToCart} className="w-full mt-2">Agregar al carrito</Button> */}
                 </CardContent>
               </Card>
+            </Link>
             ))}
           </div>
         </div>

@@ -8,14 +8,14 @@ export async function GET(request) {
 
     if (id) {
       const userResult = await conn.query(
-        `SELECT name, email, number_phone, description, createdAt FROM user WHERE id = ?`,
+        `SELECT  name, email, number_phone, description, createdAt FROM user WHERE id = ?`,
         [id]
       );
       return NextResponse.json(userResult[0][0]);
     }
 
     const result = await conn.query(
-      `SELECT name, email, number_phone, description, createdAt FROM user WHERE email = ?`,
+      `SELECT id, name, email, number_phone, description, createdAt FROM user WHERE email = ?`,
       [email]
     );
 

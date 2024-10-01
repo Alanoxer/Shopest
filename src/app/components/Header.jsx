@@ -2,8 +2,8 @@
 import Link from "next/link"
 import Searcher from "./Search"
 import { useSession, signOut } from "next-auth/react";
-import { Button, buttonVariants  } from "@/components/ui/button";
-import { ShoppingCart, User, Bell, MapPin, ChevronDown } from "lucide-react"
+import {  buttonVariants  } from "@/components/ui/button";
+import { ShoppingCart, User, Bell } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,11 +14,7 @@ import {
 
 
 export default function Header(){
-  const {data: session, status} = useSession()
-
-  console.log(session,status)
-
-  // const router = useRouter()
+  const { status} = useSession()
     
   return (
     <header className="bg-purple-700 py-2 px-4 sm:px-6 lg:px-8">

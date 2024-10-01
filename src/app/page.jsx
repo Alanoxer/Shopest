@@ -42,11 +42,9 @@ export default function HomePage(){
         }
         );
         setHomeProducts(productFound.data[0])
-        console.log(productFound.data[0])
     }
     getProducts()
   }, [])
-  console.log(homeProducts)
 
     // const [cartItems, setCartItems] = useState(0)
     // const { toast } = useToast()

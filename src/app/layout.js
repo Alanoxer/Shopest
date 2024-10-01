@@ -17,11 +17,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Providers>
           <Header />
-        </Providers>
 
-        <main>
-          <Providers>{children}</Providers>
-        </main>
+          <main>{children}</main>
+        </Providers>
 
         <Footer />
       </body>

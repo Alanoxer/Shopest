@@ -77,13 +77,18 @@ export default function LoginPage(){
             </div>
             <div className="mt-6 grid grid-cols-2 gap-4">
               <Button onClick={async()=>{
-                signIn("google")
+                const result = await signIn("facebook",{
+                  redirect: false,
+                })
+                console.log(result)
               }} className="bg-blue-600 hover:text-blue-600 " variant="outline" type="button"> 
                   <Facebook className="mr-2 h-4 w-4 text-white " />
                     Facebook
               </Button>
               <Button onClick={async()=>{
-                const result = await signIn("google")
+                const result = await signIn("google",{
+                  redirect: false,
+                })
                 console.log(result)
               }}
               variant="outline" type="button">

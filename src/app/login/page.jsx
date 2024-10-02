@@ -78,7 +78,7 @@ export default function LoginPage(){
             <div className="mt-6 grid grid-cols-2 gap-4">
               <Button onClick={async()=>{
                 const result = await signIn("facebook",{
-                  redirect: false,
+                  callbackUrl: `${window.location.origin}`
                 })
                 console.log(result)
               }} className="bg-blue-600 hover:text-blue-600 " variant="outline" type="button"> 

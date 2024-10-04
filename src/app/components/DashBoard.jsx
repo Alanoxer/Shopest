@@ -102,8 +102,8 @@ const CheckBox = ()=>{
     const params = useParams()
     const pathname = ()=>{
         return(
-            p === `/products/page/${params.state}/${params.pagination}` ? `/products/page/${params.state}/${params.pagination}` : null ||
-            p === `/products/type/${params.types}/${params.state}/${params.pagination}` ? `/products/type/${params.types}/${params.state}/${params.pagination}` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` : null ||  p === `/products/search/${params.keyword}/${params.state}/${params.pagination}` ? `/products/search/${params.keyword}/${params.state}/${params.pagination}` : null 
+            p === `/products/page/${params.state}/${params.orderby}/${params.pagination}` ? `/products/page/${params.state}/${params.orderby}/${params.pagination}` : null ||
+            p === `/products/type/${params.types}/${params.state}/${params.orderby}/${params.pagination}` ? `/products/type/${params.types}/${params.state}/${params.orderby}/${params.pagination}` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.orderby}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/${params.state}/${params.orderby}/${params.pagination}` : null ||  p === `/products/search/${params.keyword}/${params.state}/${params.orderby}/${params.pagination}` ? `/products/search/${params.keyword}/${params.state}/${params.orderby}/${params.pagination}` : null 
         )
     }
 
@@ -123,19 +123,19 @@ const CheckBox = ()=>{
         <Label>Estado del producto:</Label>
         <RadioGroup defaultValue={params.state}>
             <div className="flex items-center space-x-2">
-                <Link href={`${link}cualquiera/0`}>
+                <Link href={`${link}cualquiera/createdAt/0`}>
                     <RadioGroupItem value="cualquiera" id="r1" />
                 </Link>
                 <Label htmlFor="r1">Cualquiera</Label>
             </div>
             <div className="flex items-center space-x-2">
-                <Link href={`${link}nuevo/0`}>
+                <Link href={`${link}nuevo/createdAt/0`}>
                     <RadioGroupItem value="nuevo" id="r2" />
                 </Link>
                  <Label htmlFor="r2">Nuevo</Label>
             </div>
             <div className="flex items-center space-x-2">
-                <Link href={`${link}usado/0`}>
+                <Link href={`${link}usado/createdAt/0`}>
                     <RadioGroupItem value="usado" id="r3" />
                 </Link>
                 <Label htmlFor="r3">Usado</Label>

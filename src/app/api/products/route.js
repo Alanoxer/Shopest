@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import cloudinary from "@/libs/cloudinary";
 import { processImage } from "@/libs/processImage";
 import { conn } from "@/libs/mysql";
@@ -13,6 +13,8 @@ export async function GET(request) {
     const state = request.nextUrl.searchParams.get("state");
     const id = request.nextUrl.searchParams.get("id");
     const query = request.nextUrl.searchParams.get("query");
+    const orderby = request.nextUrl.searchParams.get("orderby");
+    console.log(orderby);
 
     //home page
     if (limit) {
@@ -23,17 +25,17 @@ export async function GET(request) {
     }
 
     //marketplace(all)
-    else if (state) {
+    else if ((state, orderby)) {
       if (state != "cualquiera") {
         const results = await conn.query(
-          `SELECT * FROM product WHERE state = ? LIMIT 2 OFFSET ?`,
-          [state, pagination * 2]
+          `SELECT * FROM product WHERE state = ? ORDER BY ? ASC LIMIT 3 OFFSET ?`,
+          [state, orderby, pagination * 2]
         );
         return NextResponse.json(results);
       } else {
         const results = await conn.query(
-          `SELECT * FROM product LIMIT 2 OFFSET ?`,
-          [pagination * 2]
+          `SELECT * FROM product ORDER BY ? ASC LIMIT 3 OFFSET ?`,
+          [orderby, pagination * 2]
         );
         return NextResponse.json(results);
       }
@@ -51,14 +53,14 @@ export async function GET(request) {
     else if (query) {
       if (state != "cualquiera") {
         const queryResults = await conn.query(
-          `SELECT * FROM product WHERE name LIKE ? AND state = ? LIMIT 2 OFFSET ?`,
-          [query, state, pagination * 2]
+          `SELECT * FROM product WHERE name LIKE ? AND state = ? ORDER BY ? ASC LIMIT 2 OFFSET ?`,
+          [query, state, orderby, pagination * 2]
         );
         return NextResponse.json(queryResults);
       } else {
         const queryResults = await conn.query(
-          `SELECT * FROM product WHERE name LIKE ? LIMIT 2 OFFSET ?`,
-          [query, pagination * 2]
+          `SELECT * FROM product WHERE name LIKE ? ORDER BY ? ASC LIMIT 2 OFFSET ?`,
+          [query, orderby, pagination * 2]
         );
         return NextResponse.json(queryResults);
       }
@@ -77,14 +79,14 @@ export async function GET(request) {
     else if (types) {
       if (state != "cualquiera") {
         const results = await conn.query(
-          `SELECT * FROM product WHERE type = ? AND state = ? LIMIT 2 OFFSET ?`,
-          [types, state, pagination * 2]
+          `SELECT * FROM product WHERE type = ? AND state = ? ORDER BY ? ASC LIMIT 2 OFFSET ?`,
+          [types, state, orderby, pagination * 2]
         );
         return NextResponse.json(results);
       } else {
         const results = await conn.query(
-          `SELECT * FROM product WHERE type = ? LIMIT 2 OFFSET ?`,
-          [types, pagination * 2]
+          `SELECT * FROM product WHERE type = ? ORDER BY ? ASC LIMIT 2 OFFSET ?`,
+          [types, orderby, pagination * 2]
         );
         return NextResponse.json(results);
       }
@@ -94,14 +96,14 @@ export async function GET(request) {
     else if (subtype) {
       if (state != "cualquiera") {
         const results = await conn.query(
-          `SELECT * FROM product WHERE subtype = ? AND state = ? LIMIT 2 OFFSET ?`,
-          [subtype, state, pagination * 2]
+          `SELECT * FROM product WHERE subtype = ? AND state = ? ORDER BY ? ASC LIMIT 2 OFFSET ?`,
+          [subtype, state, orderby, pagination * 2]
         );
         return NextResponse.json(results);
       } else {
         const results = await conn.query(
-          `SELECT * FROM product WHERE subtype = ? LIMIT 2 OFFSET ?`,
-          [subtype, pagination * 2]
+          `SELECT * FROM product WHERE subtype = ? ORDER BY ? ASC LIMIT 2 OFFSET ?`,
+          [subtype, orderby, pagination * 2]
         );
         return NextResponse.json(results);
       }

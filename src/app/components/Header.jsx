@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 
-
 export default function Header(){
   const { status} = useSession()
     

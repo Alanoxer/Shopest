@@ -59,7 +59,6 @@ export default function ProductForm() {
   const form = useRef(null);
   const router = useRouter();
   const pathname = usePathname();
-  console.log(pathname)
   const [productType, setProductType] = useState('')
   const [productSubType, setProductSubType] = useState('')
   const [images, setImages] = useState()
@@ -74,10 +73,10 @@ export default function ProductForm() {
   const articlesTypes = useTypes()
 
   const subTypes = {
-    electronics: ['Teclado', 'Pantalla', 'Mouse', 'Laptop', 'Smartphone'],
-    furniture: ['Silla', 'Mesa', 'Sofá', 'Cama', 'Armario'],
-    clothing: ['Camiseta', 'Pantalón', 'Vestido', 'Chaqueta', 'Zapatos'],
-    books: ['Ficción', 'No ficción', 'Educativo', 'Infantil', 'Cómic'],
+    Electrónica: ['Teclado', 'Pantalla', 'Mouse', 'Laptop', 'Smartphone'],
+    Muebles: ['Silla', 'Mesa', 'Sofá', 'Cama', 'Armario'],
+    Ropa: ['Camiseta', 'Pantalón', 'Vestido', 'Chaqueta', 'Zapatos'],
+    Libros: ['Ficción', 'No ficción', 'Educativo', 'Infantil', 'Cómic'],
   }
 
   const handleChange = (e) => {

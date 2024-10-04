@@ -7,58 +7,58 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 const usePath = ()=>{
     const pathName = usePathname()
     const params = useParams()
-    if(pathName === `/products/page/${params.state}/${params.pagination}` || pathName === `/products/search/${params.keyword}/${params.state}/${params.pagination}`){
+    if(pathName === `/products/page/${params.state}/${params.orderby}/${params.pagination}` || pathName === `/products/search/${params.keyword}/${params.state}/${params.orderby}/${params.pagination}`){
         return (
             [
-                {name :'Electrónica', link: `/products/type/electronics/cualquiera/0`},
-                {name :'Muebles', link: `/products/type/muebles/cualquiera/0`},
-                {name :'Ropa', link: `/products/type/ropa/cualquiera/0`},
-                {name :'Libros', link: `/products/type/libros/cualquiera/0`},
-                {name :'Otro', link: `/products/type/otro/cualquiera/0`}
+                {name :'Electrónica', link: `/products/type/electronics/cualquiera/createdAt/0`},
+                {name :'Muebles', link: `/products/type/muebles/cualquiera/createdAt/0`},
+                {name :'Ropa', link: `/products/type/ropa/cualquiera/createdAt/0`},
+                {name :'Libros', link: `/products/type/libros/cualquiera/createdAt/0`},
+                {name :'Otro', link: `/products/type/otro/cualquiera/createdAt/0`}
             ]
         )
     }
-    else if(pathName === `/products/type/electronics/${params.state}/${params.pagination}`){
+    else if(pathName === `/products/type/electronics/${params.state}/${params.orderby}/${params.pagination}`){
         return (
             [
-                {name :'Teclado', link: `/products/subtype/teclado/cualquiera/0`},
-                {name :'Pantalla', link: `/products/subtype/pantalla/cualquiera/0`},
-                {name :'Mouse', link: `/products/subtype/pouse/cualquiera/0`},
-                {name :'Smartphone', link: `/products/subtype/smartphone/cualquiera/0`},
-                {name :'Laptop', link: `/products/subtype/laptop/cualquiera/0`}
+                {name :'Teclado', link: `/products/subtype/teclado/cualquiera/createdAt/0`},
+                {name :'Pantalla', link: `/products/subtype/pantalla/cualquiera/createdAt/0`},
+                {name :'Mouse', link: `/products/subtype/pouse/cualquiera/createdAt/0`},
+                {name :'Smartphone', link: `/products/subtype/smartphone/cualquiera/createdAt/0`},
+                {name :'Laptop', link: `/products/subtype/laptop/cualquiera/createdAt/0`}
             ]
         )
     }
-    else if(pathName === `/products/type/muebles/${params.state}/${params.pagination}`){
+    else if(pathName === `/products/type/muebles/${params.state}/${params.orderby}/${params.pagination}`){
         return (
             [
-                {name :'Sillas', link: `/products/subtype/Sillas/cualquiera/0`},
-                {name :'Mesas', link: `/products/subtype/Mesas/cualquiera/0`},
-                {name :'Estantes', link: `/products/subtype/Estantes/cualquiera/0`},
-                {name :'Escritorios', link: `/products/subtype/Escritorios/cualquiera/0`},
-                {name :'Sillones', link: `/products/subtype/Sillones/cualquiera/0`}
+                {name :'Sillas', link: `/products/subtype/Sillas/cualquiera/createdAt/0`},
+                {name :'Mesas', link: `/products/subtype/Mesas/cualquiera/createdAt/0`},
+                {name :'Estantes', link: `/products/subtype/Estantes/cualquiera/createdAt/0`},
+                {name :'Escritorios', link: `/products/subtype/Escritorios/cualquiera/createdAt/0`},
+                {name :'Sillones', link: `/products/subtype/Sillones/cualquiera/createdAt/0`}
             ]
         )   
     }
-    else if(pathName === `/products/type/ropa/${params.state}/${params.pagination}`){
+    else if(pathName === `/products/type/ropa/${params.state}/${params.orderby}/${params.pagination}`){
         return (
             [
-                {name :'Camisas', link: `/products/subtype/Camisas/cualquiera/0`},
-                {name :'Pantalones', link: `/products/subtype/Pantalones/cualquiera/0`},
-                {name :'Remera', link: `/products/subtype/Remera/cualquiera/0`},
-                {name :'Busos', link: `/products/subtype/Busos/cualquiera/0`},
-                {name :'Zapatillas', link: `/products/subtype/Zapatillas/cualquiera/0`}
+                {name :'Camisas', link: `/products/subtype/Camisas/cualquiera/createdAt/0`},
+                {name :'Pantalones', link: `/products/subtype/Pantalones/cualquiera/createdAt/0`},
+                {name :'Remera', link: `/products/subtype/Remera/cualquiera/createdAt/0`},
+                {name :'Busos', link: `/products/subtype/Busos/cualquiera/createdAt/0`},
+                {name :'Zapatillas', link: `/products/subtype/Zapatillas/cualquiera/createdAt/0`}
             ]
         )
     }
-    else if(pathName === `/products/type/libros/${params.state}/${params.pagination}`){
+    else if(pathName === `/products/type/libros/${params.state}/${params.orderby}/${params.pagination}`){
         return (
             [
-                {name :'Ciencia Ficción', link: `/products/subtype/cienciaficción/cualquiera/0`},
-                {name :'Educativos', link: `/products/subtype/Educativos/cualquiera/0`},
-                {name :'Historia', link: `/products/subtype/Historia/cualquiera/0`},
-                {name :'Matemáticas', link: `/products/subtype/Matemáticas/cualquiera/0`},
-                {name :'Biblias', link: `/products/subtype/Biblias/cualquiera/0`}
+                {name :'Ciencia Ficción', link: `/products/subtype/cienciaficción/cualquiera/createdAt/0`},
+                {name :'Educativos', link: `/products/subtype/Educativos/cualquiera/createdAt/0`},
+                {name :'Historia', link: `/products/subtype/Historia/cualquiera/createdAt/0`},
+                {name :'Matemáticas', link: `/products/subtype/Matemáticas/cualquiera/createdAt/0`},
+                {name :'Biblias', link: `/products/subtype/Biblias/cualquiera/createdAt/0`}
             ]
         )
     }
@@ -102,15 +102,21 @@ const CheckBox = ()=>{
     const params = useParams()
     const pathname = ()=>{
         return(
-            p === `/products/page/${params.state}/${params.orderby}/${params.pagination}` ? `/products/page/${params.state}/${params.orderby}/${params.pagination}` : null ||
-            p === `/products/type/${params.types}/${params.state}/${params.orderby}/${params.pagination}` ? `/products/type/${params.types}/${params.state}/${params.orderby}/${params.pagination}` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.orderby}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/${params.state}/${params.orderby}/${params.pagination}` : null ||  p === `/products/search/${params.keyword}/${params.state}/${params.orderby}/${params.pagination}` ? `/products/search/${params.keyword}/${params.state}/${params.orderby}/${params.pagination}` : null 
+            p === `/products/page/${params.state}/${params.orderby}/${params.pagination}` 
+            ? `/products/page/${params.state}/${params.orderby}/${params.pagination}` : null ||
+            p === `/products/type/${params.types}/${params.state}/${params.orderby}/${params.pagination}` 
+            ? `/products/type/${params.types}/${params.state}/${params.orderby}/${params.pagination}` : null || 
+            p === `/products/subtype/${params.subtype}/${params.state}/${params.orderby}/${params.pagination}` 
+            ? p === `/products/subtype/${params.subtype}/${params.state}/${params.orderby}/${params.pagination}` : null ||  
+            p === `/products/search/${params.keyword}/${params.state}/${params.orderby}/${params.pagination}` 
+            ? `/products/search/${params.keyword}/${params.state}/${params.orderby}/${params.pagination}` : null 
         )
     }
 
     const linkname = ()=>{
         return(
-            p === `/products/page/${params.state}/${params.pagination}` ? `/products/page/` : null ||
-            p === `/products/type/${params.types}/${params.state}/${params.pagination}` ? `/products/type/${params.types}/` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/` : null || p === `/products/search/${params.keyword}/${params.state}/${params.pagination}` ? `/products/search/${params.keyword}/` : null
+            p === `/products/page/${params.state}/${params.orderby}/${params.pagination}` ? `/products/page/` : null ||
+            p === `/products/type/${params.types}/${params.state}/${params.orderby}/${params.pagination}` ? `/products/type/${params.types}/` : null || p === `/products/subtype/${params.subtype}/${params.state}/${params.orderby}/${params.pagination}` ? p === `/products/subtype/${params.subtype}/` : null || p === `/products/search/${params.keyword}/${params.state}/${params.orderby}/${params.pagination}` ? `/products/search/${params.keyword}/` : null
         )
     }
 

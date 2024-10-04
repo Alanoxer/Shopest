@@ -1,18 +1,27 @@
 "use client"
 import Link from "next/link"
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { ChevronDown } from "lucide-react"
+import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-  import { buttonVariants } from "@/components/ui/button"
+  import { Button, buttonVariants } from "@/components/ui/button"
   import { useParams, usePathname } from "next/navigation"
+  import { useRouter } from "next/navigation"
   
 export default function HeadResults(){
     const params = useParams()
     const p = usePathname()
+    const router = useRouter()
     return(
             <div className="flex justify-between items-center mb-4">
               <h1 className="text-2xl font-bold">
@@ -35,44 +44,84 @@ export default function HeadResults(){
                 p === `/community/page/${params.pagination}` ? `Publica un artículo en tu ciudad` : "Publica un producto para vender en tu ciudad"}
               </Link>
 
-            {
-            (<Select>
+            <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="sm">
+                Ordenar por <ChevronDown className=" h-4 w-10" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem >
+              <Link href={
+                    p === `/products/page/${params.state}/price/${params.pagination}` 
+                    ? `/products/page/${params.state}/createdAt/${params.pagination}` : null ||
+                    p === `/products/type/${params.types}/${params.state}/price/${params.pagination}` 
+                    ? `/products/type/${params.types}/${params.state}/createdAt/${params.pagination}` : null || 
+                    p === `/products/subtype/${params.subtype}/${params.state}/$price/${params.pagination}` 
+                    ? `/products/subtype/${params.subtype}/${params.state}/createdAt/${params.pagination}` : null ||  
+                    p === `/products/search/${params.keyword}/${params.state}/price/${params.pagination}` 
+                    ? `/products/search/${params.keyword}/${params.state}/createdAt/${params.pagination}` 
+                    : ""}
+                    >
+                        Más Reciente
+              </Link>
+              </DropdownMenuItem>
+              
+              <DropdownMenuItem>
+              <Link href={
+                        p === `/products/page/${params.state}/createdAt/${params.pagination}` 
+                        ? `/products/page/${params.state}/price/${params.pagination}` : null ||
+                        p === `/products/type/${params.types}/${params.state}/createdAt/${params.pagination}` 
+                        ? `/products/type/${params.types}/${params.state}/price/${params.pagination}` : null || 
+                        p === `/products/subtype/${params.subtype}/${params.state}/createdAt/${params.pagination}` 
+                        ?`/products/subtype/${params.subtype}/${params.state}/price/${params.pagination}` : null ||  
+                        p === `/products/search/${params.keyword}/${params.state}/createdAt/${params.pagination}` 
+                        ? `/products/search/${params.keyword}/${params.state}/price/${params.pagination}` : ""}
+                    >
+                        Menor Precio
+                    </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+            </DropdownMenu>
+            
+            {/* <Select>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Ordenar por" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Mas reciente">
+                  <SelectItem className="items-center">
                     <Link href={
-                    p === `/products/page/${params.state}/${params.orderby}/${params.pagination}` 
+                    p === `/products/page/${params.state}/price/${params.pagination}` 
                     ? `/products/page/${params.state}/createdAt/${params.pagination}` : null ||
-                    p === `/products/type/${params.types}/${params.state}/${params.orderby}/${params.pagination}` 
-                    ? `/products/type/${params.types}/${params.state}/createdAt/${params.pagination}` : null || 
-                    p === `/products/subtype/${params.subtype}/${params.state}/${params.orderby}/${params.pagination}` 
+                    p === `/products/type/${params.types}/${params.state}/price/${params.pagination}` 
+                    ? `/products/type/${params.ty pes}/${params.state}/createdAt/${params.pagination}` : null || 
+                    p === `/products/subtype/${params.subtype}/${params.state}/$price/${params.pagination}` 
                     ? `/products/subtype/${params.subtype}/${params.state}/createdAt/${params.pagination}` : null ||  
-                    p === `/products/search/${params.keyword}/${params.state}/${params.orderby}${params.pagination}` 
+                    p === `/products/search/${params.keyword}/${params.state}/price/${params.pagination}` 
                     ? `/products/search/${params.keyword}/${params.state}/createdAt/${params.pagination}` 
                     : "#"}
                     >
                         Más Reciente
                     </Link>
+                  
                   </SelectItem>
                   <SelectItem value="price_asc">
                     <Link href={
-                        p === `/products/page/${params.state}/${params.orderby}/${params.pagination}` 
+                        p === `/products/page/${params.state}/createdAt/${params.pagination}` 
                         ? `/products/page/${params.state}/price/${params.pagination}` : null ||
-                        p === `/products/type/${params.types}/${params.state}/${params.orderby}/${params.pagination}` 
+                        p === `/products/type/${params.types}/${params.state}/createdAt/${params.pagination}` 
                         ? `/products/type/${params.types}/${params.state}/price/${params.pagination}` : null || 
-                        p === `/products/subtype/${params.subtype}/${params.state}/${params.orderby}/${params.pagination}` 
+                        p === `/products/subtype/${params.subtype}/${params.state}/createdAt/${params.pagination}` 
                         ?`/products/subtype/${params.subtype}/${params.state}/price/${params.pagination}` : null ||  
-                        p === `/products/search/${params.keyword}/${params.state}/${params.orderby}${params.pagination}` 
+                        p === `/products/search/${params.keyword}/${params.state}/createdAt/${params.pagination}` 
                         ? `/products/search/${params.keyword}/${params.state}/price/${params.pagination}` : "#"}
                     >
                         Menor Precio
                     </Link>
                   </SelectItem>
                 </SelectContent>
-            </Select>)
-            }
+            </Select>
+             */}
             </div>
     )
 }

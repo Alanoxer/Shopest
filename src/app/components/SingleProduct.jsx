@@ -1,6 +1,5 @@
 'use client'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from 'next/image'
@@ -30,7 +29,7 @@ export default function SingleProduct({product, relatedProducts, seller}) {
             <div className="relative mx-auto justify-center">
               <Image src={product.image} height={200} width={600}
                 // [currentImage]} 
-              alt={product.name} className=" justify-center mx-auto" />
+              alt={product.name} className=" rounded-sm border-2 justify-center mx-auto" />
               
               <Button variant="default" size="icon" className="absolute top-1/2 left-4 transform -translate-y-1/2" 
               // onClick={prevImage}

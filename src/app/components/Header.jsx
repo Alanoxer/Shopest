@@ -16,14 +16,14 @@ export default function Header(){
   const { status} = useSession()
     
   return (
-    <header className="bg-purple-700 py-2 px-4 sm:px-6 lg:px-8">
+    <header className="bg-indigo-600 py-2 px-4 sm:px-6 lg:px-8">
 
     <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between">
       <div className="flex items-center mb-2 sm:mb-0">
         <Link className="mr-12" href="/" rel="home">
         <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="60"
+                width="80"
                 height="45"
                 viewBox="0 0 1024 1024"
                 className="mr-4"

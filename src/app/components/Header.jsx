@@ -23,7 +23,7 @@ export default function Header(){
         <Link className="mr-12" href="/" rel="home">
         <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="50"
+                width="60"
                 height="45"
                 viewBox="0 0 1024 1024"
                 className="mr-4"

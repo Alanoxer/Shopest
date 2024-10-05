@@ -41,7 +41,7 @@ async function LoadProducts(){
     }
 }
 
- 
+
 export default async function HomePage(){
   const products = await LoadProducts()
 
@@ -80,15 +80,15 @@ export default async function HomePage(){
         </div>
       </section>
 
-      {/* Categories */}
+      {/* Categorias de compra/venta */}
       <section>
         <h2 className="text-xl font-semibold mb-4">Categorías populares de Compra/Venta</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {['Autos', 'Tecnología', 'Electrodomésticos', 'Hogar y Muebles', 'Moda', 'Deportes y Fitness'].map((category) => (
-            <Link href={`/products/type/${category}/cualquiera/0`} key={category} className=" hover:bg-purple-700">
+            <Link href={`/products/type/${category}/cualquiera/createdAt/0`} key={category} className=" hover:bg-purple-700">
             <Card>
               <CardContent className="p-4 flex items-center justify-center h-24 hover:bg-slate-300">
-                <Link href={`/products/type/${category}/cualquiera/0`} className="text-center">{category}</Link>
+                <Link href={`/products/type/${category}/cualquiera/createdAt/0`} className="text-center">{category}</Link>
               </CardContent>
             </Card>
             </Link>

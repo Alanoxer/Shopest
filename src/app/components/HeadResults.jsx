@@ -7,21 +7,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown } from "lucide-react"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
   import { Button, buttonVariants } from "@/components/ui/button"
   import { useParams, usePathname } from "next/navigation"
-  import { useRouter } from "next/navigation"
   
 export default function HeadResults(){
     const params = useParams()
     const p = usePathname()
-    const router = useRouter()
     return(
             <div className="flex justify-between items-center mb-4">
               <h1 className="text-2xl font-bold">

@@ -13,7 +13,7 @@ export default function SearchResults({products}) {
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row gap-6">
           {/* Dashboard */}
-          <aside className="w-full md:w-64 -ml-20 space-y-6 ">
+          <aside className="w-full md:w-64 space-y-6 ">
             <DashBoard/>
           </aside>
 

@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from 'next/image'
 import Link from "next/link"
+import ProductCard from "./ProductCard"
 
 
 export default function SingleProduct({product, relatedProducts, seller}) {
@@ -20,24 +21,24 @@ export default function SingleProduct({product, relatedProducts, seller}) {
   // }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className=" h-1/4 bg-gray-100">
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Product Images */}
           <div className="lg:w-2/3">
-            <div className="relative">
-              <Image src={product.image} height={300} width={300}
+            <div className="relative mx-auto justify-center">
+              <Image src={product.image} height={200} width={600}
                 // [currentImage]} 
-              alt={product.name} className="w-full object-cover h-2/3" />
+              alt={product.name} className=" justify-center mx-auto" />
               
-              <Button variant="ghost" size="icon" className="absolute top-1/2 left-4 transform -translate-y-1/2" 
+              <Button variant="default" size="icon" className="absolute top-1/2 left-4 transform -translate-y-1/2" 
               // onClick={prevImage}
               >
                 <ChevronLeft className="h-6 w-6" />
               </Button>
 
-              <Button variant="ghost" size="icon" className="absolute top-1/2 right-4 transform -translate-y-1/2" 
+              <Button variant="default" size="icon" className="absolute top-1/2 right-4 transform -translate-y-1/2" 
               // onClick={nextImage}
               >
                 <ChevronRight className="h-6 w-6" />
@@ -98,28 +99,11 @@ export default function SingleProduct({product, relatedProducts, seller}) {
           </div>
         </div>
 
-        {/* Product Details */}
-
-
         {/* Related Products */}
         <div className="mt-12">
           <h2 className="text-xl font-bold mb-4">Productos relacionados</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {relatedProducts.map((relatedProduct) => (
-            <Link href={`/products/${relatedProduct.id}`} key={relatedProduct.id}>
-              <Card>
-                <CardContent className="p-4 hover:bg-slate-200 hover:rounded-md">
-                  <img src={relatedProduct.image} alt={relatedProduct.name} className="w-full h-auto mb-2 rounded-sm mb-2" />
-                  <div className="flex flex-row justify-between mx-1">
-                    <p className="font-semibold">{relatedProduct.name}</p>
-                    <p className="font-semibold">{relatedProduct.price ? relatedProduct.price : "Precio no definido"}</p>
-                  </div>
-                  <p className="text-sm mx-1 text-gray-500 truncate">{relatedProduct.description}</p>
-                  {/* <Button onClick={addToCart} className="w-full mt-2">Agregar al carrito</Button> */}
-                </CardContent>
-              </Card>
-            </Link>
-            ))}
+            {relatedProducts.map((relatedProduct) =><ProductCard key={relatedProduct.id} product={relatedProduct}/>)}
           </div>
         </div>
 
